@@ -1,0 +1,19 @@
+.root:global(.__wab_instance) {
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+.svg {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+  display: none;
+}
+.svg__ebugj {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}

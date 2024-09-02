@@ -9,16 +9,36 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.4.0",
+    "@ant-design/pro-components": "^2.6.4",
+    "@directus/sdk": "^17.0.0",
+    "@plasmicapp/cli": "^0.1.331",
+    "@plasmicapp/react-web": "^0.2.350",
+    "@plasmicpkgs/antd5": "^0.0.249",
+    "@plasmicpkgs/lottie-react": "^0.0.196",
+    "@plasmicpkgs/plasmic-basic-components": "^0.0.227",
+    "@plasmicpkgs/plasmic-nav": "^0.0.176",
+    "@plasmicpkgs/plasmic-rich-components": "^1.0.196",
+    "@plasmicpkgs/radix-ui": "^0.0.62",
+    "@react-google-maps/api": "^2.19.3",
+    "@stripe/react-stripe-js": "^2.8.0",
+    "@stripe/stripe-js": "^4.4.0",
+    "jsqr": "^1.4.0",
+    "next": "14.2.7",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.7"
+    "stripe": "^16.9.0"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/stripe": "^8.0.417",
+    "autoprefixer": "^10.4.20",
     "eslint": "^8",
-    "eslint-config-next": "14.2.7"
+    "eslint-config-next": "14.2.7",
+    "postcss": "^8.4.43",
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5"
   }
 }
