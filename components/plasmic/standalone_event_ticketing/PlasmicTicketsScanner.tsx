@@ -118,7 +118,16 @@ function PlasmicTicketsScanner__RenderFunc(props: {
 }) {
   const { variants, overrides, forNode } = props;
 
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+        Object.fromEntries(
+          Object.entries(props.args).filter(([_, v]) => v !== undefined)
+        )
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
@@ -185,6 +194,18 @@ function PlasmicTicketsScanner__RenderFunc(props: {
         cacheKey: `plasmic.$.7a82dac9-a15d-4f17-99d8-acbd40e65051.$.`,
         invalidatedKeys: null,
         roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
+      };
+    }),
+    currentDomain: usePlasmicDataOp(() => {
+      return {
+        sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
+        opId: "e7b72039-5d29-482a-a512-fac90415c7a3",
+        userArgs: {
+          path: [window.location.hostname]
+        },
+        cacheKey: `plasmic.$.e7b72039-5d29-482a-a512-fac90415c7a3.$.`,
+        invalidatedKeys: null,
+        roleId: null
       };
     })
   };

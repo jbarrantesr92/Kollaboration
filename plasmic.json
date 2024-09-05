@@ -196,14 +196,14 @@
       "components": [
         {
           "id": "5nirPCGmCnRD",
-          "name": "Button",
+          "name": "RadixUiButton",
           "type": "managed",
           "projectId": "sqPBLwEBBKHA2WDuGb17eV",
-          "renderModuleFilePath": "plasmic/radix_ui/PlasmicButton.tsx",
+          "renderModuleFilePath": "plasmic/radix_ui/PlasmicRadixUiButton.tsx",
           "importSpec": {
-            "modulePath": "Button.tsx"
+            "modulePath": "RadixUiButton.tsx"
           },
-          "cssFilePath": "plasmic/radix_ui/PlasmicButton.module.css",
+          "cssFilePath": "plasmic/radix_ui/PlasmicRadixUiButton.module.css",
           "scheme": "blackbox",
           "componentType": "component",
           "plumeType": "button"
@@ -275,8 +275,7 @@
           "componentImportPath": "@plasmicpkgs/radix-ui"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "ohDidvG9XsCeFumugENU3J",
@@ -984,20 +983,6 @@
           "cssFilePath": "plasmic/standalone_event_ticketing/PlasmicQrCodeActions.module.css",
           "scheme": "blackbox",
           "componentType": "component"
-        },
-        {
-          "id": "hW3-l9mRNZWs",
-          "name": "NewPage",
-          "type": "managed",
-          "projectId": "MtmcKR1GuwbKEBJfYkVdj",
-          "renderModuleFilePath": "plasmic/standalone_event_ticketing/PlasmicNewPage.tsx",
-          "importSpec": {
-            "modulePath": "../pages/new-page.tsx"
-          },
-          "cssFilePath": "plasmic/standalone_event_ticketing/PlasmicNewPage.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/new-page"
         },
         {
           "id": "HJtSqCLuEANf",

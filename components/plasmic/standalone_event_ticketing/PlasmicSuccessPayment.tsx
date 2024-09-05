@@ -112,7 +112,16 @@ function PlasmicSuccessPayment__RenderFunc(props: {
 }) {
   const { variants, overrides, forNode } = props;
 
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+        Object.fromEntries(
+          Object.entries(props.args).filter(([_, v]) => v !== undefined)
+        )
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
@@ -197,9 +206,9 @@ function PlasmicSuccessPayment__RenderFunc(props: {
               onClick={async event => {
                 const $steps = {};
 
-                $steps["goToLogin"] = true
+                $steps["goToHomepage"] = true
                   ? (() => {
-                      const actionArgs = { destination: `/login` };
+                      const actionArgs = { destination: `/` };
                       return (({ destination }) => {
                         if (
                           typeof destination === "string" &&
@@ -215,11 +224,11 @@ function PlasmicSuccessPayment__RenderFunc(props: {
                     })()
                   : undefined;
                 if (
-                  $steps["goToLogin"] != null &&
-                  typeof $steps["goToLogin"] === "object" &&
-                  typeof $steps["goToLogin"].then === "function"
+                  $steps["goToHomepage"] != null &&
+                  typeof $steps["goToHomepage"] === "object" &&
+                  typeof $steps["goToHomepage"].then === "function"
                 ) {
-                  $steps["goToLogin"] = await $steps["goToLogin"];
+                  $steps["goToHomepage"] = await $steps["goToHomepage"];
                 }
               }}
               startIcon={

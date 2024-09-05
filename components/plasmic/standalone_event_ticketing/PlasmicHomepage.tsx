@@ -131,7 +131,16 @@ function PlasmicHomepage__RenderFunc(props: {
 }) {
   const { variants, overrides, forNode } = props;
 
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+        Object.fromEntries(
+          Object.entries(props.args).filter(([_, v]) => v !== undefined)
+        )
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
@@ -182,9 +191,23 @@ function PlasmicHomepage__RenderFunc(props: {
     events: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "90f19a1d-3abd-4953-941c-92500798bd1a",
-        userArgs: {},
-        cacheKey: `plasmic.$.90f19a1d-3abd-4953-941c-92500798bd1a.$.`,
+        opId: "8bc3a76d-b404-4394-a0d2-43f8c04e2789",
+        userArgs: {
+          path: [$queries.currentDomain.data.response.data[0].id]
+        },
+        cacheKey: `plasmic.$.8bc3a76d-b404-4394-a0d2-43f8c04e2789.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    currentDomain: usePlasmicDataOp(() => {
+      return {
+        sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
+        opId: "b8bbf243-1ef6-4abe-b26a-9d92a0fc0278",
+        userArgs: {
+          path: [window.location.hostname]
+        },
+        cacheKey: `plasmic.$.b8bbf243-1ef6-4abe-b26a-9d92a0fc0278.$.`,
         invalidatedKeys: null,
         roleId: null
       };

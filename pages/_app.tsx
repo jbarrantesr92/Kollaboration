@@ -6,46 +6,24 @@ import { useRouter } from "next/router";
 import { LocaleContext } from "../components/plasmic/standalone_event_ticketing/PlasmicGlobalVariant__Locale";
 import { usePlasmicAuthData } from "../utils/usePlasmicAuth";
 
-function PlasmicRootProviderWithUser(props: { children: React.ReactNode }) {
+function MyApp({ Component, pageProps }: AppProps) {
   const { isUserLoading, plasmicUser, plasmicUserToken } = usePlasmicAuthData();
   const router = useRouter();
   
-  // Only assign "es" or undefined to locale
   const locale = router.locale === "es" ? "es" : undefined;
 
   return (
     <PlasmicRootProvider
       Head={Head}
-      isUserLoading={isUserLoading}
-      user={plasmicUser}
-      userAuthToken={plasmicUserToken}
+      isUserLoading={!pageProps.withoutUseAuth ? isUserLoading : undefined}
+      user={!pageProps.withoutUseAuth ? plasmicUser : undefined}
+      userAuthToken={!pageProps.withoutUseAuth ? plasmicUserToken : undefined}
     >
       <LocaleContext.Provider value={locale}>
-        {props.children}
+        <Component {...pageProps} />
       </LocaleContext.Provider>
     </PlasmicRootProvider>
   );
 }
 
-export default function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
-  
-  // Only assign "es" or undefined to locale
-  const locale = router.locale === "es" ? "es" : undefined;
-
-  if (pageProps.withoutUseAuth) {
-    return (
-      <PlasmicRootProvider Head={Head}>
-        <LocaleContext.Provider value={locale}>
-          <Component {...pageProps} />
-        </LocaleContext.Provider>
-      </PlasmicRootProvider>
-    );
-  }
-
-  return (
-    <PlasmicRootProviderWithUser>
-      <Component {...pageProps} />
-    </PlasmicRootProviderWithUser>
-  );
-}
+export default MyApp;

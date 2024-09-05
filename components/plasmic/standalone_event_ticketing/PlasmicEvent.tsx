@@ -66,8 +66,8 @@ import {
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
-import Navbar2 from "../../Navbar2"; // plasmic-import: PlAJ5tJMUQMz/component
 import { ConditionGuard } from "@plasmicpkgs/plasmic-basic-components";
+import Navbar2 from "../../Navbar2"; // plasmic-import: PlAJ5tJMUQMz/component
 import Button from "../../Button"; // plasmic-import: 7c1YDuGGoKuq/component
 import { AntdRadioGroup } from "@plasmicpkgs/antd5/skinny/registerRadio";
 import MapComponent from "../../MapComponent"; // plasmic-import: stW4pBlbWOJb/component
@@ -113,7 +113,6 @@ export type PlasmicEvent__OverridesType = {
   root?: Flex__<"div">;
   navbar2?: Flex__<typeof Navbar2>;
   image?: Flex__<"div">;
-  conditionGuard?: Flex__<typeof ConditionGuard>;
   title?: Flex__<"div">;
   selectEventDate?: Flex__<typeof AntdRadioGroup>;
   description?: Flex__<"div">;
@@ -149,7 +148,16 @@ function PlasmicEvent__RenderFunc(props: {
 }) {
   const { variants, overrides, forNode } = props;
 
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+        Object.fromEntries(
+          Object.entries(props.args).filter(([_, v]) => v !== undefined)
+        )
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
@@ -413,16 +421,30 @@ function PlasmicEvent__RenderFunc(props: {
         opId: "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
         userArgs: {
           params: [
-            {
-              TicketId: {
-                _in: $queries.getTickets.data.response.data.map(
-                  ticket => ticket.id
-                )
+            (() => {
+              {
+                TicketId: {
+                  _in: $queries.getTickets.data.response.data.map(
+                    ticket => ticket.id
+                  );
+                }
               }
-            }
+            })()
           ]
         },
         cacheKey: `plasmic.$.b895aa89-cd9e-48f4-84d1-e42992d31c7f.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    }),
+    currentDomain: usePlasmicDataOp(() => {
+      return {
+        sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
+        opId: "876d9867-e0ae-4c2b-bc04-4c8b77e19e26",
+        userArgs: {
+          path: [window.location.hostname]
+        },
+        cacheKey: `plasmic.$.876d9867-e0ae-4c2b-bc04-4c8b77e19e26.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -465,572 +487,921 @@ function PlasmicEvent__RenderFunc(props: {
             sty.root
           )}
         >
-          <Navbar2
-            data-plasmic-name={"navbar2"}
-            data-plasmic-override={overrides.navbar2}
-            className={classNames("__wab_instance", sty.navbar2)}
-          />
+          <ConditionGuard
+            className={classNames("__wab_instance", sty.conditionGuard__f1DfN)}
+            condition={(() => {
+              try {
+                return (
+                  $queries.getEvent.data.response.data.DomainId ==
+                  $queries.currentDomain.data.response.data[0].id
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return false;
+                }
+                throw e;
+              }
+            })()}
+          >
+            <Navbar2
+              data-plasmic-name={"navbar2"}
+              data-plasmic-override={overrides.navbar2}
+              className={classNames("__wab_instance", sty.navbar2)}
+            />
 
-          <div className={classNames(projectcss.all, sty.freeBox__jZaQz)}>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__bsCaq)}
-            >
-              <div
-                data-plasmic-name={"image"}
-                data-plasmic-override={overrides.image}
-                className={classNames(projectcss.all, sty.image)}
-              >
-                <PlasmicImg__
-                  alt={""}
-                  className={classNames(sty.img__gjrpl)}
-                  displayHeight={"350px"}
-                  displayMaxHeight={"none"}
-                  displayMaxWidth={"100%"}
-                  displayMinHeight={"0"}
-                  displayMinWidth={"0"}
-                  displayWidth={"100%"}
-                  loading={"lazy"}
-                  src={(() => {
-                    try {
-                      return (
-                        "https://events-db-directus.6sizjj.easypanel.host/assets/" +
-                        $queries.getEvent.data.response.data.Hero
-                      );
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
-                    }
-                  })()}
-                />
-              </div>
-              <ConditionGuard
-                data-plasmic-name={"conditionGuard"}
-                data-plasmic-override={overrides.conditionGuard}
-                className={classNames("__wab_instance", sty.conditionGuard)}
-                condition={(() => {
-                  try {
-                    return (
-                      currentUser.customProperties.role ==
-                        "1ceacb7a-f026-46ef-9daa-13f8c86f89a3" ||
-                      currentUser.customProperties.role ==
-                        "07b345f2-a68e-4456-ae77-6fced8ee7cb7"
-                    );
-                  } catch (e) {
-                    if (
-                      e instanceof TypeError ||
-                      e?.plasmicType === "PlasmicUndefinedDataError"
-                    ) {
-                      return false;
-                    }
-                    throw e;
-                  }
-                })()}
-              >
-                <Button
-                  className={classNames("__wab_instance", sty.button__ioVzq)}
-                  link={(() => {
-                    try {
-                      return "/tickets-scanner?eventId=" + $ctx.params.eventId;
-                    } catch (e) {
-                      if (
-                        e instanceof TypeError ||
-                        e?.plasmicType === "PlasmicUndefinedDataError"
-                      ) {
-                        return undefined;
-                      }
-                      throw e;
-                    }
-                  })()}
-                  onClick={async event => {
-                    const $steps = {};
-                  }}
-                  startIcon={
-                    <QrCodeSvgIcon
-                      className={classNames(projectcss.all, sty.svg__m0Gla)}
-                      role={"img"}
-                    />
-                  }
-                >
-                  {"Scan Tickets"}
-                </Button>
-              </ConditionGuard>
-              <div
-                data-plasmic-name={"title"}
-                data-plasmic-override={overrides.title}
-                className={classNames(projectcss.all, sty.title)}
+            <div className={classNames(projectcss.all, sty.freeBox__jZaQz)}>
+              <Stack__
+                as={"div"}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.freeBox__bsCaq)}
               >
                 <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___40MBo
-                  )}
+                  data-plasmic-name={"image"}
+                  data-plasmic-override={overrides.image}
+                  className={classNames(projectcss.all, sty.image)}
                 >
-                  <React.Fragment>
-                    {(() => {
+                  <PlasmicImg__
+                    alt={""}
+                    className={classNames(sty.img__gjrpl)}
+                    displayHeight={"350px"}
+                    displayMaxHeight={"none"}
+                    displayMaxWidth={"100%"}
+                    displayMinHeight={"0"}
+                    displayMinWidth={"0"}
+                    displayWidth={"100%"}
+                    loading={"lazy"}
+                    src={(() => {
                       try {
-                        return $queries.getEvent.data.response.data.EventName;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___0M1Ex
-                  )}
-                >
-                  <React.Fragment>
-                    {(() => {
-                      try {
-                        return $queries.getEvent.data.response.data
-                          .EventLocation;
-                      } catch (e) {
-                        if (
-                          e instanceof TypeError ||
-                          e?.plasmicType === "PlasmicUndefinedDataError"
-                        ) {
-                          return "";
-                        }
-                        throw e;
-                      }
-                    })()}
-                  </React.Fragment>
-                </div>
-                <div className={classNames(projectcss.all, sty.freeBox__r1Y6C)}>
-                  <AntdRadioGroup
-                    data-plasmic-name={"selectEventDate"}
-                    data-plasmic-override={overrides.selectEventDate}
-                    children={null}
-                    className={classNames(
-                      "__wab_instance",
-                      sty.selectEventDate
-                    )}
-                    defaultValue={"0cfa50af-a399-46e8-9643-e54773de9988"}
-                    onChange={async (...eventArgs: any) => {
-                      generateStateOnChangeProp($state, [
-                        "selectEventDate",
-                        "value"
-                      ]).apply(null, eventArgs);
-                      (async value => {
-                        const $steps = {};
-
-                        $steps["refreshData"] = true
-                          ? (() => {
-                              const actionArgs = {
-                                queryInvalidation: [
-                                  "01ee36e8-af7d-423d-b71f-f37eb7071c46",
-                                  "e1960040-bc24-4f2b-aa1b-b8867c6e584f"
-                                ]
-                              };
-                              return (async ({ queryInvalidation }) => {
-                                if (!queryInvalidation) {
-                                  return;
-                                }
-                                await plasmicInvalidate(queryInvalidation);
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                        if (
-                          $steps["refreshData"] != null &&
-                          typeof $steps["refreshData"] === "object" &&
-                          typeof $steps["refreshData"].then === "function"
-                        ) {
-                          $steps["refreshData"] = await $steps["refreshData"];
-                        }
-                      }).apply(null, eventArgs);
-                    }}
-                    optionType={"default"}
-                    options={(() => {
-                      try {
-                        return $queries.eventDates.data.response.data.map(
-                          date => ({
-                            label: date.StartDate,
-                            value: date.id
-                          })
+                        return (
+                          "https://events-db-directus.6sizjj.easypanel.host/assets/" +
+                          $queries.getEvent.data.response.data.Hero
                         );
                       } catch (e) {
                         if (
                           e instanceof TypeError ||
                           e?.plasmicType === "PlasmicUndefinedDataError"
                         ) {
-                          return [
-                            { value: "option1", label: "Option 1" },
-                            { value: "option2", label: "Option 2" }
-                          ];
+                          return undefined;
                         }
                         throw e;
                       }
                     })()}
-                    value={generateStateValueProp($state, [
-                      "selectEventDate",
-                      "value"
-                    ])}
                   />
                 </div>
-              </div>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__iOgoX)}
-              >
-                <div className={classNames(projectcss.all, sty.freeBox__jKpFw)}>
-                  <div
-                    data-plasmic-name={"description"}
-                    data-plasmic-override={overrides.description}
-                    className={classNames(projectcss.all, sty.description)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__h74Gj,
-                        {
-                          [sty.textglobal_locale_es__h74GjzPCq4]: hasVariant(
-                            globalVariants,
-                            "locale",
-                            "es"
-                          )
-                        }
-                      )}
-                    >
-                      <React.Fragment>
-                        <span
-                          className={
-                            "plasmic_default__all plasmic_default__span"
-                          }
-                          style={{ fontWeight: 700 }}
-                        >
-                          {"Event Description"}
-                        </span>
-                      </React.Fragment>
-                    </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__jnuGy,
-                        {
-                          [sty.textglobal_locale_es__jnuGyzPCq4]: hasVariant(
-                            globalVariants,
-                            "locale",
-                            "es"
-                          )
-                        }
-                      )}
-                    >
-                      <React.Fragment>
-                        <span
-                          className={
-                            "plasmic_default__all plasmic_default__span"
-                          }
-                          style={{ fontWeight: 700 }}
-                        >
-                          {"Acerca del evento"}
-                        </span>
-                      </React.Fragment>
-                    </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__eg9CA
-                      )}
-                    >
-                      <React.Fragment>
-                        {(() => {
-                          try {
-                            return $queries.getEvent.data.response.data
-                              .EventDescription;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return "";
-                            }
-                            throw e;
-                          }
-                        })()}
-                      </React.Fragment>
-                    </div>
-                  </div>
-                  <div
-                    data-plasmic-name={"location"}
-                    data-plasmic-override={overrides.location}
-                    className={classNames(projectcss.all, sty.location)}
-                  >
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__fXYa3,
-                        {
-                          [sty.textglobal_locale_es__fXYa3ZPCq4]: hasVariant(
-                            globalVariants,
-                            "locale",
-                            "es"
-                          )
-                        }
-                      )}
-                    >
-                      <React.Fragment>
-                        <span
-                          className={
-                            "plasmic_default__all plasmic_default__span"
-                          }
-                          style={{ fontWeight: 700 }}
-                        >
-                          {"Event Location"}
-                        </span>
-                      </React.Fragment>
-                    </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__o1JOk,
-                        {
-                          [sty.textglobal_locale_es__o1JOkzPCq4]: hasVariant(
-                            globalVariants,
-                            "locale",
-                            "es"
-                          )
-                        }
-                      )}
-                    >
-                      <React.Fragment>
-                        <span
-                          className={
-                            "plasmic_default__all plasmic_default__span"
-                          }
-                          style={{ fontWeight: 700 }}
-                        >
-                          {"Ubicaci\u00f3n"}
-                        </span>
-                      </React.Fragment>
-                    </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__q1O
-                      )}
-                    >
-                      <React.Fragment>
-                        {(() => {
-                          try {
-                            return $queries.getEvent.data.response.data
-                              .EventVenue;
-                          } catch (e) {
-                            if (
-                              e instanceof TypeError ||
-                              e?.plasmicType === "PlasmicUndefinedDataError"
-                            ) {
-                              return "";
-                            }
-                            throw e;
-                          }
-                        })()}
-                      </React.Fragment>
-                    </div>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        sty.freeBox__d8AxN,
-                        {
-                          [sty.freeBoxglobal_locale_es__d8AxNzPCq4]: hasVariant(
-                            globalVariants,
-                            "locale",
-                            "es"
-                          )
-                        }
-                      )}
-                    >
-                      <MapComponent
-                        data-plasmic-name={"mapComponent"}
-                        data-plasmic-override={overrides.mapComponent}
-                        className={classNames(
-                          "__wab_instance",
-                          sty.mapComponent
-                        )}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  data-plasmic-name={"tickets"}
-                  data-plasmic-override={overrides.tickets}
-                  className={classNames(projectcss.all, sty.tickets)}
+                <ConditionGuard
+                  className={classNames(
+                    "__wab_instance",
+                    sty.conditionGuard___0OQRa
+                  )}
+                  condition={(() => {
+                    try {
+                      return (
+                        currentUser.customProperties.role ==
+                          "1ceacb7a-f026-46ef-9daa-13f8c86f89a3" ||
+                        currentUser.customProperties.role ==
+                          "07b345f2-a68e-4456-ae77-6fced8ee7cb7"
+                      );
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return false;
+                      }
+                      throw e;
+                    }
+                  })()}
                 >
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
-                    className={classNames(projectcss.all, sty.freeBox__f7XW)}
+                  <Button
+                    className={classNames("__wab_instance", sty.button__ioVzq)}
+                    link={(() => {
+                      try {
+                        return (
+                          "/tickets-scanner?eventId=" + $ctx.params.eventId
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    onClick={async event => {
+                      const $steps = {};
+                    }}
+                    startIcon={
+                      <QrCodeSvgIcon
+                        className={classNames(projectcss.all, sty.svg__m0Gla)}
+                        role={"img"}
+                      />
+                    }
                   >
-                    {(_par =>
-                      !_par ? [] : Array.isArray(_par) ? _par : [_par])(
-                      (() => {
+                    {"Scan Tickets"}
+                  </Button>
+                </ConditionGuard>
+                <div
+                  data-plasmic-name={"title"}
+                  data-plasmic-override={overrides.title}
+                  className={classNames(projectcss.all, sty.title)}
+                >
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___40MBo
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
                         try {
-                          return $queries.getTickets.data.response.data;
+                          return $queries.getEvent.data.response.data.EventName;
                         } catch (e) {
                           if (
                             e instanceof TypeError ||
                             e?.plasmicType === "PlasmicUndefinedDataError"
                           ) {
-                            return [];
+                            return "";
                           }
                           throw e;
                         }
-                      })()
-                    ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                      const currentItem = __plasmic_item_0;
-                      const currentIndex = __plasmic_idx_0;
-                      return (
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__ooaXn
-                          )}
-                          key={currentIndex}
-                        >
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__s0H4G
-                            )}
-                          >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return currentItem.TicketType;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "";
+                      })()}
+                    </React.Fragment>
+                  </div>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___0M1Ex
+                    )}
+                  >
+                    <React.Fragment>
+                      {(() => {
+                        try {
+                          return $queries.getEvent.data.response.data
+                            .EventLocation;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "";
+                          }
+                          throw e;
+                        }
+                      })()}
+                    </React.Fragment>
+                  </div>
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__r1Y6C)}
+                  >
+                    <AntdRadioGroup
+                      data-plasmic-name={"selectEventDate"}
+                      data-plasmic-override={overrides.selectEventDate}
+                      children={null}
+                      className={classNames(
+                        "__wab_instance",
+                        sty.selectEventDate
+                      )}
+                      defaultValue={"0cfa50af-a399-46e8-9643-e54773de9988"}
+                      onChange={async (...eventArgs: any) => {
+                        generateStateOnChangeProp($state, [
+                          "selectEventDate",
+                          "value"
+                        ]).apply(null, eventArgs);
+                        (async value => {
+                          const $steps = {};
+
+                          $steps["refreshData"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  queryInvalidation: [
+                                    "01ee36e8-af7d-423d-b71f-f37eb7071c46",
+                                    "e1960040-bc24-4f2b-aa1b-b8867c6e584f"
+                                  ]
+                                };
+                                return (async ({ queryInvalidation }) => {
+                                  if (!queryInvalidation) {
+                                    return;
                                   }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </div>
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__erUar
-                            )}
+                                  await plasmicInvalidate(queryInvalidation);
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["refreshData"] != null &&
+                            typeof $steps["refreshData"] === "object" &&
+                            typeof $steps["refreshData"].then === "function"
+                          ) {
+                            $steps["refreshData"] = await $steps["refreshData"];
+                          }
+                        }).apply(null, eventArgs);
+                      }}
+                      optionType={"default"}
+                      options={(() => {
+                        try {
+                          return $queries.eventDates.data.response.data.map(
+                            date => ({
+                              label: date.StartDate,
+                              value: date.id
+                            })
+                          );
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return [
+                              { value: "option1", label: "Option 1" },
+                              { value: "option2", label: "Option 2" }
+                            ];
+                          }
+                          throw e;
+                        }
+                      })()}
+                      value={generateStateValueProp($state, [
+                        "selectEventDate",
+                        "value"
+                      ])}
+                    />
+                  </div>
+                </div>
+                <Stack__
+                  as={"div"}
+                  hasGap={true}
+                  className={classNames(projectcss.all, sty.freeBox__iOgoX)}
+                >
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__jKpFw)}
+                  >
+                    <div
+                      data-plasmic-name={"description"}
+                      data-plasmic-override={overrides.description}
+                      className={classNames(projectcss.all, sty.description)}
+                    >
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__h74Gj,
+                          {
+                            [sty.textglobal_locale_es__h74GjzPCq4]: hasVariant(
+                              globalVariants,
+                              "locale",
+                              "es"
+                            )
+                          }
+                        )}
+                      >
+                        <React.Fragment>
+                          <span
+                            className={
+                              "plasmic_default__all plasmic_default__span"
+                            }
+                            style={{ fontWeight: 700 }}
                           >
-                            <React.Fragment>
-                              {(() => {
-                                try {
-                                  return (
-                                    "$" + currentItem.TicketPrice.toFixed(2)
-                                  );
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return "";
-                                  }
-                                  throw e;
-                                }
-                              })()}
-                            </React.Fragment>
-                          </div>
+                            {"Event Description"}
+                          </span>
+                        </React.Fragment>
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__jnuGy,
+                          {
+                            [sty.textglobal_locale_es__jnuGyzPCq4]: hasVariant(
+                              globalVariants,
+                              "locale",
+                              "es"
+                            )
+                          }
+                        )}
+                      >
+                        <React.Fragment>
+                          <span
+                            className={
+                              "plasmic_default__all plasmic_default__span"
+                            }
+                            style={{ fontWeight: 700 }}
+                          >
+                            {"Acerca del evento"}
+                          </span>
+                        </React.Fragment>
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__eg9CA
+                        )}
+                      >
+                        <React.Fragment>
                           {(() => {
-                            const child$Props = {
-                              bordered: true,
-                              className: classNames(
-                                "__wab_instance",
-                                sty.ticketsQuantity
-                              ),
-                              defaultStylesClassName: classNames(
-                                projectcss.root_reset,
-                                projectcss.plasmic_default_styles,
-                                projectcss.plasmic_mixins,
-                                projectcss.plasmic_tokens,
-                                plasmic_antd_5_hostless_css.plasmic_tokens,
-                                plasmic_plasmic_rich_components_css.plasmic_tokens
-                              ),
-                              defaultValue: (() => {
-                                try {
-                                  return $queries.getCart.data.response.data.filter(
-                                    ticket => ticket.TicketId == currentItem.id
-                                  )[0].TicketQuantity;
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
+                            try {
+                              return $queries.getEvent.data.response.data
+                                .EventDescription;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </div>
+                    </div>
+                    <div
+                      data-plasmic-name={"location"}
+                      data-plasmic-override={overrides.location}
+                      className={classNames(projectcss.all, sty.location)}
+                    >
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__fXYa3,
+                          {
+                            [sty.textglobal_locale_es__fXYa3ZPCq4]: hasVariant(
+                              globalVariants,
+                              "locale",
+                              "es"
+                            )
+                          }
+                        )}
+                      >
+                        <React.Fragment>
+                          <span
+                            className={
+                              "plasmic_default__all plasmic_default__span"
+                            }
+                            style={{ fontWeight: 700 }}
+                          >
+                            {"Event Location"}
+                          </span>
+                        </React.Fragment>
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__o1JOk,
+                          {
+                            [sty.textglobal_locale_es__o1JOkzPCq4]: hasVariant(
+                              globalVariants,
+                              "locale",
+                              "es"
+                            )
+                          }
+                        )}
+                      >
+                        <React.Fragment>
+                          <span
+                            className={
+                              "plasmic_default__all plasmic_default__span"
+                            }
+                            style={{ fontWeight: 700 }}
+                          >
+                            {"Ubicaci\u00f3n"}
+                          </span>
+                        </React.Fragment>
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__q1O
+                        )}
+                      >
+                        <React.Fragment>
+                          {(() => {
+                            try {
+                              return $queries.getEvent.data.response.data
+                                .EventVenue;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return "";
+                              }
+                              throw e;
+                            }
+                          })()}
+                        </React.Fragment>
+                      </div>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__d8AxN,
+                          {
+                            [sty.freeBoxglobal_locale_es__d8AxNzPCq4]:
+                              hasVariant(globalVariants, "locale", "es")
+                          }
+                        )}
+                      >
+                        <MapComponent
+                          data-plasmic-name={"mapComponent"}
+                          data-plasmic-override={overrides.mapComponent}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.mapComponent
+                          )}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    data-plasmic-name={"tickets"}
+                    data-plasmic-override={overrides.tickets}
+                    className={classNames(projectcss.all, sty.tickets)}
+                  >
+                    <Stack__
+                      as={"div"}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.freeBox__f7XW)}
+                    >
+                      {(_par =>
+                        !_par ? [] : Array.isArray(_par) ? _par : [_par])(
+                        (() => {
+                          try {
+                            return $queries.getTickets.data.response.data;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [];
+                            }
+                            throw e;
+                          }
+                        })()
+                      ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                        const currentItem = __plasmic_item_0;
+                        const currentIndex = __plasmic_idx_0;
+                        return (
+                          <Stack__
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__ooaXn
+                            )}
+                            key={currentIndex}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__s0H4G
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return currentItem.TicketType;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "";
+                                    }
+                                    throw e;
                                   }
-                                  throw e;
-                                }
-                              })(),
-                              onChange: async (...eventArgs: any) => {
-                                generateStateOnChangeProp($state, [
+                                })()}
+                              </React.Fragment>
+                            </div>
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__erUar
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return (
+                                      "$" + currentItem.TicketPrice.toFixed(2)
+                                    );
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            </div>
+                            {(() => {
+                              const child$Props = {
+                                bordered: true,
+                                className: classNames(
+                                  "__wab_instance",
+                                  sty.ticketsQuantity
+                                ),
+                                defaultStylesClassName: classNames(
+                                  projectcss.root_reset,
+                                  projectcss.plasmic_default_styles,
+                                  projectcss.plasmic_mixins,
+                                  projectcss.plasmic_tokens,
+                                  plasmic_antd_5_hostless_css.plasmic_tokens,
+                                  plasmic_plasmic_rich_components_css.plasmic_tokens
+                                ),
+                                defaultValue: (() => {
+                                  try {
+                                    return $queries.getCart.data.response.data.filter(
+                                      ticket =>
+                                        ticket.TicketId == currentItem.id
+                                    )[0].TicketQuantity;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })(),
+                                onChange: async (...eventArgs: any) => {
+                                  generateStateOnChangeProp($state, [
+                                    "ticketsQuantity",
+                                    __plasmic_idx_0,
+                                    "value"
+                                  ]).apply(null, eventArgs);
+                                  (async (value, option) => {
+                                    const $steps = {};
+
+                                    $steps["updateSelectors"] = true
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["selectors"]
+                                            },
+                                            operation: 0,
+                                            value: ($state.selectors = [
+                                              ...$state.selectors.filter(
+                                                item =>
+                                                  item.TicketId !==
+                                                  currentItem.id
+                                              ),
+                                              ...($state.ticketsQuantity[
+                                                currentIndex
+                                              ].value > 0
+                                                ? [
+                                                    {
+                                                      TicketId: currentItem.id,
+                                                      TicketQuantity:
+                                                        $state.ticketsQuantity[
+                                                          currentIndex
+                                                        ].value,
+                                                      TicketPrice:
+                                                        currentItem.TicketPrice
+                                                    }
+                                                  ]
+                                                : [])
+                                            ])
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                    if (
+                                      $steps["updateSelectors"] != null &&
+                                      typeof $steps["updateSelectors"] ===
+                                        "object" &&
+                                      typeof $steps["updateSelectors"].then ===
+                                        "function"
+                                    ) {
+                                      $steps["updateSelectors"] = await $steps[
+                                        "updateSelectors"
+                                      ];
+                                    }
+                                  }).apply(null, eventArgs);
+                                },
+                                options: (() => {
+                                  try {
+                                    return (() => {
+                                      const generateOptions = ticket => {
+                                        const availableTickets =
+                                          ticket.limit -
+                                          ticket.purchasedSoFar +
+                                          ticket.purchasingNow;
+                                        const maxOptions = Math.min(
+                                          availableTickets,
+                                          10
+                                        );
+                                        return Array.from(
+                                          { length: maxOptions },
+                                          (_, index) => ({
+                                            label: index + 1,
+                                            value: index + 1
+                                          })
+                                        );
+                                      };
+                                      const optionsArray =
+                                        $state.ticketsAvailable.details
+                                          .filter(
+                                            ticket =>
+                                              ticket.ticketId == currentItem.id
+                                          )
+                                          .map(ticket =>
+                                            generateOptions(ticket)
+                                          )[0];
+                                      return optionsArray;
+                                    })();
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return [
+                                        {
+                                          value: "option1",
+                                          label: "Option 1",
+                                          type: "option"
+                                        },
+                                        {
+                                          value: "option2",
+                                          label: "Option 2",
+                                          type: "option"
+                                        }
+                                      ];
+                                    }
+                                    throw e;
+                                  }
+                                })(),
+                                placeholder: "Select...",
+                                popupScopeClassName:
+                                  sty["ticketsQuantity__popup"],
+                                value: generateStateValueProp($state, [
                                   "ticketsQuantity",
                                   __plasmic_idx_0,
                                   "value"
-                                ]).apply(null, eventArgs);
-                                (async (value, option) => {
+                                ])
+                              };
+                              initializeCodeComponentStates(
+                                $state,
+                                [
+                                  {
+                                    name: "value",
+                                    plasmicStateName: "ticketsQuantity[].value"
+                                  }
+                                ],
+                                [__plasmic_idx_0],
+                                undefined ?? {},
+                                child$Props
+                              );
+                              initializePlasmicStates(
+                                $state,
+                                [
+                                  {
+                                    name: "ticketsQuantity[].value",
+                                    initFunc: ({ $props, $state, $queries }) =>
+                                      (() => {
+                                        try {
+                                          return $queries.getCart.data.response.data.filter(
+                                            ticket =>
+                                              ticket.TicketId == currentItem.id
+                                          )[0].TicketQuantity;
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
+                                        }
+                                      })()
+                                  }
+                                ],
+                                [__plasmic_idx_0]
+                              );
+                              return (
+                                <AntdSelect
+                                  data-plasmic-name={"ticketsQuantity"}
+                                  data-plasmic-override={
+                                    overrides.ticketsQuantity
+                                  }
+                                  {...child$Props}
+                                />
+                              );
+                            })()}
+                          </Stack__>
+                        );
+                      })}
+                      <Drawer
+                        data-plasmic-name={"createPurchase"}
+                        data-plasmic-override={overrides.createPurchase}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.createPurchase
+                        )}
+                        onOpenChange={generateStateOnChangeProp($state, [
+                          "createPurchase",
+                          "open"
+                        ])}
+                        open={generateStateValueProp($state, [
+                          "createPurchase",
+                          "open"
+                        ])}
+                        slot={
+                          <Stack__
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__us5Bw
+                            )}
+                          >
+                            <Stack__
+                              as={"div"}
+                              hasGap={true}
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox___8PErm
+                              )}
+                            >
+                              {(() => {
+                                try {
+                                  return (() => {
+                                    const targetDate = new Date(
+                                      $queries.getPurchases.data.response.data[0].date_created
+                                    );
+                                    const now = new Date().getTime();
+                                    const difference =
+                                      300000 - (now - targetDate.getTime());
+                                    return difference > 0;
+                                  })();
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return false;
+                                  }
+                                  throw e;
+                                }
+                              })() ? (
+                                <TimerSvgIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__n9VfC
+                                  )}
+                                  role={"img"}
+                                />
+                              ) : null}
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__uepWg
+                                )}
+                              >
+                                <React.Fragment>
+                                  {(() => {
+                                    try {
+                                      return $state.timer.minutes
+                                        ? $state.timer.minutes + ":"
+                                        : "";
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return "";
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                </React.Fragment>
+                              </div>
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  projectcss.__wab_text,
+                                  sty.text__ub3Jx
+                                )}
+                              >
+                                <React.Fragment>
+                                  {(() => {
+                                    try {
+                                      return $state.timer.seconds;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return "";
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                </React.Fragment>
+                              </div>
+                              <Timer
+                                className={classNames(
+                                  "__wab_instance",
+                                  sty.timer___3TZ0V
+                                )}
+                                intervalSeconds={1}
+                                isRunning={(() => {
+                                  try {
+                                    return (
+                                      $queries.getPurchases.data.response.data
+                                        .length > 0
+                                    );
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return false;
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                                onTick={async () => {
                                   const $steps = {};
 
-                                  $steps["updateSelectors"] = true
+                                  $steps["updateTimer"] = true
                                     ? (() => {
                                         const actionArgs = {
                                           variable: {
                                             objRoot: $state,
-                                            variablePath: ["selectors"]
+                                            variablePath: ["timer"]
                                           },
                                           operation: 0,
-                                          value: ($state.selectors = [
-                                            ...$state.selectors.filter(
-                                              item =>
-                                                item.TicketId !== currentItem.id
-                                            ),
-                                            ...($state.ticketsQuantity[
-                                              currentIndex
-                                            ].value > 0
-                                              ? [
-                                                  {
-                                                    TicketId: currentItem.id,
-                                                    TicketQuantity:
-                                                      $state.ticketsQuantity[
-                                                        currentIndex
-                                                      ].value,
-                                                    TicketPrice:
-                                                      currentItem.TicketPrice
-                                                  }
-                                                ]
-                                              : [])
-                                          ])
+                                          value: (() => {
+                                            const targetDate = new Date(
+                                              $queries.getPurchases.data.response.data[0].date_created
+                                            );
+                                            const now = new Date().getTime();
+                                            const difference =
+                                              $state.purchaseTime * 60000 -
+                                              (now - targetDate.getTime());
+                                            let minutes, seconds;
+                                            if (difference < 0) {
+                                              minutes = 0;
+                                              seconds = 0;
+                                            } else {
+                                              minutes = Math.floor(
+                                                (difference %
+                                                  (1000 * 60 * 60)) /
+                                                  (1000 * 60)
+                                              );
+                                              seconds = Math.floor(
+                                                (difference % (1000 * 60)) /
+                                                  1000
+                                              );
+                                            }
+                                            const timer = {
+                                              minutes: minutes,
+                                              seconds: seconds
+                                            };
+                                            return timer;
+                                          })()
                                         };
                                         return (({
                                           variable,
@@ -1054,175 +1425,104 @@ function PlasmicEvent__RenderFunc(props: {
                                       })()
                                     : undefined;
                                   if (
-                                    $steps["updateSelectors"] != null &&
-                                    typeof $steps["updateSelectors"] ===
-                                      "object" &&
-                                    typeof $steps["updateSelectors"].then ===
+                                    $steps["updateTimer"] != null &&
+                                    typeof $steps["updateTimer"] === "object" &&
+                                    typeof $steps["updateTimer"].then ===
                                       "function"
                                   ) {
-                                    $steps["updateSelectors"] = await $steps[
-                                      "updateSelectors"
+                                    $steps["updateTimer"] = await $steps[
+                                      "updateTimer"
                                     ];
                                   }
-                                }).apply(null, eventArgs);
-                              },
-                              options: (() => {
-                                try {
-                                  return (() => {
-                                    const generateOptions = ticket => {
-                                      const availableTickets =
-                                        ticket.limit -
-                                        ticket.purchasedSoFar +
-                                        ticket.purchasingNow;
-                                      const maxOptions = Math.min(
-                                        availableTickets,
-                                        10
-                                      );
-                                      return Array.from(
-                                        { length: maxOptions },
-                                        (_, index) => ({
-                                          label: index + 1,
-                                          value: index + 1
-                                        })
-                                      );
-                                    };
-                                    const optionsArray =
-                                      $state.ticketsAvailable.details
-                                        .filter(
-                                          ticket =>
-                                            ticket.ticketId == currentItem.id
-                                        )
-                                        .map(ticket =>
-                                          generateOptions(ticket)
-                                        )[0];
-                                    return optionsArray;
-                                  })();
-                                } catch (e) {
+
+                                  $steps["updateTimesUpMessage"] = (() => {
+                                    const targetDate = new Date(
+                                      $queries.getPurchases.data.response.data[0].date_created
+                                    );
+                                    const now = new Date().getTime();
+                                    const difference =
+                                      $state.purchaseTime * 60000 -
+                                      (now - targetDate.getTime());
+                                    return difference == 0 || difference < 0;
+                                  })()
+                                    ? (() => {
+                                        const actionArgs = {
+                                          variable: {
+                                            objRoot: $state,
+                                            variablePath: ["timesUpMessage"]
+                                          },
+                                          operation: 0,
+                                          value: true
+                                        };
+                                        return (({
+                                          variable,
+                                          value,
+                                          startIndex,
+                                          deleteCount
+                                        }) => {
+                                          if (!variable) {
+                                            return;
+                                          }
+                                          const { objRoot, variablePath } =
+                                            variable;
+
+                                          $stateSet(
+                                            objRoot,
+                                            variablePath,
+                                            value
+                                          );
+                                          return value;
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
                                   if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
+                                    $steps["updateTimesUpMessage"] != null &&
+                                    typeof $steps["updateTimesUpMessage"] ===
+                                      "object" &&
+                                    typeof $steps["updateTimesUpMessage"]
+                                      .then === "function"
                                   ) {
-                                    return [
-                                      {
-                                        value: "option1",
-                                        label: "Option 1",
-                                        type: "option"
-                                      },
-                                      {
-                                        value: "option2",
-                                        label: "Option 2",
-                                        type: "option"
-                                      }
-                                    ];
+                                    $steps["updateTimesUpMessage"] =
+                                      await $steps["updateTimesUpMessage"];
                                   }
-                                  throw e;
-                                }
-                              })(),
-                              placeholder: "Select...",
-                              popupScopeClassName:
-                                sty["ticketsQuantity__popup"],
-                              value: generateStateValueProp($state, [
-                                "ticketsQuantity",
-                                __plasmic_idx_0,
-                                "value"
-                              ])
-                            };
-                            initializeCodeComponentStates(
-                              $state,
-                              [
-                                {
-                                  name: "value",
-                                  plasmicStateName: "ticketsQuantity[].value"
-                                }
-                              ],
-                              [__plasmic_idx_0],
-                              undefined ?? {},
-                              child$Props
-                            );
-                            initializePlasmicStates(
-                              $state,
-                              [
-                                {
-                                  name: "ticketsQuantity[].value",
-                                  initFunc: ({ $props, $state, $queries }) =>
-                                    (() => {
-                                      try {
-                                        return $queries.getCart.data.response.data.filter(
-                                          ticket =>
-                                            ticket.TicketId == currentItem.id
-                                        )[0].TicketQuantity;
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
-                                        }
-                                        throw e;
-                                      }
-                                    })()
-                                }
-                              ],
-                              [__plasmic_idx_0]
-                            );
-                            return (
-                              <AntdSelect
-                                data-plasmic-name={"ticketsQuantity"}
-                                data-plasmic-override={
-                                  overrides.ticketsQuantity
-                                }
-                                {...child$Props}
+
+                                  $steps["runCode"] = (() => {
+                                    const targetDate = new Date(
+                                      $queries.getPurchases.data.response.data[0].date_created
+                                    );
+                                    const now = new Date().getTime();
+                                    const difference =
+                                      $state.purchaseTime * 60000 -
+                                      (now - targetDate.getTime());
+                                    return difference == 0 || difference < 0;
+                                  })()
+                                    ? (() => {
+                                        const actionArgs = {
+                                          customFunction: async () => {
+                                            return localStorage.removeItem(
+                                              "PurchaseId"
+                                            );
+                                          }
+                                        };
+                                        return (({ customFunction }) => {
+                                          return customFunction();
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                  if (
+                                    $steps["runCode"] != null &&
+                                    typeof $steps["runCode"] === "object" &&
+                                    typeof $steps["runCode"].then === "function"
+                                  ) {
+                                    $steps["runCode"] = await $steps["runCode"];
+                                  }
+                                }}
+                                runWhileEditing={false}
                               />
-                            );
-                          })()}
-                        </Stack__>
-                      );
-                    })}
-                    <Drawer
-                      data-plasmic-name={"createPurchase"}
-                      data-plasmic-override={overrides.createPurchase}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.createPurchase
-                      )}
-                      onOpenChange={generateStateOnChangeProp($state, [
-                        "createPurchase",
-                        "open"
-                      ])}
-                      open={generateStateValueProp($state, [
-                        "createPurchase",
-                        "open"
-                      ])}
-                      slot={
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__us5Bw
-                          )}
-                        >
-                          <Stack__
-                            as={"div"}
-                            hasGap={true}
-                            className={classNames(
-                              projectcss.all,
-                              sty.freeBox___8PErm
-                            )}
-                          >
+                            </Stack__>
                             {(() => {
                               try {
-                                return (() => {
-                                  const targetDate = new Date(
-                                    $queries.getPurchases.data.response.data[0].date_created
-                                  );
-                                  const now = new Date().getTime();
-                                  const difference =
-                                    300000 - (now - targetDate.getTime());
-                                  return difference > 0;
-                                })();
+                                return $state.cartLoader == false;
                               } catch (e) {
                                 if (
                                   e instanceof TypeError ||
@@ -1233,169 +1533,1333 @@ function PlasmicEvent__RenderFunc(props: {
                                 throw e;
                               }
                             })() ? (
-                              <TimerSvgIcon
+                              <Stack__
+                                as={"div"}
+                                hasGap={true}
                                 className={classNames(
                                   projectcss.all,
-                                  sty.svg__n9VfC
+                                  sty.freeBox___3SyDv
                                 )}
-                                role={"img"}
-                              />
+                              >
+                                {(_par =>
+                                  !_par
+                                    ? []
+                                    : Array.isArray(_par)
+                                    ? _par
+                                    : [_par])(
+                                  (() => {
+                                    try {
+                                      return $queries.getCart.data.response
+                                        .data;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return [];
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ).map((__plasmic_item_0, __plasmic_idx_0) => {
+                                  const currentItem = __plasmic_item_0;
+                                  const currentIndex = __plasmic_idx_0;
+                                  return (
+                                    <Stack__
+                                      as={"div"}
+                                      hasGap={true}
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.freeBox__wyYMe
+                                      )}
+                                      key={currentIndex}
+                                    >
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          projectcss.__wab_text,
+                                          sty.text__c7Tr
+                                        )}
+                                      >
+                                        <React.Fragment>
+                                          {(() => {
+                                            try {
+                                              return $queries.getTickets.data.response.data.filter(
+                                                ticket =>
+                                                  ticket.id ==
+                                                  currentItem.TicketId
+                                              )[0].TicketType;
+                                            } catch (e) {
+                                              if (
+                                                e instanceof TypeError ||
+                                                e?.plasmicType ===
+                                                  "PlasmicUndefinedDataError"
+                                              ) {
+                                                return "";
+                                              }
+                                              throw e;
+                                            }
+                                          })()}
+                                        </React.Fragment>
+                                      </div>
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.freeBox__xlPb8
+                                        )}
+                                      >
+                                        <Stack__
+                                          as={"div"}
+                                          hasGap={true}
+                                          className={classNames(
+                                            projectcss.all,
+                                            sty.freeBox__dzH4A
+                                          )}
+                                        >
+                                          <TicketSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__uKvUn
+                                            )}
+                                            role={"img"}
+                                          />
+
+                                          <div
+                                            className={classNames(
+                                              projectcss.all,
+                                              projectcss.__wab_text,
+                                              sty.text__l6T22
+                                            )}
+                                          >
+                                            <React.Fragment>
+                                              {(() => {
+                                                try {
+                                                  return (
+                                                    "x" +
+                                                    currentItem.TicketQuantity
+                                                  );
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return "";
+                                                  }
+                                                  throw e;
+                                                }
+                                              })()}
+                                            </React.Fragment>
+                                          </div>
+                                        </Stack__>
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            sty.freeBox__ilX2X
+                                          )}
+                                        >
+                                          <div
+                                            className={classNames(
+                                              projectcss.all,
+                                              projectcss.__wab_text,
+                                              sty.text__bQkDp
+                                            )}
+                                          >
+                                            <React.Fragment>
+                                              {(() => {
+                                                try {
+                                                  return (
+                                                    "$" +
+                                                    currentItem.TicketPrice
+                                                  );
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return "";
+                                                  }
+                                                  throw e;
+                                                }
+                                              })()}
+                                            </React.Fragment>
+                                          </div>
+                                        </div>
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            sty.freeBox__fWH5
+                                          )}
+                                        >
+                                          <TrashSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__svwTs
+                                            )}
+                                            onClick={async event => {
+                                              const $steps = {};
+
+                                              $steps["httpDelete"] = true
+                                                ? (() => {
+                                                    const actionArgs = {
+                                                      dataOp: {
+                                                        sourceId:
+                                                          "2jPYjgtJgbD3LaNLTLfSHG",
+                                                        opId: "5e722670-92fb-4762-85fb-83e1119d2ae1",
+                                                        userArgs: {
+                                                          path: [currentItem.id]
+                                                        },
+                                                        cacheKey: null,
+                                                        invalidatedKeys: [
+                                                          "plasmic_refresh_all"
+                                                        ],
+                                                        roleId: null
+                                                      }
+                                                    };
+                                                    return (async ({
+                                                      dataOp,
+                                                      continueOnError
+                                                    }) => {
+                                                      try {
+                                                        const response =
+                                                          await executePlasmicDataOp(
+                                                            dataOp,
+                                                            {
+                                                              userAuthToken:
+                                                                dataSourcesCtx?.userAuthToken,
+                                                              user: dataSourcesCtx?.user
+                                                            }
+                                                          );
+                                                        await plasmicInvalidate(
+                                                          dataOp.invalidatedKeys
+                                                        );
+                                                        return response;
+                                                      } catch (e) {
+                                                        if (!continueOnError) {
+                                                          throw e;
+                                                        }
+                                                        return e;
+                                                      }
+                                                    })?.apply(null, [
+                                                      actionArgs
+                                                    ]);
+                                                  })()
+                                                : undefined;
+                                              if (
+                                                $steps["httpDelete"] != null &&
+                                                typeof $steps["httpDelete"] ===
+                                                  "object" &&
+                                                typeof $steps["httpDelete"]
+                                                  .then === "function"
+                                              ) {
+                                                $steps["httpDelete"] =
+                                                  await $steps["httpDelete"];
+                                              }
+
+                                              $steps["updateSelectors"] = true
+                                                ? (() => {
+                                                    const actionArgs = {
+                                                      variable: {
+                                                        objRoot: $state,
+                                                        variablePath: [
+                                                          "selectors"
+                                                        ]
+                                                      },
+                                                      operation: 0,
+                                                      value:
+                                                        $state.selectors.filter(
+                                                          item =>
+                                                            item.TicketId !==
+                                                            currentItem.TicketId
+                                                        )
+                                                    };
+                                                    return (({
+                                                      variable,
+                                                      value,
+                                                      startIndex,
+                                                      deleteCount
+                                                    }) => {
+                                                      if (!variable) {
+                                                        return;
+                                                      }
+                                                      const {
+                                                        objRoot,
+                                                        variablePath
+                                                      } = variable;
+
+                                                      $stateSet(
+                                                        objRoot,
+                                                        variablePath,
+                                                        value
+                                                      );
+                                                      return value;
+                                                    })?.apply(null, [
+                                                      actionArgs
+                                                    ]);
+                                                  })()
+                                                : undefined;
+                                              if (
+                                                $steps["updateSelectors"] !=
+                                                  null &&
+                                                typeof $steps[
+                                                  "updateSelectors"
+                                                ] === "object" &&
+                                                typeof $steps["updateSelectors"]
+                                                  .then === "function"
+                                              ) {
+                                                $steps["updateSelectors"] =
+                                                  await $steps[
+                                                    "updateSelectors"
+                                                  ];
+                                              }
+
+                                              $steps["refreshData"] = true
+                                                ? (() => {
+                                                    const actionArgs = {
+                                                      queryInvalidation: [
+                                                        "ccdf9225-a742-4324-b663-f82fa33e998e",
+                                                        "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
+                                                        "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
+                                                      ]
+                                                    };
+                                                    return (async ({
+                                                      queryInvalidation
+                                                    }) => {
+                                                      if (!queryInvalidation) {
+                                                        return;
+                                                      }
+                                                      await plasmicInvalidate(
+                                                        queryInvalidation
+                                                      );
+                                                    })?.apply(null, [
+                                                      actionArgs
+                                                    ]);
+                                                  })()
+                                                : undefined;
+                                              if (
+                                                $steps["refreshData"] != null &&
+                                                typeof $steps["refreshData"] ===
+                                                  "object" &&
+                                                typeof $steps["refreshData"]
+                                                  .then === "function"
+                                              ) {
+                                                $steps["refreshData"] =
+                                                  await $steps["refreshData"];
+                                              }
+                                            }}
+                                            role={"img"}
+                                          />
+                                        </div>
+                                      </div>
+                                    </Stack__>
+                                  );
+                                })}
+                                {(() => {
+                                  try {
+                                    return (
+                                      $queries.getCart.data.response.data
+                                        .length > 0
+                                    );
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return false;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
+                                  <Stack__
+                                    as={"div"}
+                                    hasGap={true}
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__vbqBh
+                                    )}
+                                  >
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.freeBox__k2FSd
+                                      )}
+                                    >
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.freeBox__zbLnr
+                                        )}
+                                      >
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__zvFWg
+                                          )}
+                                        >
+                                          {"Donation"}
+                                        </div>
+                                      </div>
+                                      <Stack__
+                                        as={"div"}
+                                        hasGap={true}
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.freeBox__uGlx0
+                                        )}
+                                      >
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__x4VW
+                                          )}
+                                        >
+                                          <React.Fragment>
+                                            {(() => {
+                                              try {
+                                                return "$";
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return "";
+                                                }
+                                                throw e;
+                                              }
+                                            })()}
+                                          </React.Fragment>
+                                        </div>
+                                        <AntdInputNumber
+                                          data-plasmic-name={"donationValue2"}
+                                          data-plasmic-override={
+                                            overrides.donationValue2
+                                          }
+                                          className={classNames(
+                                            "__wab_instance",
+                                            sty.donationValue2
+                                          )}
+                                          min={0}
+                                          onChange={generateStateOnChangeProp(
+                                            $state,
+                                            ["donationValue2", "value"]
+                                          )}
+                                          type={"number"}
+                                          value={generateStateValueProp(
+                                            $state,
+                                            ["donationValue2", "value"]
+                                          )}
+                                        />
+                                      </Stack__>
+                                    </div>
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.freeBox__lj614
+                                      )}
+                                    >
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.freeBox__nduqX
+                                        )}
+                                      >
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__xDOrt
+                                          )}
+                                        >
+                                          {"Round up?"}
+                                        </div>
+                                      </div>
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.freeBox__hCjtg
+                                        )}
+                                      >
+                                        <AntdSwitch
+                                          data-plasmic-name={"roundUp"}
+                                          data-plasmic-override={
+                                            overrides.roundUp
+                                          }
+                                          checked={generateStateValueProp(
+                                            $state,
+                                            ["roundUp", "checked"]
+                                          )}
+                                          className={classNames(
+                                            "__wab_instance",
+                                            sty.roundUp
+                                          )}
+                                          onChange={generateStateOnChangeProp(
+                                            $state,
+                                            ["roundUp", "checked"]
+                                          )}
+                                        />
+                                      </div>
+                                    </div>
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.freeBox__vBtCa
+                                      )}
+                                    >
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.freeBox__hNdGy
+                                        )}
+                                      >
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__p9Eo
+                                          )}
+                                        >
+                                          {"Total"}
+                                        </div>
+                                      </div>
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.freeBox___2Lr4J
+                                        )}
+                                      >
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__kw0Eo
+                                          )}
+                                        >
+                                          <React.Fragment>
+                                            {(() => {
+                                              try {
+                                                return (
+                                                  "$" +
+                                                  ($state.roundUp.checked
+                                                    ? Math.ceil(
+                                                        $queries.getCart.data.response.data.reduce(
+                                                          (acc, ticket) =>
+                                                            acc +
+                                                            ticket.TicketQuantity *
+                                                              ticket.TicketPrice,
+                                                          0
+                                                        ) +
+                                                          Number(
+                                                            $state
+                                                              .donationValue2
+                                                              .value
+                                                          )
+                                                      )
+                                                    : (
+                                                        $queries.getCart.data.response.data.reduce(
+                                                          (acc, ticket) =>
+                                                            acc +
+                                                            ticket.TicketQuantity *
+                                                              ticket.TicketPrice,
+                                                          0
+                                                        ) +
+                                                        Number(
+                                                          $state.donationValue2
+                                                            .value
+                                                        )
+                                                      ).toFixed(2))
+                                                );
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return "";
+                                                }
+                                                throw e;
+                                              }
+                                            })()}
+                                          </React.Fragment>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.freeBox__cirKf
+                                      )}
+                                    >
+                                      <Button
+                                        data-plasmic-name={"clearCart"}
+                                        data-plasmic-override={
+                                          overrides.clearCart
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.clearCart
+                                        )}
+                                        color={"softSand"}
+                                        onClick={async event => {
+                                          const $steps = {};
+
+                                          $steps["httpDelete"] = true
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  dataOp: {
+                                                    sourceId:
+                                                      "2jPYjgtJgbD3LaNLTLfSHG",
+                                                    opId: "1c5cc07c-d4df-41bc-9757-b0f688246ed3",
+                                                    userArgs: {
+                                                      body: [
+                                                        $queries.getPurchases
+                                                          .data.response.data[0]
+                                                          .id
+                                                      ]
+                                                    },
+                                                    cacheKey: null,
+                                                    invalidatedKeys: [
+                                                      "plasmic_refresh_all"
+                                                    ],
+                                                    roleId: null
+                                                  }
+                                                };
+                                                return (async ({
+                                                  dataOp,
+                                                  continueOnError
+                                                }) => {
+                                                  try {
+                                                    const response =
+                                                      await executePlasmicDataOp(
+                                                        dataOp,
+                                                        {
+                                                          userAuthToken:
+                                                            dataSourcesCtx?.userAuthToken,
+                                                          user: dataSourcesCtx?.user
+                                                        }
+                                                      );
+                                                    await plasmicInvalidate(
+                                                      dataOp.invalidatedKeys
+                                                    );
+                                                    return response;
+                                                  } catch (e) {
+                                                    if (!continueOnError) {
+                                                      throw e;
+                                                    }
+                                                    return e;
+                                                  }
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["httpDelete"] != null &&
+                                            typeof $steps["httpDelete"] ===
+                                              "object" &&
+                                            typeof $steps["httpDelete"].then ===
+                                              "function"
+                                          ) {
+                                            $steps["httpDelete"] = await $steps[
+                                              "httpDelete"
+                                            ];
+                                          }
+
+                                          $steps["runCode"] = true
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  customFunction: async () => {
+                                                    return localStorage.removeItem(
+                                                      "PurchaseId"
+                                                    );
+                                                  }
+                                                };
+                                                return (({
+                                                  customFunction
+                                                }) => {
+                                                  return customFunction();
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["runCode"] != null &&
+                                            typeof $steps["runCode"] ===
+                                              "object" &&
+                                            typeof $steps["runCode"].then ===
+                                              "function"
+                                          ) {
+                                            $steps["runCode"] = await $steps[
+                                              "runCode"
+                                            ];
+                                          }
+
+                                          $steps["refreshData"] = true
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  queryInvalidation: [
+                                                    "ccdf9225-a742-4324-b663-f82fa33e998e",
+                                                    "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
+                                                    "e1960040-bc24-4f2b-aa1b-b8867c6e584f",
+                                                    "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
+                                                  ]
+                                                };
+                                                return (async ({
+                                                  queryInvalidation
+                                                }) => {
+                                                  if (!queryInvalidation) {
+                                                    return;
+                                                  }
+                                                  await plasmicInvalidate(
+                                                    queryInvalidation
+                                                  );
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["refreshData"] != null &&
+                                            typeof $steps["refreshData"] ===
+                                              "object" &&
+                                            typeof $steps["refreshData"]
+                                              .then === "function"
+                                          ) {
+                                            $steps["refreshData"] =
+                                              await $steps["refreshData"];
+                                          }
+                                        }}
+                                        startIcon={
+                                          <TrashSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__ze2Jo
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                      >
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text___24Uxq
+                                          )}
+                                        >
+                                          {"Clear Cart"}
+                                        </div>
+                                      </Button>
+                                    </div>
+                                  </Stack__>
+                                ) : null}
+                              </Stack__>
                             ) : null}
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__uepWg
-                              )}
-                            >
-                              <React.Fragment>
-                                {(() => {
-                                  try {
-                                    return $state.timer.minutes
-                                      ? $state.timer.minutes + ":"
-                                      : "";
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return "";
+                            {(() => {
+                              try {
+                                return (
+                                  $queries.getCart.data.response.data.length >
+                                    0 && $state.cartLoader == false
+                                );
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return false;
+                                }
+                                throw e;
+                              }
+                            })() ? (
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__adQKo
+                                )}
+                              >
+                                <CheckoutPage
+                                  data-plasmic-name={"checkoutPage"}
+                                  data-plasmic-override={overrides.checkoutPage}
+                                  className={classNames(
+                                    "__wab_instance",
+                                    sty.checkoutPage
+                                  )}
+                                  donation={(() => {
+                                    try {
+                                      return $state.donationValue2.value;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
                                     }
-                                    throw e;
-                                  }
-                                })()}
-                              </React.Fragment>
-                            </div>
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                projectcss.__wab_text,
-                                sty.text__ub3Jx
-                              )}
-                            >
-                              <React.Fragment>
-                                {(() => {
-                                  try {
-                                    return $state.timer.seconds;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return "";
+                                  })()}
+                                  roundUp={(() => {
+                                    try {
+                                      return $state.roundUp.checked;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return false;
+                                      }
+                                      throw e;
                                     }
-                                    throw e;
+                                  })()}
+                                  ticketPurchasesArray={(() => {
+                                    try {
+                                      return $state.selectors;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                />
+                              </div>
+                            ) : null}
+                            {(() => {
+                              try {
+                                return (
+                                  $queries.getCart.data.response.data.length ==
+                                    0 &&
+                                  $state.cartLoader == false &&
+                                  $state.timesUpMessage == false
+                                );
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return false;
+                                }
+                                throw e;
+                              }
+                            })() ? (
+                              <Stack__
+                                as={"div"}
+                                hasGap={true}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__mmEy
+                                )}
+                              >
+                                <PlasmicImg__
+                                  alt={""}
+                                  className={classNames(sty.img__ivHvs)}
+                                  displayHeight={"100px"}
+                                  displayMaxHeight={"none"}
+                                  displayMaxWidth={"100%"}
+                                  displayMinHeight={"0"}
+                                  displayMinWidth={"0"}
+                                  displayWidth={"100px"}
+                                  loading={"lazy"}
+                                  src={{
+                                    src: "/plasmic/standalone_event_ticketing/images/asset1Svg.svg",
+                                    fullWidth: 784.07,
+                                    fullHeight: 675.51,
+                                    aspectRatio: 1.160708
+                                  }}
+                                />
+
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__dlHi6
+                                  )}
+                                >
+                                  {
+                                    "Your order is empty, let's add some tickets"
                                   }
-                                })()}
-                              </React.Fragment>
-                            </div>
-                            <Timer
+                                </div>
+                              </Stack__>
+                            ) : null}
+                            {(() => {
+                              try {
+                                return $state.timesUpMessage;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return false;
+                                }
+                                throw e;
+                              }
+                            })() ? (
+                              <Stack__
+                                as={"div"}
+                                hasGap={true}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox___4YPgD
+                                )}
+                              >
+                                <TimerSvgIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__vXnx
+                                  )}
+                                  role={"img"}
+                                />
+
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__aXu3Z
+                                  )}
+                                >
+                                  {
+                                    "The time for completing your order has expired. Please start again"
+                                  }
+                                </div>
+                                <Button
+                                  className={classNames(
+                                    "__wab_instance",
+                                    sty.button__yz79N
+                                  )}
+                                  color={"softSand"}
+                                  onClick={async event => {
+                                    const $steps = {};
+
+                                    $steps["updateTimesUpMessage"] = true
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["timesUpMessage"]
+                                            },
+                                            operation: 0,
+                                            value: false
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                    if (
+                                      $steps["updateTimesUpMessage"] != null &&
+                                      typeof $steps["updateTimesUpMessage"] ===
+                                        "object" &&
+                                      typeof $steps["updateTimesUpMessage"]
+                                        .then === "function"
+                                    ) {
+                                      $steps["updateTimesUpMessage"] =
+                                        await $steps["updateTimesUpMessage"];
+                                    }
+                                  }}
+                                  startIcon={
+                                    <CheckSvgIcon
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.svg__b7Sbm
+                                      )}
+                                      role={"img"}
+                                    />
+                                  }
+                                >
+                                  {"Return"}
+                                </Button>
+                                <Timer
+                                  className={classNames(
+                                    "__wab_instance",
+                                    sty.timer__jgw9S
+                                  )}
+                                  intervalSeconds={3}
+                                  isRunning={(() => {
+                                    try {
+                                      return $state.timesUpMessage;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return false;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}
+                                  onTick={async () => {
+                                    const $steps = {};
+
+                                    $steps["updateTimesUpMessage"] = true
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["timesUpMessage"]
+                                            },
+                                            operation: 0,
+                                            value: false
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                    if (
+                                      $steps["updateTimesUpMessage"] != null &&
+                                      typeof $steps["updateTimesUpMessage"] ===
+                                        "object" &&
+                                      typeof $steps["updateTimesUpMessage"]
+                                        .then === "function"
+                                    ) {
+                                      $steps["updateTimesUpMessage"] =
+                                        await $steps["updateTimesUpMessage"];
+                                    }
+
+                                    $steps["refreshData"] = true
+                                      ? (() => {
+                                          const actionArgs = {
+                                            queryInvalidation: [
+                                              "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
+                                              "ccdf9225-a742-4324-b663-f82fa33e998e",
+                                              "e1960040-bc24-4f2b-aa1b-b8867c6e584f",
+                                              "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
+                                            ]
+                                          };
+                                          return (async ({
+                                            queryInvalidation
+                                          }) => {
+                                            if (!queryInvalidation) {
+                                              return;
+                                            }
+                                            await plasmicInvalidate(
+                                              queryInvalidation
+                                            );
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                    if (
+                                      $steps["refreshData"] != null &&
+                                      typeof $steps["refreshData"] ===
+                                        "object" &&
+                                      typeof $steps["refreshData"].then ===
+                                        "function"
+                                    ) {
+                                      $steps["refreshData"] = await $steps[
+                                        "refreshData"
+                                      ];
+                                    }
+                                  }}
+                                  runWhileEditing={false}
+                                />
+                              </Stack__>
+                            ) : null}
+                            {(() => {
+                              try {
+                                return $state.cartLoader;
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return false;
+                                }
+                                throw e;
+                              }
+                            })() ? (
+                              <Stack__
+                                as={"div"}
+                                hasGap={true}
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__mi85G
+                                )}
+                              >
+                                <LottieWrapper
+                                  data-plasmic-name={"lottie"}
+                                  data-plasmic-override={overrides.lottie}
+                                  animationData={{
+                                    v: "5.1.8",
+                                    fr: 29.9700012207031,
+                                    ip: 0,
+                                    op: 60.0000024438501,
+                                    w: 100,
+                                    h: 100,
+                                    nm: "Spinner",
+                                    ddd: 0,
+                                    assets: [],
+                                    layers: [
+                                      {
+                                        ddd: 0,
+                                        ind: 1,
+                                        ty: 4,
+                                        nm: "spinner Outlines",
+                                        sr: 1,
+                                        ks: {
+                                          o: { a: 0, k: 100, ix: 11 },
+                                          r: { a: 0, k: 0, ix: 10 },
+                                          p: { a: 0, k: [50, 50, 0], ix: 2 },
+                                          a: { a: 0, k: [160, 284, 0], ix: 1 },
+                                          s: { a: 0, k: [100, 100, 100], ix: 6 }
+                                        },
+                                        ao: 0,
+                                        shapes: [
+                                          {
+                                            ty: "gr",
+                                            it: [
+                                              {
+                                                ind: 0,
+                                                ty: "sh",
+                                                ix: 1,
+                                                ks: {
+                                                  a: 0,
+                                                  k: {
+                                                    i: [
+                                                      [0, 19.882],
+                                                      [19.882, 0],
+                                                      [0, -19.882],
+                                                      [-19.882, 0]
+                                                    ],
+                                                    o: [
+                                                      [0, -19.882],
+                                                      [-19.882, 0],
+                                                      [0, 19.882],
+                                                      [19.882, 0]
+                                                    ],
+                                                    v: [
+                                                      [36, 0],
+                                                      [0, -36],
+                                                      [-36, 0],
+                                                      [0, 36]
+                                                    ],
+                                                    c: true
+                                                  },
+                                                  ix: 2
+                                                },
+                                                nm: "Path 1",
+                                                mn: "ADBE Vector Shape - Group",
+                                                hd: false
+                                              },
+                                              {
+                                                ty: "tm",
+                                                s: {
+                                                  a: 1,
+                                                  k: [
+                                                    {
+                                                      i: { x: [0.667], y: [1] },
+                                                      o: {
+                                                        x: [0.167],
+                                                        y: [0.167]
+                                                      },
+                                                      n: [
+                                                        "0p667_1_0p167_0p167"
+                                                      ],
+                                                      t: 0,
+                                                      s: [100],
+                                                      e: [0]
+                                                    },
+                                                    {
+                                                      i: { x: [0.833], y: [1] },
+                                                      o: { x: [0.167], y: [0] },
+                                                      n: ["0p833_1_0p167_0"],
+                                                      t: 29,
+                                                      s: [0],
+                                                      e: [0]
+                                                    },
+                                                    { t: 51.0000020772726 }
+                                                  ],
+                                                  ix: 1
+                                                },
+                                                e: {
+                                                  a: 1,
+                                                  k: [
+                                                    {
+                                                      i: {
+                                                        x: [0.833],
+                                                        y: [0.833]
+                                                      },
+                                                      o: { x: [0.333], y: [0] },
+                                                      n: [
+                                                        "0p833_0p833_0p333_0"
+                                                      ],
+                                                      t: 20,
+                                                      s: [100],
+                                                      e: [1]
+                                                    },
+                                                    { t: 60.0000024438501 }
+                                                  ],
+                                                  ix: 2
+                                                },
+                                                o: { a: 0, k: 0, ix: 3 },
+                                                m: 1,
+                                                ix: 2,
+                                                nm: "Trim Paths 1",
+                                                mn: "ADBE Vector Filter - Trim",
+                                                hd: false
+                                              },
+                                              {
+                                                ty: "st",
+                                                c: {
+                                                  a: 0,
+                                                  k: [0, 0.541, 0.824, 1],
+                                                  ix: 3
+                                                },
+                                                o: { a: 0, k: 100, ix: 4 },
+                                                w: { a: 0, k: 10, ix: 5 },
+                                                lc: 2,
+                                                lj: 1,
+                                                ml: 10,
+                                                nm: "Stroke 1",
+                                                mn: "ADBE Vector Graphic - Stroke",
+                                                hd: false
+                                              },
+                                              {
+                                                ty: "tr",
+                                                p: {
+                                                  a: 0,
+                                                  k: [160, 284],
+                                                  ix: 2
+                                                },
+                                                a: { a: 0, k: [0, 0], ix: 1 },
+                                                s: {
+                                                  a: 0,
+                                                  k: [100, 100],
+                                                  ix: 3
+                                                },
+                                                r: {
+                                                  a: 1,
+                                                  k: [
+                                                    {
+                                                      i: { x: [0.667], y: [1] },
+                                                      o: {
+                                                        x: [0.167],
+                                                        y: [0.167]
+                                                      },
+                                                      n: [
+                                                        "0p667_1_0p167_0p167"
+                                                      ],
+                                                      t: 0,
+                                                      s: [-90],
+                                                      e: [270]
+                                                    },
+                                                    { t: 59.0000024031193 }
+                                                  ],
+                                                  ix: 6
+                                                },
+                                                o: { a: 0, k: 100, ix: 7 },
+                                                sk: { a: 0, k: 0, ix: 4 },
+                                                sa: { a: 0, k: 0, ix: 5 },
+                                                nm: "Transform"
+                                              }
+                                            ],
+                                            nm: "Group 1",
+                                            np: 3,
+                                            cix: 2,
+                                            ix: 1,
+                                            mn: "ADBE Vector Group",
+                                            hd: false
+                                          }
+                                        ],
+                                        ip: 0,
+                                        op: 60.0000024438501,
+                                        st: 0,
+                                        bm: 0
+                                      }
+                                    ],
+                                    markers: []
+                                  }}
+                                  className={classNames(
+                                    "__wab_instance",
+                                    sty.lottie
+                                  )}
+                                  preview={true}
+                                />
+
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__qCoEj
+                                  )}
+                                >
+                                  {"Loading..."}
+                                </div>
+                              </Stack__>
+                            ) : null}
+                          </Stack__>
+                        }
+                        trigger={
+                          <Stack__
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox___9WLjB,
+                              {
+                                [sty.freeBoxglobal_locale_es___9WLjBzPCq4]:
+                                  hasVariant(globalVariants, "locale", "es")
+                              }
+                            )}
+                            onClick={async event => {
+                              const $steps = {};
+                            }}
+                          >
+                            <Button
                               className={classNames(
                                 "__wab_instance",
-                                sty.timer___3TZ0V
-                              )}
-                              intervalSeconds={1}
-                              isRunning={(() => {
-                                try {
-                                  return (
-                                    $queries.getPurchases.data.response.data
-                                      .length > 0
-                                  );
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return false;
-                                  }
-                                  throw e;
+                                sty.button__g8LVw,
+                                {
+                                  [sty.buttonglobal_locale_es__g8LVwzPCq4]:
+                                    hasVariant(globalVariants, "locale", "es")
                                 }
-                              })()}
-                              onTick={async () => {
+                              )}
+                              color={"blue"}
+                              onClick={async event => {
                                 const $steps = {};
 
-                                $steps["updateTimer"] = true
+                                $steps["updateCartLoader"] = true
                                   ? (() => {
                                       const actionArgs = {
                                         variable: {
                                           objRoot: $state,
-                                          variablePath: ["timer"]
-                                        },
-                                        operation: 0,
-                                        value: (() => {
-                                          const targetDate = new Date(
-                                            $queries.getPurchases.data.response.data[0].date_created
-                                          );
-                                          const now = new Date().getTime();
-                                          const difference =
-                                            $state.purchaseTime * 60000 -
-                                            (now - targetDate.getTime());
-                                          let minutes, seconds;
-                                          if (difference < 0) {
-                                            minutes = 0;
-                                            seconds = 0;
-                                          } else {
-                                            minutes = Math.floor(
-                                              (difference % (1000 * 60 * 60)) /
-                                                (1000 * 60)
-                                            );
-                                            seconds = Math.floor(
-                                              (difference % (1000 * 60)) / 1000
-                                            );
-                                          }
-                                          const timer = {
-                                            minutes: minutes,
-                                            seconds: seconds
-                                          };
-                                          return timer;
-                                        })()
-                                      };
-                                      return (({
-                                        variable,
-                                        value,
-                                        startIndex,
-                                        deleteCount
-                                      }) => {
-                                        if (!variable) {
-                                          return;
-                                        }
-                                        const { objRoot, variablePath } =
-                                          variable;
-
-                                        $stateSet(objRoot, variablePath, value);
-                                        return value;
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                                if (
-                                  $steps["updateTimer"] != null &&
-                                  typeof $steps["updateTimer"] === "object" &&
-                                  typeof $steps["updateTimer"].then ===
-                                    "function"
-                                ) {
-                                  $steps["updateTimer"] = await $steps[
-                                    "updateTimer"
-                                  ];
-                                }
-
-                                $steps["updateTimesUpMessage"] = (() => {
-                                  const targetDate = new Date(
-                                    $queries.getPurchases.data.response.data[0].date_created
-                                  );
-                                  const now = new Date().getTime();
-                                  const difference =
-                                    $state.purchaseTime * 60000 -
-                                    (now - targetDate.getTime());
-                                  return difference == 0 || difference < 0;
-                                })()
-                                  ? (() => {
-                                      const actionArgs = {
-                                        variable: {
-                                          objRoot: $state,
-                                          variablePath: ["timesUpMessage"]
+                                          variablePath: ["cartLoader"]
                                         },
                                         operation: 0,
                                         value: true
@@ -1418,40 +2882,123 @@ function PlasmicEvent__RenderFunc(props: {
                                     })()
                                   : undefined;
                                 if (
-                                  $steps["updateTimesUpMessage"] != null &&
-                                  typeof $steps["updateTimesUpMessage"] ===
+                                  $steps["updateCartLoader"] != null &&
+                                  typeof $steps["updateCartLoader"] ===
                                     "object" &&
-                                  typeof $steps["updateTimesUpMessage"].then ===
+                                  typeof $steps["updateCartLoader"].then ===
                                     "function"
                                 ) {
-                                  $steps["updateTimesUpMessage"] = await $steps[
-                                    "updateTimesUpMessage"
+                                  $steps["updateCartLoader"] = await $steps[
+                                    "updateCartLoader"
                                   ];
                                 }
 
-                                $steps["runCode"] = (() => {
-                                  const targetDate = new Date(
-                                    $queries.getPurchases.data.response.data[0].date_created
-                                  );
-                                  const now = new Date().getTime();
-                                  const difference =
-                                    $state.purchaseTime * 60000 -
-                                    (now - targetDate.getTime());
-                                  return difference == 0 || difference < 0;
-                                })()
+                                $steps["createPurchase"] =
+                                  $queries.getPurchases.data.response.data
+                                    .length == 0
+                                    ? (() => {
+                                        const actionArgs = {
+                                          dataOp: {
+                                            sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
+                                            opId: "b9ea73de-f2ff-4949-ae64-e33d93b53a46",
+                                            userArgs: {
+                                              body: [
+                                                $state.selectEventDate.value
+                                              ]
+                                            },
+                                            cacheKey: null,
+                                            invalidatedKeys: [
+                                              "plasmic_refresh_all"
+                                            ],
+                                            roleId: null
+                                          },
+                                          continueOnError: false
+                                        };
+                                        return (async ({
+                                          dataOp,
+                                          continueOnError
+                                        }) => {
+                                          try {
+                                            const response =
+                                              await executePlasmicDataOp(
+                                                dataOp,
+                                                {
+                                                  userAuthToken:
+                                                    dataSourcesCtx?.userAuthToken,
+                                                  user: dataSourcesCtx?.user
+                                                }
+                                              );
+                                            await plasmicInvalidate(
+                                              dataOp.invalidatedKeys
+                                            );
+                                            return response;
+                                          } catch (e) {
+                                            if (!continueOnError) {
+                                              throw e;
+                                            }
+                                            return e;
+                                          }
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                if (
+                                  $steps["createPurchase"] != null &&
+                                  typeof $steps["createPurchase"] ===
+                                    "object" &&
+                                  typeof $steps["createPurchase"].then ===
+                                    "function"
+                                ) {
+                                  $steps["createPurchase"] = await $steps[
+                                    "createPurchase"
+                                  ];
+                                }
+
+                                $steps["refreshData2"] = true
                                   ? (() => {
                                       const actionArgs = {
-                                        customFunction: async () => {
-                                          return localStorage.removeItem(
-                                            "PurchaseId"
-                                          );
-                                        }
+                                        queryInvalidation: [
+                                          "e1960040-bc24-4f2b-aa1b-b8867c6e584f"
+                                        ]
                                       };
-                                      return (({ customFunction }) => {
-                                        return customFunction();
+                                      return (async ({ queryInvalidation }) => {
+                                        if (!queryInvalidation) {
+                                          return;
+                                        }
+                                        await plasmicInvalidate(
+                                          queryInvalidation
+                                        );
                                       })?.apply(null, [actionArgs]);
                                     })()
                                   : undefined;
+                                if (
+                                  $steps["refreshData2"] != null &&
+                                  typeof $steps["refreshData2"] === "object" &&
+                                  typeof $steps["refreshData2"].then ===
+                                    "function"
+                                ) {
+                                  $steps["refreshData2"] = await $steps[
+                                    "refreshData2"
+                                  ];
+                                }
+
+                                $steps["runCode"] =
+                                  $queries.getPurchases.data.response.data
+                                    .length == 0
+                                    ? (() => {
+                                        const actionArgs = {
+                                          customFunction: async () => {
+                                            return localStorage.setItem(
+                                              "PurchaseId",
+                                              $steps.createPurchase.data
+                                                .response.data.id
+                                            );
+                                          }
+                                        };
+                                        return (({ customFunction }) => {
+                                          return customFunction();
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
                                 if (
                                   $steps["runCode"] != null &&
                                   typeof $steps["runCode"] === "object" &&
@@ -1459,1635 +3006,88 @@ function PlasmicEvent__RenderFunc(props: {
                                 ) {
                                   $steps["runCode"] = await $steps["runCode"];
                                 }
-                              }}
-                              runWhileEditing={false}
-                            />
-                          </Stack__>
-                          {(() => {
-                            try {
-                              return $state.cartLoader == false;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return false;
-                              }
-                              throw e;
-                            }
-                          })() ? (
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox___3SyDv
-                              )}
-                            >
-                              {(_par =>
-                                !_par
-                                  ? []
-                                  : Array.isArray(_par)
-                                  ? _par
-                                  : [_par])(
-                                (() => {
-                                  try {
-                                    return $queries.getCart.data.response.data;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return [];
-                                    }
-                                    throw e;
-                                  }
-                                })()
-                              ).map((__plasmic_item_0, __plasmic_idx_0) => {
-                                const currentItem = __plasmic_item_0;
-                                const currentIndex = __plasmic_idx_0;
-                                return (
-                                  <Stack__
-                                    as={"div"}
-                                    hasGap={true}
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.freeBox__wyYMe
-                                    )}
-                                    key={currentIndex}
-                                  >
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        projectcss.__wab_text,
-                                        sty.text__c7Tr
-                                      )}
-                                    >
-                                      <React.Fragment>
-                                        {(() => {
-                                          try {
-                                            return $queries.getTickets.data.response.data.filter(
-                                              ticket =>
-                                                ticket.id ==
-                                                currentItem.TicketId
-                                            )[0].TicketType;
-                                          } catch (e) {
-                                            if (
-                                              e instanceof TypeError ||
-                                              e?.plasmicType ===
-                                                "PlasmicUndefinedDataError"
-                                            ) {
-                                              return "";
-                                            }
-                                            throw e;
-                                          }
-                                        })()}
-                                      </React.Fragment>
-                                    </div>
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox__xlPb8
-                                      )}
-                                    >
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
-                                        className={classNames(
-                                          projectcss.all,
-                                          sty.freeBox__dzH4A
-                                        )}
-                                      >
-                                        <TicketSvgIcon
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.svg__uKvUn
-                                          )}
-                                          role={"img"}
-                                        />
 
-                                        <div
-                                          className={classNames(
-                                            projectcss.all,
-                                            projectcss.__wab_text,
-                                            sty.text__l6T22
-                                          )}
-                                        >
-                                          <React.Fragment>
-                                            {(() => {
-                                              try {
-                                                return (
-                                                  "x" +
-                                                  currentItem.TicketQuantity
-                                                );
-                                              } catch (e) {
-                                                if (
-                                                  e instanceof TypeError ||
-                                                  e?.plasmicType ===
-                                                    "PlasmicUndefinedDataError"
-                                                ) {
-                                                  return "";
-                                                }
-                                                throw e;
-                                              }
-                                            })()}
-                                          </React.Fragment>
-                                        </div>
-                                      </Stack__>
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          sty.freeBox__ilX2X
-                                        )}
-                                      >
-                                        <div
-                                          className={classNames(
-                                            projectcss.all,
-                                            projectcss.__wab_text,
-                                            sty.text__bQkDp
-                                          )}
-                                        >
-                                          <React.Fragment>
-                                            {(() => {
-                                              try {
-                                                return (
-                                                  "$" + currentItem.TicketPrice
-                                                );
-                                              } catch (e) {
-                                                if (
-                                                  e instanceof TypeError ||
-                                                  e?.plasmicType ===
-                                                    "PlasmicUndefinedDataError"
-                                                ) {
-                                                  return "";
-                                                }
-                                                throw e;
-                                              }
-                                            })()}
-                                          </React.Fragment>
-                                        </div>
-                                      </div>
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          sty.freeBox__fWH5
-                                        )}
-                                      >
-                                        <TrashSvgIcon
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.svg__svwTs
-                                          )}
-                                          onClick={async event => {
-                                            const $steps = {};
-
-                                            $steps["httpDelete"] = true
-                                              ? (() => {
-                                                  const actionArgs = {
-                                                    dataOp: {
-                                                      sourceId:
-                                                        "2jPYjgtJgbD3LaNLTLfSHG",
-                                                      opId: "5e722670-92fb-4762-85fb-83e1119d2ae1",
-                                                      userArgs: {
-                                                        path: [currentItem.id]
-                                                      },
-                                                      cacheKey: null,
-                                                      invalidatedKeys: [
-                                                        "plasmic_refresh_all"
-                                                      ],
-                                                      roleId: null
-                                                    }
-                                                  };
-                                                  return (async ({
-                                                    dataOp,
-                                                    continueOnError
-                                                  }) => {
-                                                    try {
-                                                      const response =
-                                                        await executePlasmicDataOp(
-                                                          dataOp,
-                                                          {
-                                                            userAuthToken:
-                                                              dataSourcesCtx?.userAuthToken,
-                                                            user: dataSourcesCtx?.user
-                                                          }
-                                                        );
-                                                      await plasmicInvalidate(
-                                                        dataOp.invalidatedKeys
-                                                      );
-                                                      return response;
-                                                    } catch (e) {
-                                                      if (!continueOnError) {
-                                                        throw e;
-                                                      }
-                                                      return e;
-                                                    }
-                                                  })?.apply(null, [actionArgs]);
-                                                })()
-                                              : undefined;
-                                            if (
-                                              $steps["httpDelete"] != null &&
-                                              typeof $steps["httpDelete"] ===
-                                                "object" &&
-                                              typeof $steps["httpDelete"]
-                                                .then === "function"
-                                            ) {
-                                              $steps["httpDelete"] =
-                                                await $steps["httpDelete"];
-                                            }
-
-                                            $steps["updateSelectors"] = true
-                                              ? (() => {
-                                                  const actionArgs = {
-                                                    variable: {
-                                                      objRoot: $state,
-                                                      variablePath: [
-                                                        "selectors"
-                                                      ]
-                                                    },
-                                                    operation: 0,
-                                                    value: (() => {
-                                                      return $state.selectors.filter(
-                                                        item =>
-                                                          item.TicketId !==
-                                                          currentItem.TicketId
-                                                      );
-                                                    })()
-                                                  };
-                                                  return (({
-                                                    variable,
-                                                    value,
-                                                    startIndex,
-                                                    deleteCount
-                                                  }) => {
-                                                    if (!variable) {
-                                                      return;
-                                                    }
-                                                    const {
-                                                      objRoot,
-                                                      variablePath
-                                                    } = variable;
-
-                                                    $stateSet(
-                                                      objRoot,
-                                                      variablePath,
-                                                      value
-                                                    );
-                                                    return value;
-                                                  })?.apply(null, [actionArgs]);
-                                                })()
-                                              : undefined;
-                                            if (
-                                              $steps["updateSelectors"] !=
-                                                null &&
-                                              typeof $steps[
-                                                "updateSelectors"
-                                              ] === "object" &&
-                                              typeof $steps["updateSelectors"]
-                                                .then === "function"
-                                            ) {
-                                              $steps["updateSelectors"] =
-                                                await $steps["updateSelectors"];
-                                            }
-
-                                            $steps["refreshData"] = true
-                                              ? (() => {
-                                                  const actionArgs = {
-                                                    queryInvalidation: [
-                                                      "ccdf9225-a742-4324-b663-f82fa33e998e",
-                                                      "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
-                                                      "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
-                                                    ]
-                                                  };
-                                                  return (async ({
-                                                    queryInvalidation
-                                                  }) => {
-                                                    if (!queryInvalidation) {
-                                                      return;
-                                                    }
-                                                    await plasmicInvalidate(
-                                                      queryInvalidation
-                                                    );
-                                                  })?.apply(null, [actionArgs]);
-                                                })()
-                                              : undefined;
-                                            if (
-                                              $steps["refreshData"] != null &&
-                                              typeof $steps["refreshData"] ===
-                                                "object" &&
-                                              typeof $steps["refreshData"]
-                                                .then === "function"
-                                            ) {
-                                              $steps["refreshData"] =
-                                                await $steps["refreshData"];
-                                            }
-                                          }}
-                                          role={"img"}
-                                        />
-                                      </div>
-                                    </div>
-                                  </Stack__>
-                                );
-                              })}
-                              {(() => {
-                                try {
-                                  return (
-                                    $queries.getCart.data.response.data.length >
-                                    0
-                                  );
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return false;
-                                  }
-                                  throw e;
-                                }
-                              })() ? (
-                                <Stack__
-                                  as={"div"}
-                                  hasGap={true}
-                                  className={classNames(
-                                    projectcss.all,
-                                    sty.freeBox__vbqBh
-                                  )}
-                                >
-                                  <div
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.freeBox__k2FSd
-                                    )}
-                                  >
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox__zbLnr
-                                      )}
-                                    >
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text__zvFWg
-                                        )}
-                                      >
-                                        {"Donation"}
-                                      </div>
-                                    </div>
-                                    <Stack__
-                                      as={"div"}
-                                      hasGap={true}
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox__uGlx0
-                                      )}
-                                    >
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text__x4VW
-                                        )}
-                                      >
-                                        <React.Fragment>
-                                          {(() => {
-                                            try {
-                                              return "$";
-                                            } catch (e) {
-                                              if (
-                                                e instanceof TypeError ||
-                                                e?.plasmicType ===
-                                                  "PlasmicUndefinedDataError"
-                                              ) {
-                                                return "";
-                                              }
-                                              throw e;
-                                            }
-                                          })()}
-                                        </React.Fragment>
-                                      </div>
-                                      <AntdInputNumber
-                                        data-plasmic-name={"donationValue2"}
-                                        data-plasmic-override={
-                                          overrides.donationValue2
-                                        }
-                                        className={classNames(
-                                          "__wab_instance",
-                                          sty.donationValue2
-                                        )}
-                                        min={0}
-                                        onChange={generateStateOnChangeProp(
-                                          $state,
-                                          ["donationValue2", "value"]
-                                        )}
-                                        type={"number"}
-                                        value={generateStateValueProp($state, [
-                                          "donationValue2",
-                                          "value"
-                                        ])}
-                                      />
-                                    </Stack__>
-                                  </div>
-                                  <div
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.freeBox__lj614
-                                    )}
-                                  >
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox__nduqX
-                                      )}
-                                    >
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text__xDOrt
-                                        )}
-                                      >
-                                        {"Round up?"}
-                                      </div>
-                                    </div>
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox__hCjtg
-                                      )}
-                                    >
-                                      <AntdSwitch
-                                        data-plasmic-name={"roundUp"}
-                                        data-plasmic-override={
-                                          overrides.roundUp
-                                        }
-                                        checked={generateStateValueProp(
-                                          $state,
-                                          ["roundUp", "checked"]
-                                        )}
-                                        className={classNames(
-                                          "__wab_instance",
-                                          sty.roundUp
-                                        )}
-                                        onChange={generateStateOnChangeProp(
-                                          $state,
-                                          ["roundUp", "checked"]
-                                        )}
-                                      />
-                                    </div>
-                                  </div>
-                                  <div
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.freeBox__vBtCa
-                                    )}
-                                  >
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox__hNdGy
-                                      )}
-                                    >
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text__p9Eo
-                                        )}
-                                      >
-                                        {"Total"}
-                                      </div>
-                                    </div>
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox___2Lr4J
-                                      )}
-                                    >
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text__kw0Eo
-                                        )}
-                                      >
-                                        <React.Fragment>
-                                          {(() => {
-                                            try {
-                                              return (
-                                                "$" +
-                                                ($state.roundUp.checked
-                                                  ? Math.ceil(
-                                                      $queries.getCart.data.response.data.reduce(
-                                                        (acc, ticket) =>
-                                                          acc +
-                                                          ticket.TicketQuantity *
-                                                            ticket.TicketPrice,
-                                                        0
-                                                      ) +
-                                                        Number(
-                                                          $state.donationValue2
-                                                            .value
-                                                        )
-                                                    )
-                                                  : (
-                                                      $queries.getCart.data.response.data.reduce(
-                                                        (acc, ticket) =>
-                                                          acc +
-                                                          ticket.TicketQuantity *
-                                                            ticket.TicketPrice,
-                                                        0
-                                                      ) +
-                                                      Number(
-                                                        $state.donationValue2
-                                                          .value
-                                                      )
-                                                    ).toFixed(2))
-                                              );
-                                            } catch (e) {
-                                              if (
-                                                e instanceof TypeError ||
-                                                e?.plasmicType ===
-                                                  "PlasmicUndefinedDataError"
-                                              ) {
-                                                return "";
-                                              }
-                                              throw e;
-                                            }
-                                          })()}
-                                        </React.Fragment>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.freeBox__cirKf
-                                    )}
-                                  >
-                                    <Button
-                                      data-plasmic-name={"clearCart"}
-                                      data-plasmic-override={
-                                        overrides.clearCart
-                                      }
-                                      className={classNames(
-                                        "__wab_instance",
-                                        sty.clearCart
-                                      )}
-                                      color={"softSand"}
-                                      onClick={async event => {
-                                        const $steps = {};
-
-                                        $steps["httpDelete"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                dataOp: {
-                                                  sourceId:
-                                                    "2jPYjgtJgbD3LaNLTLfSHG",
-                                                  opId: "1c5cc07c-d4df-41bc-9757-b0f688246ed3",
-                                                  userArgs: {
-                                                    body: [
-                                                      $queries.getPurchases.data
-                                                        .response.data[0].id
-                                                    ]
-                                                  },
-                                                  cacheKey: null,
-                                                  invalidatedKeys: [
-                                                    "plasmic_refresh_all"
-                                                  ],
-                                                  roleId: null
-                                                }
-                                              };
-                                              return (async ({
-                                                dataOp,
-                                                continueOnError
-                                              }) => {
-                                                try {
-                                                  const response =
-                                                    await executePlasmicDataOp(
-                                                      dataOp,
-                                                      {
-                                                        userAuthToken:
-                                                          dataSourcesCtx?.userAuthToken,
-                                                        user: dataSourcesCtx?.user
-                                                      }
-                                                    );
-                                                  await plasmicInvalidate(
-                                                    dataOp.invalidatedKeys
-                                                  );
-                                                  return response;
-                                                } catch (e) {
-                                                  if (!continueOnError) {
-                                                    throw e;
-                                                  }
-                                                  return e;
-                                                }
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["httpDelete"] != null &&
-                                          typeof $steps["httpDelete"] ===
-                                            "object" &&
-                                          typeof $steps["httpDelete"].then ===
-                                            "function"
-                                        ) {
-                                          $steps["httpDelete"] = await $steps[
-                                            "httpDelete"
-                                          ];
-                                        }
-
-                                        $steps["runCode"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                customFunction: async () => {
-                                                  return localStorage.removeItem(
-                                                    "PurchaseId"
-                                                  );
-                                                }
-                                              };
-                                              return (({ customFunction }) => {
-                                                return customFunction();
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["runCode"] != null &&
-                                          typeof $steps["runCode"] ===
-                                            "object" &&
-                                          typeof $steps["runCode"].then ===
-                                            "function"
-                                        ) {
-                                          $steps["runCode"] = await $steps[
-                                            "runCode"
-                                          ];
-                                        }
-
-                                        $steps["refreshData"] = true
-                                          ? (() => {
-                                              const actionArgs = {
-                                                queryInvalidation: [
-                                                  "ccdf9225-a742-4324-b663-f82fa33e998e",
-                                                  "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
-                                                  "e1960040-bc24-4f2b-aa1b-b8867c6e584f",
-                                                  "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
-                                                ]
-                                              };
-                                              return (async ({
-                                                queryInvalidation
-                                              }) => {
-                                                if (!queryInvalidation) {
-                                                  return;
-                                                }
-                                                await plasmicInvalidate(
-                                                  queryInvalidation
-                                                );
-                                              })?.apply(null, [actionArgs]);
-                                            })()
-                                          : undefined;
-                                        if (
-                                          $steps["refreshData"] != null &&
-                                          typeof $steps["refreshData"] ===
-                                            "object" &&
-                                          typeof $steps["refreshData"].then ===
-                                            "function"
-                                        ) {
-                                          $steps["refreshData"] = await $steps[
-                                            "refreshData"
-                                          ];
-                                        }
-                                      }}
-                                      startIcon={
-                                        <TrashSvgIcon
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.svg__ze2Jo
-                                          )}
-                                          role={"img"}
-                                        />
-                                      }
-                                    >
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text___24Uxq
-                                        )}
-                                      >
-                                        {"Clear Cart"}
-                                      </div>
-                                    </Button>
-                                  </div>
-                                </Stack__>
-                              ) : null}
-                            </Stack__>
-                          ) : null}
-                          {(() => {
-                            try {
-                              return (
-                                $queries.getCart.data.response.data.length >
-                                  0 && $state.cartLoader == false
-                              );
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return false;
-                              }
-                              throw e;
-                            }
-                          })() ? (
-                            <div
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__adQKo
-                              )}
-                            >
-                              <CheckoutPage
-                                data-plasmic-name={"checkoutPage"}
-                                data-plasmic-override={overrides.checkoutPage}
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.checkoutPage
-                                )}
-                                donation={(() => {
-                                  try {
-                                    return $state.donationValue2.value;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                                roundUp={(() => {
-                                  try {
-                                    return $state.roundUp.checked;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return false;
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                                ticketPurchasesArray={(() => {
-                                  try {
-                                    return $state.selectors;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                              />
-                            </div>
-                          ) : null}
-                          {(() => {
-                            try {
-                              return (
-                                $queries.getCart.data.response.data.length ==
-                                  0 &&
-                                $state.cartLoader == false &&
-                                $state.timesUpMessage == false
-                              );
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return false;
-                              }
-                              throw e;
-                            }
-                          })() ? (
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__mmEy
-                              )}
-                            >
-                              <PlasmicImg__
-                                alt={""}
-                                className={classNames(sty.img__ivHvs)}
-                                displayHeight={"100px"}
-                                displayMaxHeight={"none"}
-                                displayMaxWidth={"100%"}
-                                displayMinHeight={"0"}
-                                displayMinWidth={"0"}
-                                displayWidth={"100px"}
-                                loading={"lazy"}
-                                src={{
-                                  src: "/plasmic/standalone_event_ticketing/images/asset1Svg.svg",
-                                  fullWidth: 784.07,
-                                  fullHeight: 675.51,
-                                  aspectRatio: 1.160708
-                                }}
-                              />
-
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__dlHi6
-                                )}
-                              >
-                                {"Your order is empty, let's add some tickets"}
-                              </div>
-                            </Stack__>
-                          ) : null}
-                          {(() => {
-                            try {
-                              return $state.timesUpMessage;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return false;
-                              }
-                              throw e;
-                            }
-                          })() ? (
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox___4YPgD
-                              )}
-                            >
-                              <TimerSvgIcon
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.svg__vXnx
-                                )}
-                                role={"img"}
-                              />
-
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__aXu3Z
-                                )}
-                              >
-                                {
-                                  "The time for completing your order has expired. Please start again"
-                                }
-                              </div>
-                              <Button
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.button__yz79N
-                                )}
-                                color={"softSand"}
-                                onClick={async event => {
-                                  const $steps = {};
-
-                                  $steps["updateTimesUpMessage"] = true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          variable: {
-                                            objRoot: $state,
-                                            variablePath: ["timesUpMessage"]
-                                          },
-                                          operation: 0,
-                                          value: false
-                                        };
-                                        return (({
-                                          variable,
-                                          value,
-                                          startIndex,
-                                          deleteCount
-                                        }) => {
-                                          if (!variable) {
-                                            return;
-                                          }
-                                          const { objRoot, variablePath } =
-                                            variable;
-
-                                          $stateSet(
-                                            objRoot,
-                                            variablePath,
-                                            value
-                                          );
-                                          return value;
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                  if (
-                                    $steps["updateTimesUpMessage"] != null &&
-                                    typeof $steps["updateTimesUpMessage"] ===
-                                      "object" &&
-                                    typeof $steps["updateTimesUpMessage"]
-                                      .then === "function"
-                                  ) {
-                                    $steps["updateTimesUpMessage"] =
-                                      await $steps["updateTimesUpMessage"];
-                                  }
-                                }}
-                                startIcon={
-                                  <CheckSvgIcon
-                                    className={classNames(
-                                      projectcss.all,
-                                      sty.svg__b7Sbm
-                                    )}
-                                    role={"img"}
-                                  />
-                                }
-                              >
-                                {"Return"}
-                              </Button>
-                              <Timer
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.timer__jgw9S
-                                )}
-                                intervalSeconds={3}
-                                isRunning={(() => {
-                                  try {
-                                    return $state.timesUpMessage;
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return false;
-                                    }
-                                    throw e;
-                                  }
-                                })()}
-                                onTick={async () => {
-                                  const $steps = {};
-
-                                  $steps["updateTimesUpMessage"] = true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          variable: {
-                                            objRoot: $state,
-                                            variablePath: ["timesUpMessage"]
-                                          },
-                                          operation: 0,
-                                          value: false
-                                        };
-                                        return (({
-                                          variable,
-                                          value,
-                                          startIndex,
-                                          deleteCount
-                                        }) => {
-                                          if (!variable) {
-                                            return;
-                                          }
-                                          const { objRoot, variablePath } =
-                                            variable;
-
-                                          $stateSet(
-                                            objRoot,
-                                            variablePath,
-                                            value
-                                          );
-                                          return value;
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                  if (
-                                    $steps["updateTimesUpMessage"] != null &&
-                                    typeof $steps["updateTimesUpMessage"] ===
-                                      "object" &&
-                                    typeof $steps["updateTimesUpMessage"]
-                                      .then === "function"
-                                  ) {
-                                    $steps["updateTimesUpMessage"] =
-                                      await $steps["updateTimesUpMessage"];
-                                  }
-
-                                  $steps["refreshData"] = true
-                                    ? (() => {
-                                        const actionArgs = {
-                                          queryInvalidation: [
-                                            "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
-                                            "ccdf9225-a742-4324-b663-f82fa33e998e",
-                                            "e1960040-bc24-4f2b-aa1b-b8867c6e584f",
-                                            "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
-                                          ]
-                                        };
-                                        return (async ({
-                                          queryInvalidation
-                                        }) => {
-                                          if (!queryInvalidation) {
-                                            return;
-                                          }
-                                          await plasmicInvalidate(
-                                            queryInvalidation
-                                          );
-                                        })?.apply(null, [actionArgs]);
-                                      })()
-                                    : undefined;
-                                  if (
-                                    $steps["refreshData"] != null &&
-                                    typeof $steps["refreshData"] === "object" &&
-                                    typeof $steps["refreshData"].then ===
-                                      "function"
-                                  ) {
-                                    $steps["refreshData"] = await $steps[
-                                      "refreshData"
-                                    ];
-                                  }
-                                }}
-                                runWhileEditing={false}
-                              />
-                            </Stack__>
-                          ) : null}
-                          {(() => {
-                            try {
-                              return $state.cartLoader;
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return false;
-                              }
-                              throw e;
-                            }
-                          })() ? (
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
-                              className={classNames(
-                                projectcss.all,
-                                sty.freeBox__mi85G
-                              )}
-                            >
-                              <LottieWrapper
-                                data-plasmic-name={"lottie"}
-                                data-plasmic-override={overrides.lottie}
-                                animationData={{
-                                  v: "5.1.8",
-                                  fr: 29.9700012207031,
-                                  ip: 0,
-                                  op: 60.0000024438501,
-                                  w: 100,
-                                  h: 100,
-                                  nm: "Spinner",
-                                  ddd: 0,
-                                  assets: [],
-                                  layers: [
-                                    {
-                                      ddd: 0,
-                                      ind: 1,
-                                      ty: 4,
-                                      nm: "spinner Outlines",
-                                      sr: 1,
-                                      ks: {
-                                        o: { a: 0, k: 100, ix: 11 },
-                                        r: { a: 0, k: 0, ix: 10 },
-                                        p: { a: 0, k: [50, 50, 0], ix: 2 },
-                                        a: { a: 0, k: [160, 284, 0], ix: 1 },
-                                        s: { a: 0, k: [100, 100, 100], ix: 6 }
-                                      },
-                                      ao: 0,
-                                      shapes: [
-                                        {
-                                          ty: "gr",
-                                          it: [
-                                            {
-                                              ind: 0,
-                                              ty: "sh",
-                                              ix: 1,
-                                              ks: {
-                                                a: 0,
-                                                k: {
-                                                  i: [
-                                                    [0, 19.882],
-                                                    [19.882, 0],
-                                                    [0, -19.882],
-                                                    [-19.882, 0]
-                                                  ],
-                                                  o: [
-                                                    [0, -19.882],
-                                                    [-19.882, 0],
-                                                    [0, 19.882],
-                                                    [19.882, 0]
-                                                  ],
-                                                  v: [
-                                                    [36, 0],
-                                                    [0, -36],
-                                                    [-36, 0],
-                                                    [0, 36]
-                                                  ],
-                                                  c: true
-                                                },
-                                                ix: 2
-                                              },
-                                              nm: "Path 1",
-                                              mn: "ADBE Vector Shape - Group",
-                                              hd: false
-                                            },
-                                            {
-                                              ty: "tm",
-                                              s: {
-                                                a: 1,
-                                                k: [
-                                                  {
-                                                    i: { x: [0.667], y: [1] },
-                                                    o: {
-                                                      x: [0.167],
-                                                      y: [0.167]
-                                                    },
-                                                    n: ["0p667_1_0p167_0p167"],
-                                                    t: 0,
-                                                    s: [100],
-                                                    e: [0]
-                                                  },
-                                                  {
-                                                    i: { x: [0.833], y: [1] },
-                                                    o: { x: [0.167], y: [0] },
-                                                    n: ["0p833_1_0p167_0"],
-                                                    t: 29,
-                                                    s: [0],
-                                                    e: [0]
-                                                  },
-                                                  { t: 51.0000020772726 }
-                                                ],
-                                                ix: 1
-                                              },
-                                              e: {
-                                                a: 1,
-                                                k: [
-                                                  {
-                                                    i: {
-                                                      x: [0.833],
-                                                      y: [0.833]
-                                                    },
-                                                    o: { x: [0.333], y: [0] },
-                                                    n: ["0p833_0p833_0p333_0"],
-                                                    t: 20,
-                                                    s: [100],
-                                                    e: [1]
-                                                  },
-                                                  { t: 60.0000024438501 }
-                                                ],
-                                                ix: 2
-                                              },
-                                              o: { a: 0, k: 0, ix: 3 },
-                                              m: 1,
-                                              ix: 2,
-                                              nm: "Trim Paths 1",
-                                              mn: "ADBE Vector Filter - Trim",
-                                              hd: false
-                                            },
-                                            {
-                                              ty: "st",
-                                              c: {
-                                                a: 0,
-                                                k: [0, 0.541, 0.824, 1],
-                                                ix: 3
-                                              },
-                                              o: { a: 0, k: 100, ix: 4 },
-                                              w: { a: 0, k: 10, ix: 5 },
-                                              lc: 2,
-                                              lj: 1,
-                                              ml: 10,
-                                              nm: "Stroke 1",
-                                              mn: "ADBE Vector Graphic - Stroke",
-                                              hd: false
-                                            },
-                                            {
-                                              ty: "tr",
-                                              p: { a: 0, k: [160, 284], ix: 2 },
-                                              a: { a: 0, k: [0, 0], ix: 1 },
-                                              s: { a: 0, k: [100, 100], ix: 3 },
-                                              r: {
-                                                a: 1,
-                                                k: [
-                                                  {
-                                                    i: { x: [0.667], y: [1] },
-                                                    o: {
-                                                      x: [0.167],
-                                                      y: [0.167]
-                                                    },
-                                                    n: ["0p667_1_0p167_0p167"],
-                                                    t: 0,
-                                                    s: [-90],
-                                                    e: [270]
-                                                  },
-                                                  { t: 59.0000024031193 }
-                                                ],
-                                                ix: 6
-                                              },
-                                              o: { a: 0, k: 100, ix: 7 },
-                                              sk: { a: 0, k: 0, ix: 4 },
-                                              sa: { a: 0, k: 0, ix: 5 },
-                                              nm: "Transform"
-                                            }
-                                          ],
-                                          nm: "Group 1",
-                                          np: 3,
-                                          cix: 2,
-                                          ix: 1,
-                                          mn: "ADBE Vector Group",
-                                          hd: false
-                                        }
-                                      ],
-                                      ip: 0,
-                                      op: 60.0000024438501,
-                                      st: 0,
-                                      bm: 0
-                                    }
-                                  ],
-                                  markers: []
-                                }}
-                                className={classNames(
-                                  "__wab_instance",
-                                  sty.lottie
-                                )}
-                                preview={true}
-                              />
-
-                              <div
-                                className={classNames(
-                                  projectcss.all,
-                                  projectcss.__wab_text,
-                                  sty.text__qCoEj
-                                )}
-                              >
-                                {"Loading..."}
-                              </div>
-                            </Stack__>
-                          ) : null}
-                        </Stack__>
-                      }
-                      trigger={
-                        <Stack__
-                          as={"div"}
-                          hasGap={true}
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox___9WLjB,
-                            {
-                              [sty.freeBoxglobal_locale_es___9WLjBzPCq4]:
-                                hasVariant(globalVariants, "locale", "es")
-                            }
-                          )}
-                          onClick={async event => {
-                            const $steps = {};
-                          }}
-                        >
-                          <Button
-                            className={classNames(
-                              "__wab_instance",
-                              sty.button__g8LVw,
-                              {
-                                [sty.buttonglobal_locale_es__g8LVwzPCq4]:
-                                  hasVariant(globalVariants, "locale", "es")
-                              }
-                            )}
-                            color={"blue"}
-                            onClick={async event => {
-                              const $steps = {};
-
-                              $steps["updateCartLoader"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: ["cartLoader"]
-                                      },
-                                      operation: 0,
-                                      value: true
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["updateCartLoader"] != null &&
-                                typeof $steps["updateCartLoader"] ===
-                                  "object" &&
-                                typeof $steps["updateCartLoader"].then ===
-                                  "function"
-                              ) {
-                                $steps["updateCartLoader"] = await $steps[
-                                  "updateCartLoader"
-                                ];
-                              }
-
-                              $steps["createPurchase"] =
-                                $queries.getPurchases.data.response.data
-                                  .length == 0
+                                $steps["refreshData"] = true
                                   ? (() => {
                                       const actionArgs = {
-                                        dataOp: {
-                                          sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-                                          opId: "b9ea73de-f2ff-4949-ae64-e33d93b53a46",
-                                          userArgs: {
-                                            body: [$state.selectEventDate.value]
-                                          },
-                                          cacheKey: null,
-                                          invalidatedKeys: [
-                                            "plasmic_refresh_all"
-                                          ],
-                                          roleId: null
-                                        },
-                                        continueOnError: false
+                                        queryInvalidation: [
+                                          "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
+                                        ]
                                       };
-                                      return (async ({
-                                        dataOp,
-                                        continueOnError
-                                      }) => {
-                                        try {
-                                          const response =
-                                            await executePlasmicDataOp(dataOp, {
-                                              userAuthToken:
-                                                dataSourcesCtx?.userAuthToken,
-                                              user: dataSourcesCtx?.user
-                                            });
-                                          await plasmicInvalidate(
-                                            dataOp.invalidatedKeys
-                                          );
-                                          return response;
-                                        } catch (e) {
-                                          if (!continueOnError) {
-                                            throw e;
-                                          }
-                                          return e;
+                                      return (async ({ queryInvalidation }) => {
+                                        if (!queryInvalidation) {
+                                          return;
                                         }
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                              if (
-                                $steps["createPurchase"] != null &&
-                                typeof $steps["createPurchase"] === "object" &&
-                                typeof $steps["createPurchase"].then ===
-                                  "function"
-                              ) {
-                                $steps["createPurchase"] = await $steps[
-                                  "createPurchase"
-                                ];
-                              }
-
-                              $steps["refreshData2"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      queryInvalidation: [
-                                        "e1960040-bc24-4f2b-aa1b-b8867c6e584f"
-                                      ]
-                                    };
-                                    return (async ({ queryInvalidation }) => {
-                                      if (!queryInvalidation) {
-                                        return;
-                                      }
-                                      await plasmicInvalidate(
-                                        queryInvalidation
-                                      );
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["refreshData2"] != null &&
-                                typeof $steps["refreshData2"] === "object" &&
-                                typeof $steps["refreshData2"].then ===
-                                  "function"
-                              ) {
-                                $steps["refreshData2"] = await $steps[
-                                  "refreshData2"
-                                ];
-                              }
-
-                              $steps["runCode"] =
-                                $queries.getPurchases.data.response.data
-                                  .length == 0
-                                  ? (() => {
-                                      const actionArgs = {
-                                        customFunction: async () => {
-                                          return localStorage.setItem(
-                                            "PurchaseId",
-                                            $steps.createPurchase.data.response
-                                              .data.id
-                                          );
-                                        }
-                                      };
-                                      return (({ customFunction }) => {
-                                        return customFunction();
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                              if (
-                                $steps["runCode"] != null &&
-                                typeof $steps["runCode"] === "object" &&
-                                typeof $steps["runCode"].then === "function"
-                              ) {
-                                $steps["runCode"] = await $steps["runCode"];
-                              }
-
-                              $steps["refreshData"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      queryInvalidation: [
-                                        "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
-                                      ]
-                                    };
-                                    return (async ({ queryInvalidation }) => {
-                                      if (!queryInvalidation) {
-                                        return;
-                                      }
-                                      await plasmicInvalidate(
-                                        queryInvalidation
-                                      );
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["refreshData"] != null &&
-                                typeof $steps["refreshData"] === "object" &&
-                                typeof $steps["refreshData"].then === "function"
-                              ) {
-                                $steps["refreshData"] = await $steps[
-                                  "refreshData"
-                                ];
-                              }
-
-                              $steps["createCart"] = (() => {
-                                const Cart =
-                                  $queries.getCart.data.response.data;
-                                return (
-                                  $state.selectors.filter(
-                                    item =>
-                                      item.TicketQuantity > 0 &&
-                                      !Cart.some(
-                                        cartItem =>
-                                          cartItem.PurchaseTicketId ==
-                                          localStorage.getItem("PurchaseId") +
-                                            item.TicketId
-                                      )
-                                  ).length > 0 &&
-                                  localStorage.getItem("PurchaseId").length > 0
-                                );
-                              })()
-                                ? (() => {
-                                    const actionArgs = {
-                                      dataOp: {
-                                        sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-                                        opId: "aa4d9c1d-2bb3-4ecf-ab09-cce96cd0a16b",
-                                        userArgs: {
-                                          body: [
-                                            (() => {
-                                              const cart =
-                                                $queries.getCart.data.response
-                                                  .data;
-                                              return $state.selectors
-                                                .filter(
-                                                  item =>
-                                                    item.TicketQuantity > 0 &&
-                                                    !cart.some(
-                                                      cartItem =>
-                                                        cartItem.PurchaseTicketId ==
-                                                        localStorage.getItem(
-                                                          "PurchaseId"
-                                                        ) +
-                                                          item.TicketId
-                                                    )
-                                                )
-                                                .map(new_cart => ({
-                                                  ...new_cart,
-                                                  PurchaseId:
-                                                    localStorage.getItem(
-                                                      "PurchaseId"
-                                                    ),
-                                                  PurchaseTicketId:
-                                                    localStorage.getItem(
-                                                      "PurchaseId"
-                                                    ) + new_cart.TicketId
-                                                }));
-                                            })(),
-                                            localStorage.getItem("PurchaseId")
-                                          ]
-                                        },
-                                        cacheKey: null,
-                                        invalidatedKeys: [
-                                          "plasmic_refresh_all"
-                                        ],
-                                        roleId: null
-                                      },
-                                      continueOnError: false
-                                    };
-                                    return (async ({
-                                      dataOp,
-                                      continueOnError
-                                    }) => {
-                                      try {
-                                        const response =
-                                          await executePlasmicDataOp(dataOp, {
-                                            userAuthToken:
-                                              dataSourcesCtx?.userAuthToken,
-                                            user: dataSourcesCtx?.user
-                                          });
                                         await plasmicInvalidate(
-                                          dataOp.invalidatedKeys
+                                          queryInvalidation
                                         );
-                                        return response;
-                                      } catch (e) {
-                                        if (!continueOnError) {
-                                          throw e;
-                                        }
-                                        return e;
-                                      }
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["createCart"] != null &&
-                                typeof $steps["createCart"] === "object" &&
-                                typeof $steps["createCart"].then === "function"
-                              ) {
-                                $steps["createCart"] = await $steps[
-                                  "createCart"
-                                ];
-                              }
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["refreshData"] != null &&
+                                  typeof $steps["refreshData"] === "object" &&
+                                  typeof $steps["refreshData"].then ===
+                                    "function"
+                                ) {
+                                  $steps["refreshData"] = await $steps[
+                                    "refreshData"
+                                  ];
+                                }
 
-                              $steps["httpPatch"] =
-                                $state.selectors
-                                  .map(ticket => {
-                                    const matchedCart =
-                                      $queries.getCart.data.response.data.find(
-                                        n =>
-                                          n.PurchaseTicketId ===
-                                          localStorage.getItem("PurchaseId") +
-                                            ticket.TicketId
-                                      );
-                                    return {
-                                      ...ticket,
-                                      id: matchedCart ? matchedCart : undefined
-                                    };
-                                  })
-                                  .filter(ticket => ticket.id).length > 0 &&
-                                localStorage.getItem("PurchaseId").length > 0
+                                $steps["createCart"] = (() => {
+                                  const Cart =
+                                    $queries.getCart.data.response.data;
+                                  return (
+                                    $state.selectors.filter(
+                                      item =>
+                                        item.TicketQuantity > 0 &&
+                                        !Cart.some(
+                                          cartItem =>
+                                            cartItem.PurchaseTicketId ==
+                                            localStorage.getItem("PurchaseId") +
+                                              item.TicketId
+                                        )
+                                    ).length > 0 &&
+                                    localStorage.getItem("PurchaseId").length >
+                                      0
+                                  );
+                                })()
                                   ? (() => {
                                       const actionArgs = {
                                         dataOp: {
                                           sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-                                          opId: "fc500074-fd26-48e0-8bd2-4813b65db5cd",
+                                          opId: "aa4d9c1d-2bb3-4ecf-ab09-cce96cd0a16b",
                                           userArgs: {
                                             body: [
                                               (() => {
-                                                const updatedTickets =
-                                                  $state.selectors
-                                                    .map(ticket => {
-                                                      const matchedCart =
-                                                        $queries.getCart.data.response.data.find(
-                                                          cartItem =>
-                                                            cartItem.PurchaseTicketId ===
-                                                            localStorage.getItem(
-                                                              "PurchaseId"
-                                                            ) +
-                                                              ticket.TicketId
-                                                        );
-                                                      return {
-                                                        ...ticket,
-                                                        id: matchedCart
-                                                          ? matchedCart.id
-                                                          : undefined
-                                                      };
-                                                    })
-                                                    .filter(
-                                                      ticket => ticket.id
-                                                    );
-                                                return updatedTickets;
+                                                const cart =
+                                                  $queries.getCart.data.response
+                                                    .data;
+                                                return $state.selectors
+                                                  .filter(
+                                                    item =>
+                                                      item.TicketQuantity > 0 &&
+                                                      !cart.some(
+                                                        cartItem =>
+                                                          cartItem.PurchaseTicketId ==
+                                                          localStorage.getItem(
+                                                            "PurchaseId"
+                                                          ) +
+                                                            item.TicketId
+                                                      )
+                                                  )
+                                                  .map(new_cart => ({
+                                                    ...new_cart,
+                                                    PurchaseId:
+                                                      localStorage.getItem(
+                                                        "PurchaseId"
+                                                      ),
+                                                    PurchaseTicketId:
+                                                      localStorage.getItem(
+                                                        "PurchaseId"
+                                                      ) + new_cart.TicketId
+                                                  }));
                                               })(),
                                               localStorage.getItem("PurchaseId")
                                             ]
@@ -3124,385 +3124,402 @@ function PlasmicEvent__RenderFunc(props: {
                                       })?.apply(null, [actionArgs]);
                                     })()
                                   : undefined;
-                              if (
-                                $steps["httpPatch"] != null &&
-                                typeof $steps["httpPatch"] === "object" &&
-                                typeof $steps["httpPatch"].then === "function"
-                              ) {
-                                $steps["httpPatch"] = await $steps["httpPatch"];
-                              }
+                                if (
+                                  $steps["createCart"] != null &&
+                                  typeof $steps["createCart"] === "object" &&
+                                  typeof $steps["createCart"].then ===
+                                    "function"
+                                ) {
+                                  $steps["createCart"] = await $steps[
+                                    "createCart"
+                                  ];
+                                }
 
-                              $steps["updateLoadingCart2"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      variable: {
-                                        objRoot: $state,
-                                        variablePath: ["cartLoader"]
-                                      },
-                                      operation: 0,
-                                      value: false
-                                    };
-                                    return (({
-                                      variable,
-                                      value,
-                                      startIndex,
-                                      deleteCount
-                                    }) => {
-                                      if (!variable) {
-                                        return;
-                                      }
-                                      const { objRoot, variablePath } =
-                                        variable;
-
-                                      $stateSet(objRoot, variablePath, value);
-                                      return value;
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["updateLoadingCart2"] != null &&
-                                typeof $steps["updateLoadingCart2"] ===
-                                  "object" &&
-                                typeof $steps["updateLoadingCart2"].then ===
-                                  "function"
-                              ) {
-                                $steps["updateLoadingCart2"] = await $steps[
-                                  "updateLoadingCart2"
-                                ];
-                              }
-
-                              $steps["refreshData3"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      queryInvalidation: [
-                                        "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
-                                        "ccdf9225-a742-4324-b663-f82fa33e998e"
-                                      ]
-                                    };
-                                    return (async ({ queryInvalidation }) => {
-                                      if (!queryInvalidation) {
-                                        return;
-                                      }
-                                      await plasmicInvalidate(
-                                        queryInvalidation
-                                      );
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["refreshData3"] != null &&
-                                typeof $steps["refreshData3"] === "object" &&
-                                typeof $steps["refreshData3"].then ===
-                                  "function"
-                              ) {
-                                $steps["refreshData3"] = await $steps[
-                                  "refreshData3"
-                                ];
-                              }
-                            }}
-                            startIcon={
-                              <CheckSvgIcon
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.svg__bbtPv
-                                )}
-                                role={"img"}
-                              />
-                            }
-                          >
-                            {"Add Tickets"}
-                          </Button>
-                          <Button
-                            className={classNames(
-                              "__wab_instance",
-                              sty.button__utvE,
-                              {
-                                [sty.buttonglobal_locale_es__utvEzPCq4]:
-                                  hasVariant(globalVariants, "locale", "es")
-                              }
-                            )}
-                            color={"blue"}
-                            onClick={async event => {
-                              const $steps = {};
-
-                              $steps["createPurchase"] =
-                                $queries.getPurchases.data.response.data
-                                  .length == 0
-                                  ? (() => {
-                                      const actionArgs = {
-                                        dataOp: {
-                                          sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-                                          opId: "dc80069f-b9a5-4504-9053-58fcea62b7da",
-                                          userArgs: {},
-                                          cacheKey: null,
-                                          invalidatedKeys: [
-                                            "plasmic_refresh_all"
-                                          ],
-                                          roleId: null
-                                        },
-                                        continueOnError: false
-                                      };
-                                      return (async ({
-                                        dataOp,
-                                        continueOnError
-                                      }) => {
-                                        try {
-                                          const response =
-                                            await executePlasmicDataOp(dataOp, {
-                                              userAuthToken:
-                                                dataSourcesCtx?.userAuthToken,
-                                              user: dataSourcesCtx?.user
-                                            });
-                                          await plasmicInvalidate(
-                                            dataOp.invalidatedKeys
-                                          );
-                                          return response;
-                                        } catch (e) {
-                                          if (!continueOnError) {
-                                            throw e;
-                                          }
-                                          return e;
-                                        }
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                              if (
-                                $steps["createPurchase"] != null &&
-                                typeof $steps["createPurchase"] === "object" &&
-                                typeof $steps["createPurchase"].then ===
-                                  "function"
-                              ) {
-                                $steps["createPurchase"] = await $steps[
-                                  "createPurchase"
-                                ];
-                              }
-
-                              $steps["refreshData2"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      queryInvalidation: [
-                                        "e1960040-bc24-4f2b-aa1b-b8867c6e584f"
-                                      ]
-                                    };
-                                    return (async ({ queryInvalidation }) => {
-                                      if (!queryInvalidation) {
-                                        return;
-                                      }
-                                      await plasmicInvalidate(
-                                        queryInvalidation
-                                      );
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["refreshData2"] != null &&
-                                typeof $steps["refreshData2"] === "object" &&
-                                typeof $steps["refreshData2"].then ===
-                                  "function"
-                              ) {
-                                $steps["refreshData2"] = await $steps[
-                                  "refreshData2"
-                                ];
-                              }
-
-                              $steps["runCode"] =
-                                $queries.getPurchases.data.response.data
-                                  .length == 0
-                                  ? (() => {
-                                      const actionArgs = {
-                                        customFunction: async () => {
-                                          return localStorage.setItem(
-                                            "PurchaseId",
-                                            $steps.createPurchase.data.response
-                                              .data.id
-                                          );
-                                        }
-                                      };
-                                      return (({ customFunction }) => {
-                                        return customFunction();
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                              if (
-                                $steps["runCode"] != null &&
-                                typeof $steps["runCode"] === "object" &&
-                                typeof $steps["runCode"].then === "function"
-                              ) {
-                                $steps["runCode"] = await $steps["runCode"];
-                              }
-
-                              $steps["refreshData"] = true
-                                ? (() => {
-                                    const actionArgs = {
-                                      queryInvalidation: [
-                                        "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
-                                      ]
-                                    };
-                                    return (async ({ queryInvalidation }) => {
-                                      if (!queryInvalidation) {
-                                        return;
-                                      }
-                                      await plasmicInvalidate(
-                                        queryInvalidation
-                                      );
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["refreshData"] != null &&
-                                typeof $steps["refreshData"] === "object" &&
-                                typeof $steps["refreshData"].then === "function"
-                              ) {
-                                $steps["refreshData"] = await $steps[
-                                  "refreshData"
-                                ];
-                              }
-
-                              $steps["createCart"] = (() => {
-                                const Cart =
-                                  $queries.getCart.data.response.data;
-                                return (
-                                  $state.selectors.filter(
-                                    item =>
-                                      item.TicketQuantity > 0 &&
-                                      !Cart.some(
-                                        cartItem =>
-                                          cartItem.PurchaseTicketId ==
-                                          localStorage.getItem("PurchaseId") +
-                                            item.TicketId
-                                      )
-                                  ).length > 0 &&
-                                  localStorage.getItem("PurchaseId").length > 0
-                                );
-                              })()
-                                ? (() => {
-                                    const actionArgs = {
-                                      dataOp: {
-                                        sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-                                        opId: "1ef349ae-177b-466e-97ad-fcbb5bda351c",
-                                        userArgs: {
-                                          body: [
-                                            (() => {
-                                              const cart =
-                                                $queries.getCart.data.response
-                                                  .data;
-                                              return $state.selectors
-                                                .filter(
-                                                  item =>
-                                                    item.TicketQuantity > 0 &&
-                                                    !cart.some(
-                                                      cartItem =>
-                                                        cartItem.PurchaseTicketId ==
-                                                        localStorage.getItem(
-                                                          "PurchaseId"
-                                                        ) +
-                                                          item.TicketId
-                                                    )
-                                                )
-                                                .map(new_cart => ({
-                                                  ...new_cart,
-                                                  PurchaseId:
-                                                    localStorage.getItem(
-                                                      "PurchaseId"
-                                                    ),
-                                                  PurchaseTicketId:
-                                                    localStorage.getItem(
-                                                      "PurchaseId"
-                                                    ) + new_cart.TicketId
-                                                }));
-                                            })()
-                                          ]
-                                        },
-                                        cacheKey: null,
-                                        invalidatedKeys: [
-                                          "plasmic_refresh_all"
-                                        ],
-                                        roleId: null
-                                      },
-                                      continueOnError: false
-                                    };
-                                    return (async ({
-                                      dataOp,
-                                      continueOnError
-                                    }) => {
-                                      try {
-                                        const response =
-                                          await executePlasmicDataOp(dataOp, {
-                                            userAuthToken:
-                                              dataSourcesCtx?.userAuthToken,
-                                            user: dataSourcesCtx?.user
-                                          });
-                                        await plasmicInvalidate(
-                                          dataOp.invalidatedKeys
+                                $steps["httpPatch"] =
+                                  $state.selectors
+                                    .map(ticket => {
+                                      const matchedCart =
+                                        $queries.getCart.data.response.data.find(
+                                          n =>
+                                            n.PurchaseTicketId ===
+                                            localStorage.getItem("PurchaseId") +
+                                              ticket.TicketId
                                         );
-                                        return response;
-                                      } catch (e) {
-                                        if (!continueOnError) {
-                                          throw e;
-                                        }
-                                        return e;
-                                      }
-                                    })?.apply(null, [actionArgs]);
-                                  })()
-                                : undefined;
-                              if (
-                                $steps["createCart"] != null &&
-                                typeof $steps["createCart"] === "object" &&
-                                typeof $steps["createCart"].then === "function"
-                              ) {
-                                $steps["createCart"] = await $steps[
-                                  "createCart"
-                                ];
-                              }
+                                      return {
+                                        ...ticket,
+                                        id: matchedCart
+                                          ? matchedCart
+                                          : undefined
+                                      };
+                                    })
+                                    .filter(ticket => ticket.id).length > 0 &&
+                                  localStorage.getItem("PurchaseId").length > 0
+                                    ? (() => {
+                                        const actionArgs = {
+                                          dataOp: {
+                                            sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
+                                            opId: "fc500074-fd26-48e0-8bd2-4813b65db5cd",
+                                            userArgs: {
+                                              body: [
+                                                (() => {
+                                                  const updatedTickets =
+                                                    $state.selectors
+                                                      .map(ticket => {
+                                                        const matchedCart =
+                                                          $queries.getCart.data.response.data.find(
+                                                            cartItem =>
+                                                              cartItem.PurchaseTicketId ===
+                                                              localStorage.getItem(
+                                                                "PurchaseId"
+                                                              ) +
+                                                                ticket.TicketId
+                                                          );
+                                                        return {
+                                                          ...ticket,
+                                                          id: matchedCart
+                                                            ? matchedCart.id
+                                                            : undefined
+                                                        };
+                                                      })
+                                                      .filter(
+                                                        ticket => ticket.id
+                                                      );
+                                                  return updatedTickets;
+                                                })(),
+                                                localStorage.getItem(
+                                                  "PurchaseId"
+                                                )
+                                              ]
+                                            },
+                                            cacheKey: null,
+                                            invalidatedKeys: [
+                                              "plasmic_refresh_all"
+                                            ],
+                                            roleId: null
+                                          },
+                                          continueOnError: false
+                                        };
+                                        return (async ({
+                                          dataOp,
+                                          continueOnError
+                                        }) => {
+                                          try {
+                                            const response =
+                                              await executePlasmicDataOp(
+                                                dataOp,
+                                                {
+                                                  userAuthToken:
+                                                    dataSourcesCtx?.userAuthToken,
+                                                  user: dataSourcesCtx?.user
+                                                }
+                                              );
+                                            await plasmicInvalidate(
+                                              dataOp.invalidatedKeys
+                                            );
+                                            return response;
+                                          } catch (e) {
+                                            if (!continueOnError) {
+                                              throw e;
+                                            }
+                                            return e;
+                                          }
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                if (
+                                  $steps["httpPatch"] != null &&
+                                  typeof $steps["httpPatch"] === "object" &&
+                                  typeof $steps["httpPatch"].then === "function"
+                                ) {
+                                  $steps["httpPatch"] = await $steps[
+                                    "httpPatch"
+                                  ];
+                                }
 
-                              $steps["httpPatch"] =
-                                $state.selectors
-                                  .map(ticket => {
-                                    const matchedCart =
-                                      $queries.getCart.data.response.data.find(
-                                        n =>
-                                          n.PurchaseTicketId ===
-                                          localStorage.getItem("PurchaseId") +
-                                            ticket.TicketId
-                                      );
-                                    return {
-                                      ...ticket,
-                                      id: matchedCart ? matchedCart : undefined
-                                    };
-                                  })
-                                  .filter(ticket => ticket.id).length > 0 &&
-                                localStorage.getItem("PurchaseId").length > 0
+                                $steps["updateLoadingCart2"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        variable: {
+                                          objRoot: $state,
+                                          variablePath: ["cartLoader"]
+                                        },
+                                        operation: 0,
+                                        value: false
+                                      };
+                                      return (({
+                                        variable,
+                                        value,
+                                        startIndex,
+                                        deleteCount
+                                      }) => {
+                                        if (!variable) {
+                                          return;
+                                        }
+                                        const { objRoot, variablePath } =
+                                          variable;
+
+                                        $stateSet(objRoot, variablePath, value);
+                                        return value;
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["updateLoadingCart2"] != null &&
+                                  typeof $steps["updateLoadingCart2"] ===
+                                    "object" &&
+                                  typeof $steps["updateLoadingCart2"].then ===
+                                    "function"
+                                ) {
+                                  $steps["updateLoadingCart2"] = await $steps[
+                                    "updateLoadingCart2"
+                                  ];
+                                }
+
+                                $steps["refreshData3"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        queryInvalidation: [
+                                          "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
+                                          "ccdf9225-a742-4324-b663-f82fa33e998e"
+                                        ]
+                                      };
+                                      return (async ({ queryInvalidation }) => {
+                                        if (!queryInvalidation) {
+                                          return;
+                                        }
+                                        await plasmicInvalidate(
+                                          queryInvalidation
+                                        );
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["refreshData3"] != null &&
+                                  typeof $steps["refreshData3"] === "object" &&
+                                  typeof $steps["refreshData3"].then ===
+                                    "function"
+                                ) {
+                                  $steps["refreshData3"] = await $steps[
+                                    "refreshData3"
+                                  ];
+                                }
+                              }}
+                              startIcon={
+                                <CheckSvgIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__bbtPv
+                                  )}
+                                  role={"img"}
+                                />
+                              }
+                            >
+                              {"Add Tickets"}
+                            </Button>
+                            <Button
+                              className={classNames(
+                                "__wab_instance",
+                                sty.button__utvE,
+                                {
+                                  [sty.buttonglobal_locale_es__utvEzPCq4]:
+                                    hasVariant(globalVariants, "locale", "es")
+                                }
+                              )}
+                              color={"blue"}
+                              onClick={async event => {
+                                const $steps = {};
+
+                                $steps["createPurchase"] =
+                                  $queries.getPurchases.data.response.data
+                                    .length == 0
+                                    ? (() => {
+                                        const actionArgs = {
+                                          dataOp: {
+                                            sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
+                                            opId: "dc80069f-b9a5-4504-9053-58fcea62b7da",
+                                            userArgs: {},
+                                            cacheKey: null,
+                                            invalidatedKeys: [
+                                              "plasmic_refresh_all"
+                                            ],
+                                            roleId: null
+                                          },
+                                          continueOnError: false
+                                        };
+                                        return (async ({
+                                          dataOp,
+                                          continueOnError
+                                        }) => {
+                                          try {
+                                            const response =
+                                              await executePlasmicDataOp(
+                                                dataOp,
+                                                {
+                                                  userAuthToken:
+                                                    dataSourcesCtx?.userAuthToken,
+                                                  user: dataSourcesCtx?.user
+                                                }
+                                              );
+                                            await plasmicInvalidate(
+                                              dataOp.invalidatedKeys
+                                            );
+                                            return response;
+                                          } catch (e) {
+                                            if (!continueOnError) {
+                                              throw e;
+                                            }
+                                            return e;
+                                          }
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                if (
+                                  $steps["createPurchase"] != null &&
+                                  typeof $steps["createPurchase"] ===
+                                    "object" &&
+                                  typeof $steps["createPurchase"].then ===
+                                    "function"
+                                ) {
+                                  $steps["createPurchase"] = await $steps[
+                                    "createPurchase"
+                                  ];
+                                }
+
+                                $steps["refreshData2"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        queryInvalidation: [
+                                          "e1960040-bc24-4f2b-aa1b-b8867c6e584f"
+                                        ]
+                                      };
+                                      return (async ({ queryInvalidation }) => {
+                                        if (!queryInvalidation) {
+                                          return;
+                                        }
+                                        await plasmicInvalidate(
+                                          queryInvalidation
+                                        );
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["refreshData2"] != null &&
+                                  typeof $steps["refreshData2"] === "object" &&
+                                  typeof $steps["refreshData2"].then ===
+                                    "function"
+                                ) {
+                                  $steps["refreshData2"] = await $steps[
+                                    "refreshData2"
+                                  ];
+                                }
+
+                                $steps["runCode"] =
+                                  $queries.getPurchases.data.response.data
+                                    .length == 0
+                                    ? (() => {
+                                        const actionArgs = {
+                                          customFunction: async () => {
+                                            return localStorage.setItem(
+                                              "PurchaseId",
+                                              $steps.createPurchase.data
+                                                .response.data.id
+                                            );
+                                          }
+                                        };
+                                        return (({ customFunction }) => {
+                                          return customFunction();
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                if (
+                                  $steps["runCode"] != null &&
+                                  typeof $steps["runCode"] === "object" &&
+                                  typeof $steps["runCode"].then === "function"
+                                ) {
+                                  $steps["runCode"] = await $steps["runCode"];
+                                }
+
+                                $steps["refreshData"] = true
+                                  ? (() => {
+                                      const actionArgs = {
+                                        queryInvalidation: [
+                                          "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
+                                        ]
+                                      };
+                                      return (async ({ queryInvalidation }) => {
+                                        if (!queryInvalidation) {
+                                          return;
+                                        }
+                                        await plasmicInvalidate(
+                                          queryInvalidation
+                                        );
+                                      })?.apply(null, [actionArgs]);
+                                    })()
+                                  : undefined;
+                                if (
+                                  $steps["refreshData"] != null &&
+                                  typeof $steps["refreshData"] === "object" &&
+                                  typeof $steps["refreshData"].then ===
+                                    "function"
+                                ) {
+                                  $steps["refreshData"] = await $steps[
+                                    "refreshData"
+                                  ];
+                                }
+
+                                $steps["createCart"] = (() => {
+                                  const Cart =
+                                    $queries.getCart.data.response.data;
+                                  return (
+                                    $state.selectors.filter(
+                                      item =>
+                                        item.TicketQuantity > 0 &&
+                                        !Cart.some(
+                                          cartItem =>
+                                            cartItem.PurchaseTicketId ==
+                                            localStorage.getItem("PurchaseId") +
+                                              item.TicketId
+                                        )
+                                    ).length > 0 &&
+                                    localStorage.getItem("PurchaseId").length >
+                                      0
+                                  );
+                                })()
                                   ? (() => {
                                       const actionArgs = {
                                         dataOp: {
                                           sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-                                          opId: "853e54c5-d0f6-4aa1-82c8-b44d405dd4cc",
+                                          opId: "1ef349ae-177b-466e-97ad-fcbb5bda351c",
                                           userArgs: {
                                             body: [
                                               (() => {
-                                                const updatedTickets =
-                                                  $state.selectors
-                                                    .map(ticket => {
-                                                      const matchedCart =
-                                                        $queries.getCart.data.response.data.find(
-                                                          n =>
-                                                            n.PurchaseTicketId ===
-                                                            localStorage.getItem(
-                                                              "PurchaseId"
-                                                            ) +
-                                                              ticket.TicketId
-                                                        ).id;
-                                                      return {
-                                                        ...ticket,
-                                                        id: matchedCart
-                                                          ? matchedCart
-                                                          : undefined
-                                                      };
-                                                    })
-                                                    .filter(
-                                                      ticket => ticket.id
-                                                    );
-                                                return updatedTickets;
+                                                const cart =
+                                                  $queries.getCart.data.response
+                                                    .data;
+                                                return $state.selectors
+                                                  .filter(
+                                                    item =>
+                                                      item.TicketQuantity > 0 &&
+                                                      !cart.some(
+                                                        cartItem =>
+                                                          cartItem.PurchaseTicketId ==
+                                                          localStorage.getItem(
+                                                            "PurchaseId"
+                                                          ) +
+                                                            item.TicketId
+                                                      )
+                                                  )
+                                                  .map(new_cart => ({
+                                                    ...new_cart,
+                                                    PurchaseId:
+                                                      localStorage.getItem(
+                                                        "PurchaseId"
+                                                      ),
+                                                    PurchaseTicketId:
+                                                      localStorage.getItem(
+                                                        "PurchaseId"
+                                                      ) + new_cart.TicketId
+                                                  }));
                                               })()
                                             ]
                                           },
@@ -3538,56 +3555,158 @@ function PlasmicEvent__RenderFunc(props: {
                                       })?.apply(null, [actionArgs]);
                                     })()
                                   : undefined;
-                              if (
-                                $steps["httpPatch"] != null &&
-                                typeof $steps["httpPatch"] === "object" &&
-                                typeof $steps["httpPatch"].then === "function"
-                              ) {
-                                $steps["httpPatch"] = await $steps["httpPatch"];
+                                if (
+                                  $steps["createCart"] != null &&
+                                  typeof $steps["createCart"] === "object" &&
+                                  typeof $steps["createCart"].then ===
+                                    "function"
+                                ) {
+                                  $steps["createCart"] = await $steps[
+                                    "createCart"
+                                  ];
+                                }
+
+                                $steps["httpPatch"] =
+                                  $state.selectors
+                                    .map(ticket => {
+                                      const matchedCart =
+                                        $queries.getCart.data.response.data.find(
+                                          n =>
+                                            n.PurchaseTicketId ===
+                                            localStorage.getItem("PurchaseId") +
+                                              ticket.TicketId
+                                        );
+                                      return {
+                                        ...ticket,
+                                        id: matchedCart
+                                          ? matchedCart
+                                          : undefined
+                                      };
+                                    })
+                                    .filter(ticket => ticket.id).length > 0 &&
+                                  localStorage.getItem("PurchaseId").length > 0
+                                    ? (() => {
+                                        const actionArgs = {
+                                          dataOp: {
+                                            sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
+                                            opId: "853e54c5-d0f6-4aa1-82c8-b44d405dd4cc",
+                                            userArgs: {
+                                              body: [
+                                                (() => {
+                                                  const updatedTickets =
+                                                    $state.selectors
+                                                      .map(ticket => {
+                                                        const matchedCart =
+                                                          $queries.getCart.data.response.data.find(
+                                                            n =>
+                                                              n.PurchaseTicketId ===
+                                                              localStorage.getItem(
+                                                                "PurchaseId"
+                                                              ) +
+                                                                ticket.TicketId
+                                                          ).id;
+                                                        return {
+                                                          ...ticket,
+                                                          id: matchedCart
+                                                            ? matchedCart
+                                                            : undefined
+                                                        };
+                                                      })
+                                                      .filter(
+                                                        ticket => ticket.id
+                                                      );
+                                                  return updatedTickets;
+                                                })()
+                                              ]
+                                            },
+                                            cacheKey: null,
+                                            invalidatedKeys: [
+                                              "plasmic_refresh_all"
+                                            ],
+                                            roleId: null
+                                          },
+                                          continueOnError: false
+                                        };
+                                        return (async ({
+                                          dataOp,
+                                          continueOnError
+                                        }) => {
+                                          try {
+                                            const response =
+                                              await executePlasmicDataOp(
+                                                dataOp,
+                                                {
+                                                  userAuthToken:
+                                                    dataSourcesCtx?.userAuthToken,
+                                                  user: dataSourcesCtx?.user
+                                                }
+                                              );
+                                            await plasmicInvalidate(
+                                              dataOp.invalidatedKeys
+                                            );
+                                            return response;
+                                          } catch (e) {
+                                            if (!continueOnError) {
+                                              throw e;
+                                            }
+                                            return e;
+                                          }
+                                        })?.apply(null, [actionArgs]);
+                                      })()
+                                    : undefined;
+                                if (
+                                  $steps["httpPatch"] != null &&
+                                  typeof $steps["httpPatch"] === "object" &&
+                                  typeof $steps["httpPatch"].then === "function"
+                                ) {
+                                  $steps["httpPatch"] = await $steps[
+                                    "httpPatch"
+                                  ];
+                                }
+                              }}
+                              startIcon={
+                                <CheckSvgIcon
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.svg__i9Gep
+                                  )}
+                                  role={"img"}
+                                />
                               }
-                            }}
-                            startIcon={
-                              <CheckSvgIcon
-                                className={classNames(
-                                  projectcss.all,
-                                  sty.svg__i9Gep
-                                )}
-                                role={"img"}
-                              />
-                            }
-                          >
-                            {"Agregar"}
-                          </Button>
-                          <ShoppingBagOpenSvgIcon
-                            className={classNames(
-                              projectcss.all,
-                              sty.svg__rmwPb
-                            )}
-                            role={"img"}
-                          />
-                        </Stack__>
-                      }
-                    >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__hgve5
-                        )}
+                            >
+                              {"Agregar"}
+                            </Button>
+                            <ShoppingBagOpenSvgIcon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg__rmwPb
+                              )}
+                              role={"img"}
+                            />
+                          </Stack__>
+                        }
                       >
-                        {"Review your order"}
-                      </div>
-                    </Drawer>
-                  </Stack__>
-                </div>
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__hgve5
+                          )}
+                        >
+                          {"Review your order"}
+                        </div>
+                      </Drawer>
+                    </Stack__>
+                  </div>
+                </Stack__>
               </Stack__>
-            </Stack__>
-          </div>
-          <Footer
-            data-plasmic-name={"footer"}
-            data-plasmic-override={overrides.footer}
-            className={classNames("__wab_instance", sty.footer)}
-          />
+            </div>
+            <Footer
+              data-plasmic-name={"footer"}
+              data-plasmic-override={overrides.footer}
+              className={classNames("__wab_instance", sty.footer)}
+            />
+          </ConditionGuard>
         </div>
       </div>
     </React.Fragment>
@@ -3599,7 +3718,6 @@ const PlasmicDescendants = {
     "root",
     "navbar2",
     "image",
-    "conditionGuard",
     "title",
     "selectEventDate",
     "description",
@@ -3617,7 +3735,6 @@ const PlasmicDescendants = {
   ],
   navbar2: ["navbar2"],
   image: ["image"],
-  conditionGuard: ["conditionGuard"],
   title: ["title", "selectEventDate"],
   selectEventDate: ["selectEventDate"],
   description: ["description"],
@@ -3656,7 +3773,6 @@ type NodeDefaultElementType = {
   root: "div";
   navbar2: typeof Navbar2;
   image: "div";
-  conditionGuard: typeof ConditionGuard;
   title: "div";
   selectEventDate: typeof AntdRadioGroup;
   description: "div";
@@ -3735,7 +3851,6 @@ export const PlasmicEvent = Object.assign(
     // Helper components rendering sub-elements
     navbar2: makeNodeComponent("navbar2"),
     image: makeNodeComponent("image"),
-    conditionGuard: makeNodeComponent("conditionGuard"),
     title: makeNodeComponent("title"),
     selectEventDate: makeNodeComponent("selectEventDate"),
     description: makeNodeComponent("description"),

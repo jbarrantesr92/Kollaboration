@@ -21,12 +21,16 @@
 .root > * {
   grid-column: 4;
 }
+.conditionGuard__f1DfN:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
 .navbar2:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
-  left: 0px;
-  top: 0px;
+  left: auto;
+  top: auto;
   z-index: 2;
-  position: sticky;
+  position: relative;
   transition-property: all;
   transition-duration: 1s;
   -webkit-transition-property: all;
@@ -98,7 +102,7 @@
 .img__gjrpl > picture > img {
   object-fit: cover;
 }
-.conditionGuard:global(.__wab_instance) {
+.conditionGuard___0OQRa:global(.__wab_instance) {
   max-width: 100%;
   object-fit: cover;
 }

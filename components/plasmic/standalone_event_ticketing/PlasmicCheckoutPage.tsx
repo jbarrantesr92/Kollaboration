@@ -119,7 +119,9 @@ function PlasmicCheckoutPage__RenderFunc(props: {
         {
           roundUp: false
         },
-        props.args
+        Object.fromEntries(
+          Object.entries(props.args).filter(([_, v]) => v !== undefined)
+        )
       ),
     [props.args]
   );

@@ -63,6 +63,8 @@ import Navbar2 from "../../Navbar2"; // plasmic-import: PlAJ5tJMUQMz/component
 import AuthForm from "../../AuthForm"; // plasmic-import: M6JTnsbXEmY-/component
 import Footer2 from "../../Footer2"; // plasmic-import: afuzx2tfyuUz/component
 
+import { LocaleValue, useLocale } from "./PlasmicGlobalVariant__Locale"; // plasmic-import: IjXfRSRLVt5J/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
@@ -110,7 +112,16 @@ function PlasmicLogin__RenderFunc(props: {
 }) {
   const { variants, overrides, forNode } = props;
 
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+        Object.fromEntries(
+          Object.entries(props.args).filter(([_, v]) => v !== undefined)
+        )
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
@@ -123,6 +134,10 @@ function PlasmicLogin__RenderFunc(props: {
   const $refs = refsRef.current;
 
   const currentUser = useCurrentUser?.() || {};
+
+  const globalVariants = ensureGlobalVariants({
+    locale: useLocale()
+  });
 
   return (
     <React.Fragment>
@@ -148,7 +163,14 @@ function PlasmicLogin__RenderFunc(props: {
             projectcss.plasmic_tokens,
             plasmic_antd_5_hostless_css.plasmic_tokens,
             plasmic_plasmic_rich_components_css.plasmic_tokens,
-            sty.root
+            sty.root,
+            {
+              [sty.rootglobal_locale_es]: hasVariant(
+                globalVariants,
+                "locale",
+                "es"
+              )
+            }
           )}
         >
           <Navbar2
