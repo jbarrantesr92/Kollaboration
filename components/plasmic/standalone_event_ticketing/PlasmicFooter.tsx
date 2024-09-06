@@ -59,7 +59,14 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import {
+  executePlasmicDataOp,
+  usePlasmicDataOp,
+  usePlasmicInvalidate
+} from "@plasmicapp/react-web/lib/data-sources";
+
 import Button from "../../Button"; // plasmic-import: 7c1YDuGGoKuq/component
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { LocaleValue, useLocale } from "./PlasmicGlobalVariant__Locale"; // plasmic-import: IjXfRSRLVt5J/globalVariant
 import { useScreenVariants as useScreenVariantswiZsHgbT5CnT } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: wiZSHgbT5cnT/globalVariant
@@ -138,6 +145,30 @@ function PlasmicFooter__RenderFunc(props: {
 
   const currentUser = useCurrentUser?.() || {};
 
+  let [$queries, setDollarQueries] = React.useState<
+    Record<string, ReturnType<typeof usePlasmicDataOp>>
+  >({});
+
+  const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
+    currentDomain: usePlasmicDataOp(() => {
+      return {
+        sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
+        opId: "b8bbf243-1ef6-4abe-b26a-9d92a0fc0278",
+        userArgs: {
+          path: [window.location.hostname]
+        },
+        cacheKey: `plasmic.$.b8bbf243-1ef6-4abe-b26a-9d92a0fc0278.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    })
+  };
+  if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
+    setDollarQueries(new$Queries);
+
+    $queries = new$Queries;
+  }
+
   const globalVariants = ensureGlobalVariants({
     locale: useLocale(),
     screen: useScreenVariantswiZsHgbT5CnT()
@@ -187,12 +218,27 @@ function PlasmicFooter__RenderFunc(props: {
               displayMinHeight={"0"}
               displayMinWidth={"0"}
               displayWidth={"auto"}
-              src={{
-                src: "/plasmic/standalone_event_ticketing/images/logoGivebackTicketsPng.png",
-                fullWidth: 800,
-                fullHeight: 130,
-                aspectRatio: undefined
-              }}
+              src={(() => {
+                try {
+                  return (
+                    "https://events-db-directus.6sizjj.easypanel.host/assets/" +
+                    $queries.currentDomain.data.response.data[0].Logo
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return {
+                      src: "/plasmic/standalone_event_ticketing/images/logoGivebackTicketsPng.png",
+                      fullWidth: 800,
+                      fullHeight: 130,
+                      aspectRatio: undefined
+                    };
+                  }
+                  throw e;
+                }
+              })()}
             />
 
             <Stack__

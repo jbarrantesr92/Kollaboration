@@ -59,9 +59,16 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import {
+  executePlasmicDataOp,
+  usePlasmicDataOp,
+  usePlasmicInvalidate
+} from "@plasmicapp/react-web/lib/data-sources";
+
 import { NavigationBar } from "@plasmicpkgs/plasmic-nav";
 import TextInput from "../../TextInput"; // plasmic-import: KfDAmu4lid5o/component
 import Button from "../../Button"; // plasmic-import: 7c1YDuGGoKuq/component
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { LocaleValue, useLocale } from "./PlasmicGlobalVariant__Locale"; // plasmic-import: IjXfRSRLVt5J/globalVariant
 
@@ -137,6 +144,9 @@ function PlasmicNavbarEs__RenderFunc(props: {
 
   const currentUser = useCurrentUser?.() || {};
 
+  let [$queries, setDollarQueries] = React.useState<
+    Record<string, ReturnType<typeof usePlasmicDataOp>>
+  >({});
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -151,9 +161,29 @@ function PlasmicNavbarEs__RenderFunc(props: {
   const $state = useDollarState(stateSpecs, {
     $props,
     $ctx,
-    $queries: {},
+    $queries: $queries,
     $refs
   });
+
+  const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
+    query: usePlasmicDataOp(() => {
+      return {
+        sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
+        opId: "b8bbf243-1ef6-4abe-b26a-9d92a0fc0278",
+        userArgs: {
+          path: [window.location.hostname]
+        },
+        cacheKey: `plasmic.$.b8bbf243-1ef6-4abe-b26a-9d92a0fc0278.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
+    })
+  };
+  if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
+    setDollarQueries(new$Queries);
+
+    $queries = new$Queries;
+  }
 
   const globalVariants = ensureGlobalVariants({
     locale: useLocale()
@@ -212,12 +242,27 @@ function PlasmicNavbarEs__RenderFunc(props: {
             displayMinWidth={"0"}
             displayWidth={"auto"}
             loading={"lazy"}
-            src={{
-              src: "/plasmic/standalone_event_ticketing/images/logoGivebackTicketsPng.png",
-              fullWidth: 800,
-              fullHeight: 130,
-              aspectRatio: undefined
-            }}
+            src={(() => {
+              try {
+                return (
+                  "https://events-db-directus.6sizjj.easypanel.host/assets/" +
+                  $queries.query.data.response.data[0].Logo
+                );
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return {
+                    src: "/plasmic/standalone_event_ticketing/images/logoGivebackTicketsPng.png",
+                    fullWidth: 800,
+                    fullHeight: 130,
+                    aspectRatio: undefined
+                  };
+                }
+                throw e;
+              }
+            })()}
           />
         </PlasmicLink__>
       }
