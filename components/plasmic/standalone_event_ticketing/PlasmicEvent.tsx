@@ -346,79 +346,79 @@ function PlasmicEvent__RenderFunc(props: {
     getEvent: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "037127b2-f753-431b-b925-e4e79cf0ba24",
+        opId: "067f779b-a36f-46d0-b4f4-2916eaace0e5",
         userArgs: {
           path: [$ctx.params.eventId]
         },
-        cacheKey: `plasmic.$.037127b2-f753-431b-b925-e4e79cf0ba24.$.`,
+        cacheKey: `plasmic.$.067f779b-a36f-46d0-b4f4-2916eaace0e5.$.`,
         invalidatedKeys: null,
-        roleId: null
+        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
       };
     }),
     getTickets: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "07defa4d-f699-40ad-8c34-cb1a95feec0a",
+        opId: "780d77e3-a46d-42e9-8dbd-4194c19dda40",
         userArgs: {
           path: [$state.selectEventDate.value]
         },
-        cacheKey: `plasmic.$.07defa4d-f699-40ad-8c34-cb1a95feec0a.$.`,
+        cacheKey: `plasmic.$.780d77e3-a46d-42e9-8dbd-4194c19dda40.$.`,
         invalidatedKeys: null,
-        roleId: null
+        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
       };
     }),
     getPurchases: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "e1960040-bc24-4f2b-aa1b-b8867c6e584f",
+        opId: "cb9e1735-daa0-49ac-8f26-bd19c0e17fb3",
         userArgs: {
           path: [localStorage.getItem("PurchaseId")]
         },
-        cacheKey: `plasmic.$.e1960040-bc24-4f2b-aa1b-b8867c6e584f.$.`,
+        cacheKey: `plasmic.$.cb9e1735-daa0-49ac-8f26-bd19c0e17fb3.$.`,
         invalidatedKeys: null,
-        roleId: null
+        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
       };
     }),
     getCart: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3",
+        opId: "c924f63b-4119-4092-99c0-ab3165761f50",
         userArgs: {
           path: [localStorage.getItem("PurchaseId")]
         },
-        cacheKey: `plasmic.$.0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3.$.`,
+        cacheKey: `plasmic.$.c924f63b-4119-4092-99c0-ab3165761f50.$.`,
         invalidatedKeys: null,
-        roleId: null
+        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
       };
     }),
     eventDates: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "01ee36e8-af7d-423d-b71f-f37eb7071c46",
+        opId: "e019cad1-be4a-4363-adb3-5f38d7148370",
         userArgs: {
           path: [$ctx.params.eventId]
         },
-        cacheKey: `plasmic.$.01ee36e8-af7d-423d-b71f-f37eb7071c46.$.`,
+        cacheKey: `plasmic.$.e019cad1-be4a-4363-adb3-5f38d7148370.$.`,
         invalidatedKeys: null,
-        roleId: null
+        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
       };
     }),
     purchasedByDate: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "ccdf9225-a742-4324-b663-f82fa33e998e",
+        opId: "e8241829-670e-4701-8c79-ad806ccc30f0",
         userArgs: {
           path: [$state.selectEventDate.value]
         },
-        cacheKey: `plasmic.$.ccdf9225-a742-4324-b663-f82fa33e998e.$.`,
+        cacheKey: `plasmic.$.e8241829-670e-4701-8c79-ad806ccc30f0.$.`,
         invalidatedKeys: null,
-        roleId: null
+        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
       };
     }),
     purchasedTickets: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
+        opId: "39ce6cd5-89f5-435d-805a-d075931b334b",
         userArgs: {
           params: [
             (() => {
@@ -432,21 +432,21 @@ function PlasmicEvent__RenderFunc(props: {
             })()
           ]
         },
-        cacheKey: `plasmic.$.b895aa89-cd9e-48f4-84d1-e42992d31c7f.$.`,
+        cacheKey: `plasmic.$.39ce6cd5-89f5-435d-805a-d075931b334b.$.`,
         invalidatedKeys: null,
-        roleId: null
+        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
       };
     }),
     currentDomain: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "876d9867-e0ae-4c2b-bc04-4c8b77e19e26",
+        opId: "0e7c6bb1-66bb-415c-9fbd-1358620bb8d6",
         userArgs: {
           path: [window.location.hostname]
         },
-        cacheKey: `plasmic.$.876d9867-e0ae-4c2b-bc04-4c8b77e19e26.$.`,
+        cacheKey: `plasmic.$.0e7c6bb1-66bb-415c-9fbd-1358620bb8d6.$.`,
         invalidatedKeys: null,
-        roleId: null
+        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
       };
     })
   };
@@ -681,8 +681,8 @@ function PlasmicEvent__RenderFunc(props: {
                             ? (() => {
                                 const actionArgs = {
                                   queryInvalidation: [
-                                    "01ee36e8-af7d-423d-b71f-f37eb7071c46",
-                                    "e1960040-bc24-4f2b-aa1b-b8867c6e584f"
+                                    "e019cad1-be4a-4363-adb3-5f38d7148370",
+                                    "cb9e1735-daa0-49ac-8f26-bd19c0e17fb3"
                                   ]
                                 };
                                 return (async ({ queryInvalidation }) => {
@@ -1707,7 +1707,7 @@ function PlasmicEvent__RenderFunc(props: {
                                                       dataOp: {
                                                         sourceId:
                                                           "2jPYjgtJgbD3LaNLTLfSHG",
-                                                        opId: "5e722670-92fb-4762-85fb-83e1119d2ae1",
+                                                        opId: "c6484f91-8c26-4620-ade7-399c58f48e1a",
                                                         userArgs: {
                                                           path: [currentItem.id]
                                                         },
@@ -1715,7 +1715,8 @@ function PlasmicEvent__RenderFunc(props: {
                                                         invalidatedKeys: [
                                                           "plasmic_refresh_all"
                                                         ],
-                                                        roleId: null
+                                                        roleId:
+                                                          "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
                                                       }
                                                     };
                                                     return (async ({
@@ -1819,9 +1820,9 @@ function PlasmicEvent__RenderFunc(props: {
                                                 ? (() => {
                                                     const actionArgs = {
                                                       queryInvalidation: [
-                                                        "ccdf9225-a742-4324-b663-f82fa33e998e",
-                                                        "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
-                                                        "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
+                                                        "e8241829-670e-4701-8c79-ad806ccc30f0",
+                                                        "39ce6cd5-89f5-435d-805a-d075931b334b",
+                                                        "c924f63b-4119-4092-99c0-ab3165761f50"
                                                       ]
                                                     };
                                                     return (async ({
@@ -2114,7 +2115,7 @@ function PlasmicEvent__RenderFunc(props: {
                                                   dataOp: {
                                                     sourceId:
                                                       "2jPYjgtJgbD3LaNLTLfSHG",
-                                                    opId: "1c5cc07c-d4df-41bc-9757-b0f688246ed3",
+                                                    opId: "ff09b829-c236-4619-9ea6-e4407294a1e1",
                                                     userArgs: {
                                                       body: [
                                                         $queries.getPurchases
@@ -2126,7 +2127,8 @@ function PlasmicEvent__RenderFunc(props: {
                                                     invalidatedKeys: [
                                                       "plasmic_refresh_all"
                                                     ],
-                                                    roleId: null
+                                                    roleId:
+                                                      "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
                                                   }
                                                 };
                                                 return (async ({
@@ -2200,10 +2202,10 @@ function PlasmicEvent__RenderFunc(props: {
                                             ? (() => {
                                                 const actionArgs = {
                                                   queryInvalidation: [
-                                                    "ccdf9225-a742-4324-b663-f82fa33e998e",
-                                                    "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
-                                                    "e1960040-bc24-4f2b-aa1b-b8867c6e584f",
-                                                    "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
+                                                    "e8241829-670e-4701-8c79-ad806ccc30f0",
+                                                    "39ce6cd5-89f5-435d-805a-d075931b334b",
+                                                    "cb9e1735-daa0-49ac-8f26-bd19c0e17fb3",
+                                                    "c924f63b-4119-4092-99c0-ab3165761f50"
                                                   ]
                                                 };
                                                 return (async ({
@@ -2557,10 +2559,10 @@ function PlasmicEvent__RenderFunc(props: {
                                       ? (() => {
                                           const actionArgs = {
                                             queryInvalidation: [
-                                              "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
-                                              "ccdf9225-a742-4324-b663-f82fa33e998e",
-                                              "e1960040-bc24-4f2b-aa1b-b8867c6e584f",
-                                              "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
+                                              "39ce6cd5-89f5-435d-805a-d075931b334b",
+                                              "e8241829-670e-4701-8c79-ad806ccc30f0",
+                                              "cb9e1735-daa0-49ac-8f26-bd19c0e17fb3",
+                                              "c924f63b-4119-4092-99c0-ab3165761f50"
                                             ]
                                           };
                                           return (async ({
@@ -2900,7 +2902,7 @@ function PlasmicEvent__RenderFunc(props: {
                                         const actionArgs = {
                                           dataOp: {
                                             sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-                                            opId: "b9ea73de-f2ff-4949-ae64-e33d93b53a46",
+                                            opId: "05264e6b-0fec-4b90-a696-1d7ac34bc5ac",
                                             userArgs: {
                                               body: [
                                                 $state.selectEventDate.value
@@ -2910,7 +2912,8 @@ function PlasmicEvent__RenderFunc(props: {
                                             invalidatedKeys: [
                                               "plasmic_refresh_all"
                                             ],
-                                            roleId: null
+                                            roleId:
+                                              "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
                                           },
                                           continueOnError: false
                                         };
@@ -2957,7 +2960,7 @@ function PlasmicEvent__RenderFunc(props: {
                                   ? (() => {
                                       const actionArgs = {
                                         queryInvalidation: [
-                                          "e1960040-bc24-4f2b-aa1b-b8867c6e584f"
+                                          "cb9e1735-daa0-49ac-8f26-bd19c0e17fb3"
                                         ]
                                       };
                                       return (async ({ queryInvalidation }) => {
@@ -3011,7 +3014,7 @@ function PlasmicEvent__RenderFunc(props: {
                                   ? (() => {
                                       const actionArgs = {
                                         queryInvalidation: [
-                                          "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
+                                          "c924f63b-4119-4092-99c0-ab3165761f50"
                                         ]
                                       };
                                       return (async ({ queryInvalidation }) => {
@@ -3057,7 +3060,7 @@ function PlasmicEvent__RenderFunc(props: {
                                       const actionArgs = {
                                         dataOp: {
                                           sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-                                          opId: "aa4d9c1d-2bb3-4ecf-ab09-cce96cd0a16b",
+                                          opId: "9a29f462-bb6d-4a56-936b-d9f9fe72d9d3",
                                           userArgs: {
                                             body: [
                                               (() => {
@@ -3096,7 +3099,8 @@ function PlasmicEvent__RenderFunc(props: {
                                           invalidatedKeys: [
                                             "plasmic_refresh_all"
                                           ],
-                                          roleId: null
+                                          roleId:
+                                            "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
                                         },
                                         continueOnError: false
                                       };
@@ -3158,7 +3162,7 @@ function PlasmicEvent__RenderFunc(props: {
                                         const actionArgs = {
                                           dataOp: {
                                             sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-                                            opId: "fc500074-fd26-48e0-8bd2-4813b65db5cd",
+                                            opId: "43c2c004-9938-4504-b63e-b0fab75371b0",
                                             userArgs: {
                                               body: [
                                                 (() => {
@@ -3195,7 +3199,8 @@ function PlasmicEvent__RenderFunc(props: {
                                             invalidatedKeys: [
                                               "plasmic_refresh_all"
                                             ],
-                                            roleId: null
+                                            roleId:
+                                              "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
                                           },
                                           continueOnError: false
                                         };
@@ -3279,8 +3284,8 @@ function PlasmicEvent__RenderFunc(props: {
                                   ? (() => {
                                       const actionArgs = {
                                         queryInvalidation: [
-                                          "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
-                                          "ccdf9225-a742-4324-b663-f82fa33e998e"
+                                          "39ce6cd5-89f5-435d-805a-d075931b334b",
+                                          "e8241829-670e-4701-8c79-ad806ccc30f0"
                                         ]
                                       };
                                       return (async ({ queryInvalidation }) => {
@@ -3336,13 +3341,14 @@ function PlasmicEvent__RenderFunc(props: {
                                         const actionArgs = {
                                           dataOp: {
                                             sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-                                            opId: "dc80069f-b9a5-4504-9053-58fcea62b7da",
+                                            opId: "58990097-b1e7-4c8d-afe8-839d7c2ada78",
                                             userArgs: {},
                                             cacheKey: null,
                                             invalidatedKeys: [
                                               "plasmic_refresh_all"
                                             ],
-                                            roleId: null
+                                            roleId:
+                                              "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
                                           },
                                           continueOnError: false
                                         };
@@ -3389,7 +3395,7 @@ function PlasmicEvent__RenderFunc(props: {
                                   ? (() => {
                                       const actionArgs = {
                                         queryInvalidation: [
-                                          "e1960040-bc24-4f2b-aa1b-b8867c6e584f"
+                                          "cb9e1735-daa0-49ac-8f26-bd19c0e17fb3"
                                         ]
                                       };
                                       return (async ({ queryInvalidation }) => {
@@ -3443,7 +3449,7 @@ function PlasmicEvent__RenderFunc(props: {
                                   ? (() => {
                                       const actionArgs = {
                                         queryInvalidation: [
-                                          "0a68ccc8-404f-4eb7-9b5e-09ffb3b37db3"
+                                          "c924f63b-4119-4092-99c0-ab3165761f50"
                                         ]
                                       };
                                       return (async ({ queryInvalidation }) => {
@@ -3489,7 +3495,7 @@ function PlasmicEvent__RenderFunc(props: {
                                       const actionArgs = {
                                         dataOp: {
                                           sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-                                          opId: "1ef349ae-177b-466e-97ad-fcbb5bda351c",
+                                          opId: "e6ab777b-7ea6-4d84-a021-f086c3cab1b5",
                                           userArgs: {
                                             body: [
                                               (() => {
@@ -3527,7 +3533,8 @@ function PlasmicEvent__RenderFunc(props: {
                                           invalidatedKeys: [
                                             "plasmic_refresh_all"
                                           ],
-                                          roleId: null
+                                          roleId:
+                                            "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
                                         },
                                         continueOnError: false
                                       };
@@ -3589,7 +3596,7 @@ function PlasmicEvent__RenderFunc(props: {
                                         const actionArgs = {
                                           dataOp: {
                                             sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-                                            opId: "853e54c5-d0f6-4aa1-82c8-b44d405dd4cc",
+                                            opId: "b33287b7-282f-4484-9176-607f6c8e25e5",
                                             userArgs: {
                                               body: [
                                                 (() => {
@@ -3623,7 +3630,8 @@ function PlasmicEvent__RenderFunc(props: {
                                             invalidatedKeys: [
                                               "plasmic_refresh_all"
                                             ],
-                                            roleId: null
+                                            roleId:
+                                              "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
                                           },
                                           continueOnError: false
                                         };

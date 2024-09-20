@@ -40,6 +40,13 @@
 .navbarEsglobal_locale_es:global(.__wab_instance):global(.__wab_instance) {
   display: flex;
 }
+.text__gmxcj {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
 .header {
   display: grid;
   position: relative;
