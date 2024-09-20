@@ -214,7 +214,7 @@ function PlasmicNavbar2__RenderFunc(props: {
             displayMaxWidth={"100%"}
             displayMinHeight={"0"}
             displayMinWidth={"0"}
-            displayWidth={"auto"}
+            displayWidth={"300px"}
             loading={"lazy"}
             src={(() => {
               try {
@@ -232,6 +232,7 @@ function PlasmicNavbar2__RenderFunc(props: {
                 throw e;
               }
             })()}
+            width={``}
           />
         </PlasmicLink__>
       }

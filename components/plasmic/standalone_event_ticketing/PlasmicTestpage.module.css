@@ -1,0 +1,126 @@
+.root {
+  display: grid;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  align-content: flex-start;
+  justify-items: center;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  min-height: 0;
+  grid-template-columns:
+    var(--plsmc-viewport-gap) 1fr minmax(0, var(--plsmc-wide-chunk))
+    min(
+      var(--plsmc-standard-width),
+      calc(100% - var(--plsmc-viewport-gap) - var(--plsmc-viewport-gap))
+    )
+    minmax(0, var(--plsmc-wide-chunk)) 1fr var(--plsmc-viewport-gap);
+}
+.root > * {
+  grid-column: 4;
+}
+.form:global(.__wab_instance) {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  object-fit: cover;
+  min-width: 0;
+  padding: 8px;
+}
+.freeBox__azTam {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.formList:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.freeBox___0KRkX {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.formField__nUi5Y:global(.__wab_instance) {
+  width: 100%;
+  margin-bottom: 24px;
+  max-width: 100%;
+  object-fit: cover;
+  min-width: 0;
+}
+.text__pb4Ji {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.input:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.formField__jt7Pf:global(.__wab_instance) {
+  width: 100%;
+  margin-bottom: 24px;
+  max-width: 100%;
+  object-fit: cover;
+  min-width: 0;
+}
+.text__zxcl4 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+.input2:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.button__fbdTy:global(.__wab_instance) {
+  max-width: 100%;
+}
+.svg__d2Lxo {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.svg__qaH5Y {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.button__upfz1:global(.__wab_instance) {
+  max-width: 100%;
+  object-fit: cover;
+}
+.text__khSnF {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+}

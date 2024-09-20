@@ -127,6 +127,8 @@ export type PlasmicSelect__ArgsType = {
   "aria-labelledby"?: string;
   options?: any;
   onChange?: (value: string) => void;
+  dateId?: string;
+  onDateIdChange2?: (val: string) => void;
   ticketId?: string;
   onTicketIdChange?: (val: string) => void;
 };
@@ -141,6 +143,8 @@ export const PlasmicSelect__ArgProps = new Array<ArgPropType>(
   "aria-labelledby",
   "options",
   "onChange",
+  "dateId",
+  "onDateIdChange2",
   "ticketId",
   "onTicketIdChange"
 );
@@ -158,6 +162,8 @@ export interface DefaultSelectProps extends pp.BaseSelectProps {
   "aria-label"?: string;
   "aria-labelledby"?: string;
   options?: any;
+  dateId?: string;
+  onDateIdChange2?: (val: string) => void;
   ticketId?: string;
   onTicketIdChange?: (val: string) => void;
   color?: SingleChoiceArg<
@@ -252,6 +258,14 @@ function PlasmicSelect__RenderFunc(props: {
 
         valueProp: "value",
         onChangeProp: "onChange"
+      },
+      {
+        path: "dateId",
+        type: "writable",
+        variableType: "text",
+
+        valueProp: "dateId",
+        onChangeProp: "onDateIdChange2"
       },
       {
         path: "ticketId",

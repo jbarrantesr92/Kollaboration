@@ -1088,6 +1088,61 @@
           "cssFilePath": "plasmic/standalone_event_ticketing/PlasmicAuthButton.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "XvN-JGL7hHok",
+          "name": "EditEvent",
+          "type": "managed",
+          "projectId": "MtmcKR1GuwbKEBJfYkVdj",
+          "renderModuleFilePath": "plasmic/standalone_event_ticketing/PlasmicEditEvent.tsx",
+          "importSpec": {
+            "modulePath": "../pages/edit-event/[event-id].tsx"
+          },
+          "cssFilePath": "plasmic/standalone_event_ticketing/PlasmicEditEvent.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/edit-even/[event-id]"
+        },
+        {
+          "id": "vXY2WUCYYZ4E",
+          "name": "Testpage",
+          "type": "managed",
+          "projectId": "MtmcKR1GuwbKEBJfYkVdj",
+          "renderModuleFilePath": "plasmic/standalone_event_ticketing/PlasmicTestpage.tsx",
+          "importSpec": {
+            "modulePath": "../pages/testpage.tsx"
+          },
+          "cssFilePath": "plasmic/standalone_event_ticketing/PlasmicTestpage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/testpage"
+        },
+        {
+          "id": "DlEq3X8qSJAp",
+          "name": "EventCreated",
+          "type": "managed",
+          "projectId": "MtmcKR1GuwbKEBJfYkVdj",
+          "renderModuleFilePath": "plasmic/standalone_event_ticketing/PlasmicEventCreated.tsx",
+          "importSpec": {
+            "modulePath": "../pages/event-created/[event-id].tsx"
+          },
+          "cssFilePath": "plasmic/standalone_event_ticketing/PlasmicEventCreated.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/event-created"
+        },
+        {
+          "id": "dtZdzGKjYtES",
+          "name": "DragAndDropUploader",
+          "type": "managed",
+          "projectId": "MtmcKR1GuwbKEBJfYkVdj",
+          "renderModuleFilePath": "plasmic/standalone_event_ticketing/PlasmicDragAndDropUploader.tsx",
+          "importSpec": {
+            "modulePath": "DragAndDropUploader.tsx"
+          },
+          "cssFilePath": "plasmic/standalone_event_ticketing/PlasmicDragAndDropUploader.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -1267,6 +1322,61 @@
         }
       ],
       "customFunctions": []
+    },
+    {
+      "projectId": "58GpZjZCWTaJ8AUhpCwt2K",
+      "projectApiToken": "DIkcfhBwjMCJSjcxfBkMuy4NImyytq5EWylxVcpS9t9EpdhnPQuBgBGxmk00AB1itMFa1KXTxOKnrjN2PN9nlA",
+      "projectName": "react-awesome-reveal",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/react_awesome_reveal/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "codeComponents": [
+        {
+          "id": "R6s1FdhksG",
+          "name": "Reveal",
+          "displayName": "hostless-reveal",
+          "componentImportPath": "@plasmicpkgs/react-awesome-reveal"
+        }
+      ],
+      "customFunctions": [],
+      "jsBundleThemes": []
+    },
+    {
+      "projectId": "77tPPMY1MAED1Fqwv1T1ig",
+      "projectApiToken": "60MehhP6aEDwqf8XbEm9WWQKH4cyhVSsf40L3I1hLBpbRsQxim51tZKy1SvCsWN6RIz7lrBTK6c3FDyTA",
+      "projectName": "date-fns",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/date_fns/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "codeComponents": [],
+      "customFunctions": [],
+      "jsBundleThemes": []
+    },
+    {
+      "projectId": "a3pmZtcpA5asHkNtN3SGoF",
+      "projectApiToken": "1f2n20WEoxaPX0hs2uqNOsnXjfuNVyw4FB2zgrleQqQm7qWQPGlBFi63m7FgGuFbWu1b8lKhAm6fmfGf5CC8A",
+      "projectName": "uuid",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/uuid/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "codeComponents": [],
+      "customFunctions": [],
+      "jsBundleThemes": []
     }
   ],
   "globalVariants": {

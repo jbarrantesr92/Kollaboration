@@ -135,6 +135,14 @@
   --mixin-chNjqgJZ4KsB_white-space: pre-wrap;
 }
 
+.plasmic_mixins,
+.plasmic_mixins:where(.global_locale_es) {
+  --mixin-iWvvHxchxp77_white-space: pre-wrap;
+  --plasmic-mixin-unnamed-style-preset_white-space: var(
+    --mixin-iWvvHxchxp77_white-space
+  );
+}
+
 :where(.all) {
   display: block;
   white-space: inherit;

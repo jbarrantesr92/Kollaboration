@@ -59,13 +59,17 @@ import {
   useGlobalActions
 } from "@plasmicapp/react-web/lib/host";
 
+import { usePlasmicDataSourceContext } from "@plasmicapp/data-sources-context";
 import {
   executePlasmicDataOp,
   usePlasmicDataOp,
   usePlasmicInvalidate
 } from "@plasmicapp/react-web/lib/data-sources";
 
+import Navbar2 from "../../Navbar2"; // plasmic-import: PlAJ5tJMUQMz/component
 import Options from "../../Options"; // plasmic-import: eW-v92peeoVq/component
+import Button from "../../Button"; // plasmic-import: 7c1YDuGGoKuq/component
+import Footer from "../../Footer"; // plasmic-import: THeG5BcdbXeZ/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -74,6 +78,10 @@ import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css";
 import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: MtmcKR1GuwbKEBJfYkVdj/projectcss
 import sty from "./PlasmicEventsDashboard.module.css"; // plasmic-import: VPG78w6_Nyb5/css
+
+import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: V9lHh1c0c7g6/icon
+import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: _VJXnu9sySb9/icon
+import TrashDuotoneSvgIcon from "./icons/PlasmicIcon__TrashDuotoneSvg"; // plasmic-import: Iyey08q3Uw-4/icon
 
 createPlasmicElementProxy;
 
@@ -89,8 +97,11 @@ export const PlasmicEventsDashboard__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicEventsDashboard__OverridesType = {
   root?: Flex__<"div">;
+  navbar2?: Flex__<typeof Navbar2>;
   options?: Flex__<typeof Options>;
-  freeBox?: Flex__<"div">;
+  img?: Flex__<typeof PlasmicImg__>;
+  button?: Flex__<typeof Button>;
+  footer?: Flex__<typeof Footer>;
 };
 
 export interface DefaultEventsDashboardProps {}
@@ -139,15 +150,31 @@ function PlasmicEventsDashboard__RenderFunc(props: {
     Record<string, ReturnType<typeof usePlasmicDataOp>>
   >({});
 
+  const dataSourcesCtx = usePlasmicDataSourceContext();
+
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
     getEvents: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "90f19a1d-3abd-4953-941c-92500798bd1a",
-        userArgs: {},
-        cacheKey: `plasmic.$.90f19a1d-3abd-4953-941c-92500798bd1a.$.`,
+        opId: "5b3c1d41-88fa-4be6-84bc-1580a144c2b4",
+        userArgs: {
+          path: [$queries.currentDomain.data.response.data[0].id]
+        },
+        cacheKey: `plasmic.$.5b3c1d41-88fa-4be6-84bc-1580a144c2b4.$.`,
         invalidatedKeys: null,
-        roleId: null
+        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
+      };
+    }),
+    currentDomain: usePlasmicDataOp(() => {
+      return {
+        sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
+        opId: "da788b0e-0841-4240-8669-9753373bdf2e",
+        userArgs: {
+          path: [window.location.hostname]
+        },
+        cacheKey: `plasmic.$.da788b0e-0841-4240-8669-9753373bdf2e.$.`,
+        invalidatedKeys: null,
+        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
       };
     })
   };
@@ -184,16 +211,260 @@ function PlasmicEventsDashboard__RenderFunc(props: {
             sty.root
           )}
         >
+          <Navbar2
+            data-plasmic-name={"navbar2"}
+            data-plasmic-override={overrides.navbar2}
+            className={classNames("__wab_instance", sty.navbar2)}
+          />
+
           <Options
             data-plasmic-name={"options"}
             data-plasmic-override={overrides.options}
             className={classNames("__wab_instance", sty.options)}
           />
 
-          <div
-            data-plasmic-name={"freeBox"}
-            data-plasmic-override={overrides.freeBox}
-            className={classNames(projectcss.all, sty.freeBox)}
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__fyd8Y)}
+          >
+            {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
+              (() => {
+                try {
+                  return $queries.getEvents.data.response.data;
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return [];
+                  }
+                  throw e;
+                }
+              })()
+            ).map((__plasmic_item_0, __plasmic_idx_0) => {
+              const currentItem = __plasmic_item_0;
+              const currentIndex = __plasmic_idx_0;
+              return (
+                <div
+                  className={classNames(projectcss.all, sty.freeBox__qjYBn)}
+                  key={currentIndex}
+                >
+                  <PlasmicImg__
+                    data-plasmic-name={"img"}
+                    data-plasmic-override={overrides.img}
+                    alt={""}
+                    className={classNames(sty.img)}
+                    displayHeight={"100px"}
+                    displayMaxHeight={"none"}
+                    displayMaxWidth={"100%"}
+                    displayMinHeight={"0"}
+                    displayMinWidth={"0"}
+                    displayWidth={"130px"}
+                    height={"100"}
+                    loading={"lazy"}
+                    src={(() => {
+                      try {
+                        return (
+                          "https://events-db-directus.6sizjj.easypanel.host/assets/" +
+                          currentItem.Hero
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return undefined;
+                        }
+                        throw e;
+                      }
+                    })()}
+                    width={"130"}
+                  />
+
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox___2ZkQq)}
+                  >
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__o3LtC
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return currentItem.Hero;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__g8S8A
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return currentItem.EventCategory;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__vaf5D
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return currentItem.EventName;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                    <Stack__
+                      as={"div"}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.freeBox__aqGrd)}
+                    >
+                      <Button
+                        data-plasmic-name={"button"}
+                        data-plasmic-override={overrides.button}
+                        className={classNames("__wab_instance", sty.button)}
+                        color={"softSand"}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["goToEditEvent"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  destination: `/edit-event/${(() => {
+                                    try {
+                                      return currentItem.id;
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()}`
+                                };
+                                return (({ destination }) => {
+                                  if (
+                                    typeof destination === "string" &&
+                                    destination.startsWith("#")
+                                  ) {
+                                    document
+                                      .getElementById(destination.substr(1))
+                                      .scrollIntoView({ behavior: "smooth" });
+                                  } else {
+                                    __nextRouter?.push(destination);
+                                  }
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["goToEditEvent"] != null &&
+                            typeof $steps["goToEditEvent"] === "object" &&
+                            typeof $steps["goToEditEvent"].then === "function"
+                          ) {
+                            $steps["goToEditEvent"] = await $steps[
+                              "goToEditEvent"
+                            ];
+                          }
+                        }}
+                        startIcon={
+                          <CheckSvgIcon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__ytDqf
+                            )}
+                            role={"img"}
+                          />
+                        }
+                      >
+                        {"Edit"}
+                      </Button>
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__haOyq
+                        )}
+                      >
+                        <TrashDuotoneSvgIcon
+                          className={classNames(projectcss.all, sty.svg__xCaEf)}
+                          role={"img"}
+                        />
+                      </div>
+                    </Stack__>
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__qHj0T
+                      )}
+                    >
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return currentItem.EventLocation;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </Stack__>
+          <Footer
+            data-plasmic-name={"footer"}
+            data-plasmic-override={overrides.footer}
+            className={classNames("__wab_instance", sty.footer)}
           />
         </div>
       </div>
@@ -202,17 +473,23 @@ function PlasmicEventsDashboard__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "options", "freeBox"],
+  root: ["root", "navbar2", "options", "img", "button", "footer"],
+  navbar2: ["navbar2"],
   options: ["options"],
-  freeBox: ["freeBox"]
+  img: ["img"],
+  button: ["button"],
+  footer: ["footer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
   (typeof PlasmicDescendants)[T][number];
 type NodeDefaultElementType = {
   root: "div";
+  navbar2: typeof Navbar2;
   options: typeof Options;
-  freeBox: "div";
+  img: typeof PlasmicImg__;
+  button: typeof Button;
+  footer: typeof Footer;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -270,13 +547,33 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
   return func;
 }
 
+function withPlasmicPageGuard<P extends object>(
+  WrappedComponent: React.ComponentType<P>
+) {
+  const PageGuard: React.FC<P> = props => (
+    <PlasmicPageGuard__
+      minRole={"8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"}
+      appId={"MtmcKR1GuwbKEBJfYkVdj"}
+      authorizeEndpoint={"https://studio.plasmic.app/authorize"}
+      canTriggerLogin={false}
+    >
+      <WrappedComponent {...props} />
+    </PlasmicPageGuard__>
+  );
+
+  return PageGuard;
+}
+
 export const PlasmicEventsDashboard = Object.assign(
   // Top-level PlasmicEventsDashboard renders the root element
-  makeNodeComponent("root"),
+  withPlasmicPageGuard(makeNodeComponent("root")),
   {
     // Helper components rendering sub-elements
+    navbar2: makeNodeComponent("navbar2"),
     options: makeNodeComponent("options"),
-    freeBox: makeNodeComponent("freeBox"),
+    img: makeNodeComponent("img"),
+    button: makeNodeComponent("button"),
+    footer: makeNodeComponent("footer"),
 
     // Metadata about props expected for PlasmicEventsDashboard
     internalVariantProps: PlasmicEventsDashboard__VariantProps,
