@@ -76,6 +76,9 @@ import Drawer from "../../Drawer"; // plasmic-import: TYvzrA570afD/component
 import { Timer } from "@plasmicpkgs/plasmic-basic-components";
 import { AntdInputNumber } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { AntdSwitch } from "@plasmicpkgs/antd5/skinny/registerSwitch";
+import { FormWrapper } from "@plasmicpkgs/antd5/skinny/Form";
+import { formHelpers as FormWrapper_Helpers } from "@plasmicpkgs/antd5/skinny/Form";
+import { FormItemWrapper } from "@plasmicpkgs/antd5/skinny/FormItem";
 import TextInput from "../../TextInput"; // plasmic-import: KfDAmu4lid5o/component
 import CheckoutPage from "../../CheckoutPage"; // plasmic-import: PMnZ1e74obKC/component
 import { LottieWrapper } from "@plasmicpkgs/lottie-react";
@@ -126,8 +129,10 @@ export type PlasmicEvent__OverridesType = {
   donationValue2?: Flex__<typeof AntdInputNumber>;
   roundUp?: Flex__<typeof AntdSwitch>;
   clearCart?: Flex__<typeof Button>;
+  contactInfoForm?: Flex__<typeof FormWrapper>;
   textInput?: Flex__<typeof TextInput>;
   textInput2?: Flex__<typeof TextInput>;
+  textInput3?: Flex__<typeof TextInput>;
   checkoutPage?: Flex__<typeof CheckoutPage>;
   lottie?: Flex__<typeof LottieWrapper>;
   footer?: Flex__<typeof Footer>;
@@ -342,6 +347,30 @@ function PlasmicEvent__RenderFunc(props: {
       },
       {
         path: "textInput2.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "contactInfoForm.value",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => undefined,
+
+        refName: "contactInfoForm",
+        onMutate: generateOnMutateForSpec("value", FormWrapper_Helpers)
+      },
+      {
+        path: "contactInfoForm.isSubmitting",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false,
+
+        refName: "contactInfoForm",
+        onMutate: generateOnMutateForSpec("isSubmitting", FormWrapper_Helpers)
+      },
+      {
+        path: "textInput3.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
@@ -2272,7 +2301,12 @@ function PlasmicEvent__RenderFunc(props: {
                                   try {
                                     return (
                                       $queries.getCart.data.response.data
-                                        .length > 0
+                                        .length > 0 &&
+                                      (!$queries.getPurchases.data.response
+                                        .data[0].CustomerEmailAddress ||
+                                        $queries.getPurchases.data.response
+                                          .data[0].CustomerEmailAddress
+                                          .length == 0)
                                     );
                                   } catch (e) {
                                     if (
@@ -2296,112 +2330,623 @@ function PlasmicEvent__RenderFunc(props: {
                                     <div
                                       className={classNames(
                                         projectcss.all,
-                                        sty.freeBox__xwOtV
+                                        projectcss.__wab_text,
+                                        sty.text__aGrjE
                                       )}
                                     >
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          sty.freeBox__o8Sm1
-                                        )}
-                                      >
-                                        <TextInput
-                                          data-plasmic-name={"textInput"}
-                                          data-plasmic-override={
-                                            overrides.textInput
+                                      <React.Fragment>
+                                        <span
+                                          className={
+                                            "plasmic_default__all plasmic_default__span"
                                           }
-                                          className={classNames(
-                                            "__wab_instance",
-                                            sty.textInput
-                                          )}
-                                          endIcon={
-                                            <CheckSvgIcon
-                                              className={classNames(
-                                                projectcss.all,
-                                                sty.svg___9FpMf
-                                              )}
-                                              role={"img"}
-                                            />
-                                          }
-                                          onChange={(...eventArgs) => {
-                                            generateStateOnChangeProp($state, [
-                                              "textInput",
-                                              "value"
-                                            ])(
-                                              (e => e.target?.value).apply(
-                                                null,
-                                                eventArgs
-                                              )
-                                            );
-                                          }}
-                                          value={
-                                            generateStateValueProp($state, [
-                                              "textInput",
-                                              "value"
-                                            ]) ?? ""
-                                          }
-                                        />
-                                      </div>
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          sty.freeBox__ipqaN
-                                        )}
-                                      >
-                                        <div
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.freeBox__ckt2Y
-                                          )}
+                                          style={{ fontWeight: 700 }}
                                         >
-                                          <TextInput
-                                            data-plasmic-name={"textInput2"}
-                                            data-plasmic-override={
-                                              overrides.textInput2
-                                            }
+                                          {
+                                            "Add your contact information to deliver the tickets"
+                                          }
+                                        </span>
+                                      </React.Fragment>
+                                    </div>
+                                    {(() => {
+                                      const child$Props = {
+                                        className: classNames(
+                                          "__wab_instance",
+                                          sty.contactInfoForm
+                                        ),
+                                        extendedOnValuesChange:
+                                          generateStateOnChangePropForCodeComponents(
+                                            $state,
+                                            "value",
+                                            ["contactInfoForm", "value"],
+                                            FormWrapper_Helpers
+                                          ),
+                                        formItems: [
+                                          {
+                                            label: "Name",
+                                            name: "name",
+                                            inputType: "Text"
+                                          },
+                                          {
+                                            label: "Message",
+                                            name: "message",
+                                            inputType: "Text Area"
+                                          }
+                                        ],
+                                        labelCol: {
+                                          span: 8,
+                                          horizontalOnly: true
+                                        },
+                                        layout: "vertical",
+                                        mode: "advanced",
+                                        onFinish: async values => {
+                                          const $steps = {};
+
+                                          $steps["httpPatch"] = true
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  dataOp: {
+                                                    sourceId:
+                                                      "2jPYjgtJgbD3LaNLTLfSHG",
+                                                    opId: "27ff2ba2-5fab-4105-856a-a998bfebd0ac",
+                                                    userArgs: {
+                                                      path: [
+                                                        localStorage.getItem(
+                                                          "PurchaseId"
+                                                        )
+                                                      ],
+                                                      body: [
+                                                        $state.contactInfoForm
+                                                          .value
+                                                      ]
+                                                    },
+                                                    cacheKey: null,
+                                                    invalidatedKeys: [
+                                                      "1ae0bf37-539b-4ed3-b1e0-6c762a2c2586"
+                                                    ],
+                                                    roleId: null
+                                                  }
+                                                };
+                                                return (async ({
+                                                  dataOp,
+                                                  continueOnError
+                                                }) => {
+                                                  try {
+                                                    const response =
+                                                      await executePlasmicDataOp(
+                                                        dataOp,
+                                                        {
+                                                          userAuthToken:
+                                                            dataSourcesCtx?.userAuthToken,
+                                                          user: dataSourcesCtx?.user
+                                                        }
+                                                      );
+                                                    await plasmicInvalidate(
+                                                      dataOp.invalidatedKeys
+                                                    );
+                                                    return response;
+                                                  } catch (e) {
+                                                    if (!continueOnError) {
+                                                      throw e;
+                                                    }
+                                                    return e;
+                                                  }
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                          if (
+                                            $steps["httpPatch"] != null &&
+                                            typeof $steps["httpPatch"] ===
+                                              "object" &&
+                                            typeof $steps["httpPatch"].then ===
+                                              "function"
+                                          ) {
+                                            $steps["httpPatch"] = await $steps[
+                                              "httpPatch"
+                                            ];
+                                          }
+                                        },
+                                        onIsSubmittingChange:
+                                          generateStateOnChangePropForCodeComponents(
+                                            $state,
+                                            "isSubmitting",
+                                            ["contactInfoForm", "isSubmitting"],
+                                            FormWrapper_Helpers
+                                          ),
+                                        ref: ref => {
+                                          $refs["contactInfoForm"] = ref;
+                                        },
+                                        submitSlot: null,
+                                        wrapperCol: {
+                                          span: 16,
+                                          horizontalOnly: true
+                                        }
+                                      };
+                                      initializeCodeComponentStates(
+                                        $state,
+                                        [
+                                          {
+                                            name: "value",
+                                            plasmicStateName:
+                                              "contactInfoForm.value"
+                                          },
+                                          {
+                                            name: "isSubmitting",
+                                            plasmicStateName:
+                                              "contactInfoForm.isSubmitting"
+                                          }
+                                        ],
+                                        [],
+                                        FormWrapper_Helpers ?? {},
+                                        child$Props
+                                      );
+
+                                      return (
+                                        <FormWrapper
+                                          data-plasmic-name={"contactInfoForm"}
+                                          data-plasmic-override={
+                                            overrides.contactInfoForm
+                                          }
+                                          {...child$Props}
+                                        >
+                                          <FormItemWrapper
                                             className={classNames(
                                               "__wab_instance",
-                                              sty.textInput2
+                                              sty.formField__sZiCs
                                             )}
-                                            endIcon={
+                                            label={
+                                              <div
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  projectcss.__wab_text,
+                                                  sty.text__jZSe9
+                                                )}
+                                              >
+                                                {"Name"}
+                                              </div>
+                                            }
+                                            name={"CustomerName"}
+                                            rules={[
+                                              {
+                                                ruleType: "required",
+                                                message:
+                                                  "Please enter your name"
+                                              }
+                                            ]}
+                                          >
+                                            <TextInput
+                                              data-plasmic-name={"textInput"}
+                                              data-plasmic-override={
+                                                overrides.textInput
+                                              }
+                                              className={classNames(
+                                                "__wab_instance",
+                                                sty.textInput
+                                              )}
+                                              endIcon={
+                                                <CheckSvgIcon
+                                                  className={classNames(
+                                                    projectcss.all,
+                                                    sty.svg___9FpMf
+                                                  )}
+                                                  role={"img"}
+                                                />
+                                              }
+                                              onChange={(...eventArgs) => {
+                                                generateStateOnChangeProp(
+                                                  $state,
+                                                  ["textInput", "value"]
+                                                )(
+                                                  (e => e.target?.value).apply(
+                                                    null,
+                                                    eventArgs
+                                                  )
+                                                );
+                                              }}
+                                              value={
+                                                generateStateValueProp($state, [
+                                                  "textInput",
+                                                  "value"
+                                                ]) ?? ""
+                                              }
+                                            />
+                                          </FormItemWrapper>
+                                          <FormItemWrapper
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.formField__koOaW
+                                            )}
+                                            label={
+                                              <div
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  projectcss.__wab_text,
+                                                  sty.text__ujVCl
+                                                )}
+                                              >
+                                                {"Email address"}
+                                              </div>
+                                            }
+                                            name={"CustomerEmailAddress"}
+                                            rules={[
+                                              {
+                                                ruleType: "required",
+                                                message:
+                                                  "Please enter your email address"
+                                              },
+
+                                              {
+                                                ruleType: "advanced",
+                                                custom: (rule, value) => {
+                                                  return (() => {
+                                                    const emailPattern =
+                                                      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                                                    return emailPattern.test(
+                                                      $state.contactInfoForm
+                                                        .value
+                                                        .CustomerEmailAddress
+                                                    );
+                                                  })();
+                                                },
+                                                message:
+                                                  "The enter email address is not valid"
+                                              }
+                                            ]}
+                                          >
+                                            <TextInput
+                                              data-plasmic-name={"textInput2"}
+                                              data-plasmic-override={
+                                                overrides.textInput2
+                                              }
+                                              className={classNames(
+                                                "__wab_instance",
+                                                sty.textInput2
+                                              )}
+                                              endIcon={
+                                                <CheckSvgIcon
+                                                  className={classNames(
+                                                    projectcss.all,
+                                                    sty.svg__gXwk1
+                                                  )}
+                                                  role={"img"}
+                                                />
+                                              }
+                                              onChange={(...eventArgs) => {
+                                                generateStateOnChangeProp(
+                                                  $state,
+                                                  ["textInput2", "value"]
+                                                )(
+                                                  (e => e.target?.value).apply(
+                                                    null,
+                                                    eventArgs
+                                                  )
+                                                );
+                                              }}
+                                              value={
+                                                generateStateValueProp($state, [
+                                                  "textInput2",
+                                                  "value"
+                                                ]) ?? ""
+                                              }
+                                            />
+                                          </FormItemWrapper>
+                                          <FormItemWrapper
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.formField__hRqXa
+                                            )}
+                                            label={
+                                              <div
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  projectcss.__wab_text,
+                                                  sty.text__b8Dcy
+                                                )}
+                                              >
+                                                {"Validate email address"}
+                                              </div>
+                                            }
+                                            name={"ValidateEmailAddress"}
+                                            rules={[
+                                              {
+                                                ruleType: "required",
+                                                message:
+                                                  "Please validate your email address"
+                                              },
+
+                                              {
+                                                ruleType: "advanced",
+                                                custom: (rule, value) => {
+                                                  return (
+                                                    $state.contactInfoForm.value
+                                                      .CustomerEmailAddress ==
+                                                    $state.contactInfoForm.value
+                                                      .ValidateEmailAddress
+                                                  );
+                                                },
+                                                message:
+                                                  "Email values do not match"
+                                              },
+
+                                              {
+                                                ruleType: "advanced",
+                                                custom: (rule, value) => {
+                                                  return (() => {
+                                                    const emailPattern =
+                                                      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                                                    return emailPattern.test(
+                                                      $state.contactInfoForm
+                                                        .value
+                                                        .ValidateEmailAddress
+                                                    );
+                                                  })();
+                                                },
+                                                message:
+                                                  "The enter email address is not valid"
+                                              }
+                                            ]}
+                                          >
+                                            <TextInput
+                                              data-plasmic-name={"textInput3"}
+                                              data-plasmic-override={
+                                                overrides.textInput3
+                                              }
+                                              className={classNames(
+                                                "__wab_instance",
+                                                sty.textInput3
+                                              )}
+                                              endIcon={
+                                                <CheckSvgIcon
+                                                  className={classNames(
+                                                    projectcss.all,
+                                                    sty.svg__ufDqz
+                                                  )}
+                                                  role={"img"}
+                                                />
+                                              }
+                                              onChange={(...eventArgs) => {
+                                                generateStateOnChangeProp(
+                                                  $state,
+                                                  ["textInput3", "value"]
+                                                )(
+                                                  (e => e.target?.value).apply(
+                                                    null,
+                                                    eventArgs
+                                                  )
+                                                );
+                                              }}
+                                              value={
+                                                generateStateValueProp($state, [
+                                                  "textInput3",
+                                                  "value"
+                                                ]) ?? ""
+                                              }
+                                            />
+                                          </FormItemWrapper>
+                                          <Button
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.button__tv5C0
+                                            )}
+                                            color={"blue"}
+                                            startIcon={
                                               <CheckSvgIcon
                                                 className={classNames(
                                                   projectcss.all,
-                                                  sty.svg__gXwk1
+                                                  sty.svg__imhxK
                                                 )}
                                                 role={"img"}
                                               />
                                             }
-                                            onChange={(...eventArgs) => {
-                                              generateStateOnChangeProp(
-                                                $state,
-                                                ["textInput2", "value"]
-                                              )(
-                                                (e => e.target?.value).apply(
-                                                  null,
-                                                  eventArgs
-                                                )
-                                              );
-                                            }}
-                                            value={
-                                              generateStateValueProp($state, [
-                                                "textInput2",
-                                                "value"
-                                              ]) ?? ""
-                                            }
-                                          />
-                                        </div>
-                                      </div>
-                                      <div
-                                        className={classNames(
-                                          projectcss.all,
-                                          projectcss.__wab_text,
-                                          sty.text__jZSe9
-                                        )}
-                                      >
-                                        {"Enter some text"}
-                                      </div>
+                                            submitsForm={true}
+                                          >
+                                            {"Submit"}
+                                          </Button>
+                                        </FormWrapper>
+                                      );
+                                    })()}
+                                  </Stack__>
+                                ) : null}
+                                {(() => {
+                                  try {
+                                    return (
+                                      $queries.getCart.data.response.data
+                                        .length > 0 &&
+                                      $queries.getPurchases.data.response
+                                        .data[0].CustomerEmailAddress.length > 0
+                                    );
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return false;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
+                                  <Stack__
+                                    as={"div"}
+                                    hasGap={true}
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__cBf9R
+                                    )}
+                                  >
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text__gfMvX
+                                      )}
+                                    >
+                                      <React.Fragment>
+                                        <span
+                                          className={
+                                            "plasmic_default__all plasmic_default__span"
+                                          }
+                                          style={{ fontWeight: 700 }}
+                                        >
+                                          {"Tickets delivery information"}
+                                        </span>
+                                      </React.Fragment>
                                     </div>
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text__km9Gs
+                                      )}
+                                    >
+                                      {"Name"}
+                                    </div>
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text___3NFfk
+                                      )}
+                                    >
+                                      <React.Fragment>
+                                        {(() => {
+                                          try {
+                                            return $queries.getPurchases.data
+                                              .response.data[0].CustomerName;
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return "";
+                                            }
+                                            throw e;
+                                          }
+                                        })()}
+                                      </React.Fragment>
+                                    </div>
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text___2QKcL
+                                      )}
+                                    >
+                                      {"Email address"}
+                                    </div>
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        projectcss.__wab_text,
+                                        sty.text__uiHeC
+                                      )}
+                                    >
+                                      <React.Fragment>
+                                        {(() => {
+                                          try {
+                                            return $queries.getPurchases.data
+                                              .response.data[0]
+                                              .CustomerEmailAddress;
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return "";
+                                            }
+                                            throw e;
+                                          }
+                                        })()}
+                                      </React.Fragment>
+                                    </div>
+                                    <Button
+                                      className={classNames(
+                                        "__wab_instance",
+                                        sty.button__lyDm5
+                                      )}
+                                      color={"softSand"}
+                                      onClick={async event => {
+                                        const $steps = {};
+
+                                        $steps["httpPatch"] = true
+                                          ? (() => {
+                                              const actionArgs = {
+                                                dataOp: {
+                                                  sourceId:
+                                                    "2jPYjgtJgbD3LaNLTLfSHG",
+                                                  opId: "27ff2ba2-5fab-4105-856a-a998bfebd0ac",
+                                                  userArgs: {
+                                                    path: [
+                                                      localStorage.getItem(
+                                                        "PurchaseId"
+                                                      )
+                                                    ],
+                                                    body: [
+                                                      {
+                                                        CustomerName: "",
+                                                        CustomerEmailAddress: ""
+                                                      }
+                                                    ]
+                                                  },
+                                                  cacheKey: null,
+                                                  invalidatedKeys: [
+                                                    "plasmic_refresh_all"
+                                                  ],
+                                                  roleId: null
+                                                }
+                                              };
+                                              return (async ({
+                                                dataOp,
+                                                continueOnError
+                                              }) => {
+                                                try {
+                                                  const response =
+                                                    await executePlasmicDataOp(
+                                                      dataOp,
+                                                      {
+                                                        userAuthToken:
+                                                          dataSourcesCtx?.userAuthToken,
+                                                        user: dataSourcesCtx?.user
+                                                      }
+                                                    );
+                                                  await plasmicInvalidate(
+                                                    dataOp.invalidatedKeys
+                                                  );
+                                                  return response;
+                                                } catch (e) {
+                                                  if (!continueOnError) {
+                                                    throw e;
+                                                  }
+                                                  return e;
+                                                }
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                        if (
+                                          $steps["httpPatch"] != null &&
+                                          typeof $steps["httpPatch"] ===
+                                            "object" &&
+                                          typeof $steps["httpPatch"].then ===
+                                            "function"
+                                        ) {
+                                          $steps["httpPatch"] = await $steps[
+                                            "httpPatch"
+                                          ];
+                                        }
+                                      }}
+                                      startIcon={
+                                        <CheckSvgIcon
+                                          className={classNames(
+                                            projectcss.all,
+                                            sty.svg___1YwEx
+                                          )}
+                                          role={"img"}
+                                        />
+                                      }
+                                    >
+                                      {"Edit"}
+                                    </Button>
                                   </Stack__>
                                 ) : null}
                               </Stack__>
@@ -2410,7 +2955,10 @@ function PlasmicEvent__RenderFunc(props: {
                               try {
                                 return (
                                   $queries.getCart.data.response.data.length >
-                                    0 && $state.cartLoader == false
+                                    0 &&
+                                  $state.cartLoader == false &&
+                                  $queries.getPurchases.data.response.data[0]
+                                    .CustomerEmailAddress.length > 0
                                 );
                               } catch (e) {
                                 if (
@@ -3828,8 +4376,10 @@ const PlasmicDescendants = {
     "donationValue2",
     "roundUp",
     "clearCart",
+    "contactInfoForm",
     "textInput",
     "textInput2",
+    "textInput3",
     "checkoutPage",
     "lottie",
     "footer"
@@ -3848,8 +4398,10 @@ const PlasmicDescendants = {
     "donationValue2",
     "roundUp",
     "clearCart",
+    "contactInfoForm",
     "textInput",
     "textInput2",
+    "textInput3",
     "checkoutPage",
     "lottie"
   ],
@@ -3859,16 +4411,20 @@ const PlasmicDescendants = {
     "donationValue2",
     "roundUp",
     "clearCart",
+    "contactInfoForm",
     "textInput",
     "textInput2",
+    "textInput3",
     "checkoutPage",
     "lottie"
   ],
   donationValue2: ["donationValue2"],
   roundUp: ["roundUp"],
   clearCart: ["clearCart"],
+  contactInfoForm: ["contactInfoForm", "textInput", "textInput2", "textInput3"],
   textInput: ["textInput"],
   textInput2: ["textInput2"],
+  textInput3: ["textInput3"],
   checkoutPage: ["checkoutPage"],
   lottie: ["lottie"],
   footer: ["footer"]
@@ -3891,8 +4447,10 @@ type NodeDefaultElementType = {
   donationValue2: typeof AntdInputNumber;
   roundUp: typeof AntdSwitch;
   clearCart: typeof Button;
+  contactInfoForm: typeof FormWrapper;
   textInput: typeof TextInput;
   textInput2: typeof TextInput;
+  textInput3: typeof TextInput;
   checkoutPage: typeof CheckoutPage;
   lottie: typeof LottieWrapper;
   footer: typeof Footer;
@@ -3971,8 +4529,10 @@ export const PlasmicEvent = Object.assign(
     donationValue2: makeNodeComponent("donationValue2"),
     roundUp: makeNodeComponent("roundUp"),
     clearCart: makeNodeComponent("clearCart"),
+    contactInfoForm: makeNodeComponent("contactInfoForm"),
     textInput: makeNodeComponent("textInput"),
     textInput2: makeNodeComponent("textInput2"),
+    textInput3: makeNodeComponent("textInput3"),
     checkoutPage: makeNodeComponent("checkoutPage"),
     lottie: makeNodeComponent("lottie"),
     footer: makeNodeComponent("footer"),
