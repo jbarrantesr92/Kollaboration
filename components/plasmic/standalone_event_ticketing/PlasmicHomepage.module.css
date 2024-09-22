@@ -450,6 +450,9 @@
   > img {
   margin-top: 10px;
 }
+.root .freeBox___6CwJ:hover {
+  background: #0046810d;
+}
 .img {
   object-fit: cover;
   max-width: 100%;
@@ -460,20 +463,24 @@
 .img > picture > img {
   object-fit: cover;
 }
+.freeBox__oylld {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
 .text__eTqPm {
   position: relative;
   width: 100%;
   height: auto;
   max-width: 100%;
   font-weight: 600;
-  min-width: 0;
-}
-.text__gs1Tz {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  color: #61788a;
   min-width: 0;
 }
 .footer2:global(.__wab_instance):global(.__wab_instance) {

@@ -76,6 +76,7 @@ import Drawer from "../../Drawer"; // plasmic-import: TYvzrA570afD/component
 import { Timer } from "@plasmicpkgs/plasmic-basic-components";
 import { AntdInputNumber } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { AntdSwitch } from "@plasmicpkgs/antd5/skinny/registerSwitch";
+import TextInput from "../../TextInput"; // plasmic-import: KfDAmu4lid5o/component
 import CheckoutPage from "../../CheckoutPage"; // plasmic-import: PMnZ1e74obKC/component
 import { LottieWrapper } from "@plasmicpkgs/lottie-react";
 import Footer from "../../Footer"; // plasmic-import: THeG5BcdbXeZ/component
@@ -97,6 +98,7 @@ import ShoppingBagOpenSvgIcon from "./icons/PlasmicIcon__ShoppingBagOpenSvg"; //
 import TimerSvgIcon from "./icons/PlasmicIcon__TimerSvg"; // plasmic-import: iVtDgIulrNC8/icon
 import TicketSvgIcon from "./icons/PlasmicIcon__TicketSvg"; // plasmic-import: OxvLqJub0eBw/icon
 import TrashSvgIcon from "./icons/PlasmicIcon__TrashSvg"; // plasmic-import: dKZ8ZQGn2s_e/icon
+import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: mFdXj3H03u7X/icon
 
 createPlasmicElementProxy;
 
@@ -124,6 +126,8 @@ export type PlasmicEvent__OverridesType = {
   donationValue2?: Flex__<typeof AntdInputNumber>;
   roundUp?: Flex__<typeof AntdSwitch>;
   clearCart?: Flex__<typeof Button>;
+  textInput?: Flex__<typeof TextInput>;
+  textInput2?: Flex__<typeof TextInput>;
   checkoutPage?: Flex__<typeof CheckoutPage>;
   lottie?: Flex__<typeof LottieWrapper>;
   footer?: Flex__<typeof Footer>;
@@ -329,6 +333,18 @@ function PlasmicEvent__RenderFunc(props: {
               throw e;
             }
           })()
+      },
+      {
+        path: "textInput.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "textInput2.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -346,79 +362,79 @@ function PlasmicEvent__RenderFunc(props: {
     getEvent: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "067f779b-a36f-46d0-b4f4-2916eaace0e5",
+        opId: "723260f8-6de6-44e0-9dee-0654a816e578",
         userArgs: {
           path: [$ctx.params.eventId]
         },
-        cacheKey: `plasmic.$.067f779b-a36f-46d0-b4f4-2916eaace0e5.$.`,
+        cacheKey: `plasmic.$.723260f8-6de6-44e0-9dee-0654a816e578.$.`,
         invalidatedKeys: null,
-        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
+        roleId: null
       };
     }),
     getTickets: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "780d77e3-a46d-42e9-8dbd-4194c19dda40",
+        opId: "07defa4d-f699-40ad-8c34-cb1a95feec0a",
         userArgs: {
           path: [$state.selectEventDate.value]
         },
-        cacheKey: `plasmic.$.780d77e3-a46d-42e9-8dbd-4194c19dda40.$.`,
+        cacheKey: `plasmic.$.07defa4d-f699-40ad-8c34-cb1a95feec0a.$.`,
         invalidatedKeys: null,
-        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
+        roleId: null
       };
     }),
     getPurchases: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "cb9e1735-daa0-49ac-8f26-bd19c0e17fb3",
+        opId: "1ae0bf37-539b-4ed3-b1e0-6c762a2c2586",
         userArgs: {
           path: [localStorage.getItem("PurchaseId")]
         },
-        cacheKey: `plasmic.$.cb9e1735-daa0-49ac-8f26-bd19c0e17fb3.$.`,
+        cacheKey: `plasmic.$.1ae0bf37-539b-4ed3-b1e0-6c762a2c2586.$.`,
         invalidatedKeys: null,
-        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
+        roleId: null
       };
     }),
     getCart: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "c924f63b-4119-4092-99c0-ab3165761f50",
+        opId: "0cc6a39e-f808-4bf3-9d06-951fa0e68d3a",
         userArgs: {
           path: [localStorage.getItem("PurchaseId")]
         },
-        cacheKey: `plasmic.$.c924f63b-4119-4092-99c0-ab3165761f50.$.`,
+        cacheKey: `plasmic.$.0cc6a39e-f808-4bf3-9d06-951fa0e68d3a.$.`,
         invalidatedKeys: null,
-        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
+        roleId: null
       };
     }),
     eventDates: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "e019cad1-be4a-4363-adb3-5f38d7148370",
+        opId: "1890dbd3-76f5-416d-b1ff-c69825ef5cdf",
         userArgs: {
           path: [$ctx.params.eventId]
         },
-        cacheKey: `plasmic.$.e019cad1-be4a-4363-adb3-5f38d7148370.$.`,
+        cacheKey: `plasmic.$.1890dbd3-76f5-416d-b1ff-c69825ef5cdf.$.`,
         invalidatedKeys: null,
-        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
+        roleId: null
       };
     }),
     purchasedByDate: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "e8241829-670e-4701-8c79-ad806ccc30f0",
+        opId: "ccdf9225-a742-4324-b663-f82fa33e998e",
         userArgs: {
           path: [$state.selectEventDate.value]
         },
-        cacheKey: `plasmic.$.e8241829-670e-4701-8c79-ad806ccc30f0.$.`,
+        cacheKey: `plasmic.$.ccdf9225-a742-4324-b663-f82fa33e998e.$.`,
         invalidatedKeys: null,
-        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
+        roleId: null
       };
     }),
     purchasedTickets: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "39ce6cd5-89f5-435d-805a-d075931b334b",
+        opId: "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
         userArgs: {
           params: [
             (() => {
@@ -432,21 +448,21 @@ function PlasmicEvent__RenderFunc(props: {
             })()
           ]
         },
-        cacheKey: `plasmic.$.39ce6cd5-89f5-435d-805a-d075931b334b.$.`,
+        cacheKey: `plasmic.$.b895aa89-cd9e-48f4-84d1-e42992d31c7f.$.`,
         invalidatedKeys: null,
-        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
+        roleId: null
       };
     }),
     currentDomain: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "0e7c6bb1-66bb-415c-9fbd-1358620bb8d6",
+        opId: "b78fd612-3418-4931-ad25-f4d8df4d76c3",
         userArgs: {
           path: [window.location.hostname]
         },
-        cacheKey: `plasmic.$.0e7c6bb1-66bb-415c-9fbd-1358620bb8d6.$.`,
+        cacheKey: `plasmic.$.b78fd612-3418-4931-ad25-f4d8df4d76c3.$.`,
         invalidatedKeys: null,
-        roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
+        roleId: null
       };
     })
   };
@@ -681,8 +697,8 @@ function PlasmicEvent__RenderFunc(props: {
                             ? (() => {
                                 const actionArgs = {
                                   queryInvalidation: [
-                                    "e019cad1-be4a-4363-adb3-5f38d7148370",
-                                    "cb9e1735-daa0-49ac-8f26-bd19c0e17fb3"
+                                    "1890dbd3-76f5-416d-b1ff-c69825ef5cdf",
+                                    "1ae0bf37-539b-4ed3-b1e0-6c762a2c2586"
                                   ]
                                 };
                                 return (async ({ queryInvalidation }) => {
@@ -1820,9 +1836,9 @@ function PlasmicEvent__RenderFunc(props: {
                                                 ? (() => {
                                                     const actionArgs = {
                                                       queryInvalidation: [
-                                                        "e8241829-670e-4701-8c79-ad806ccc30f0",
-                                                        "39ce6cd5-89f5-435d-805a-d075931b334b",
-                                                        "c924f63b-4119-4092-99c0-ab3165761f50"
+                                                        "ccdf9225-a742-4324-b663-f82fa33e998e",
+                                                        "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
+                                                        "0cc6a39e-f808-4bf3-9d06-951fa0e68d3a"
                                                       ]
                                                     };
                                                     return (async ({
@@ -2202,10 +2218,10 @@ function PlasmicEvent__RenderFunc(props: {
                                             ? (() => {
                                                 const actionArgs = {
                                                   queryInvalidation: [
-                                                    "e8241829-670e-4701-8c79-ad806ccc30f0",
-                                                    "39ce6cd5-89f5-435d-805a-d075931b334b",
-                                                    "cb9e1735-daa0-49ac-8f26-bd19c0e17fb3",
-                                                    "c924f63b-4119-4092-99c0-ab3165761f50"
+                                                    "ccdf9225-a742-4324-b663-f82fa33e998e",
+                                                    "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
+                                                    "1ae0bf37-539b-4ed3-b1e0-6c762a2c2586",
+                                                    "0cc6a39e-f808-4bf3-9d06-951fa0e68d3a"
                                                   ]
                                                 };
                                                 return (async ({
@@ -2251,6 +2267,142 @@ function PlasmicEvent__RenderFunc(props: {
                                           {"Clear Cart"}
                                         </div>
                                       </Button>
+                                    </div>
+                                  </Stack__>
+                                ) : null}
+                                {(() => {
+                                  try {
+                                    return (
+                                      $queries.getCart.data.response.data
+                                        .length > 0
+                                    );
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return false;
+                                    }
+                                    throw e;
+                                  }
+                                })() ? (
+                                  <Stack__
+                                    as={"div"}
+                                    hasGap={true}
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__oOwet
+                                    )}
+                                  >
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.freeBox__xwOtV
+                                      )}
+                                    >
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.freeBox__o8Sm1
+                                        )}
+                                      >
+                                        <TextInput
+                                          data-plasmic-name={"textInput"}
+                                          data-plasmic-override={
+                                            overrides.textInput
+                                          }
+                                          className={classNames(
+                                            "__wab_instance",
+                                            sty.textInput
+                                          )}
+                                          endIcon={
+                                            <CheckSvgIcon
+                                              className={classNames(
+                                                projectcss.all,
+                                                sty.svg___9FpMf
+                                              )}
+                                              role={"img"}
+                                            />
+                                          }
+                                          onChange={(...eventArgs) => {
+                                            generateStateOnChangeProp($state, [
+                                              "textInput",
+                                              "value"
+                                            ])(
+                                              (e => e.target?.value).apply(
+                                                null,
+                                                eventArgs
+                                              )
+                                            );
+                                          }}
+                                          value={
+                                            generateStateValueProp($state, [
+                                              "textInput",
+                                              "value"
+                                            ]) ?? ""
+                                          }
+                                        />
+                                      </div>
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.freeBox__ipqaN
+                                        )}
+                                      >
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            sty.freeBox__ckt2Y
+                                          )}
+                                        >
+                                          <TextInput
+                                            data-plasmic-name={"textInput2"}
+                                            data-plasmic-override={
+                                              overrides.textInput2
+                                            }
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.textInput2
+                                            )}
+                                            endIcon={
+                                              <CheckSvgIcon
+                                                className={classNames(
+                                                  projectcss.all,
+                                                  sty.svg__gXwk1
+                                                )}
+                                                role={"img"}
+                                              />
+                                            }
+                                            onChange={(...eventArgs) => {
+                                              generateStateOnChangeProp(
+                                                $state,
+                                                ["textInput2", "value"]
+                                              )(
+                                                (e => e.target?.value).apply(
+                                                  null,
+                                                  eventArgs
+                                                )
+                                              );
+                                            }}
+                                            value={
+                                              generateStateValueProp($state, [
+                                                "textInput2",
+                                                "value"
+                                              ]) ?? ""
+                                            }
+                                          />
+                                        </div>
+                                      </div>
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          projectcss.__wab_text,
+                                          sty.text__jZSe9
+                                        )}
+                                      >
+                                        {"Enter some text"}
+                                      </div>
                                     </div>
                                   </Stack__>
                                 ) : null}
@@ -2559,10 +2711,10 @@ function PlasmicEvent__RenderFunc(props: {
                                       ? (() => {
                                           const actionArgs = {
                                             queryInvalidation: [
-                                              "39ce6cd5-89f5-435d-805a-d075931b334b",
-                                              "e8241829-670e-4701-8c79-ad806ccc30f0",
-                                              "cb9e1735-daa0-49ac-8f26-bd19c0e17fb3",
-                                              "c924f63b-4119-4092-99c0-ab3165761f50"
+                                              "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
+                                              "ccdf9225-a742-4324-b663-f82fa33e998e",
+                                              "1ae0bf37-539b-4ed3-b1e0-6c762a2c2586",
+                                              "0cc6a39e-f808-4bf3-9d06-951fa0e68d3a"
                                             ]
                                           };
                                           return (async ({
@@ -2910,7 +3062,7 @@ function PlasmicEvent__RenderFunc(props: {
                                             },
                                             cacheKey: null,
                                             invalidatedKeys: [
-                                              "plasmic_refresh_all"
+                                              "1ae0bf37-539b-4ed3-b1e0-6c762a2c2586"
                                             ],
                                             roleId:
                                               "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
@@ -2956,34 +3108,6 @@ function PlasmicEvent__RenderFunc(props: {
                                   ];
                                 }
 
-                                $steps["refreshData2"] = true
-                                  ? (() => {
-                                      const actionArgs = {
-                                        queryInvalidation: [
-                                          "cb9e1735-daa0-49ac-8f26-bd19c0e17fb3"
-                                        ]
-                                      };
-                                      return (async ({ queryInvalidation }) => {
-                                        if (!queryInvalidation) {
-                                          return;
-                                        }
-                                        await plasmicInvalidate(
-                                          queryInvalidation
-                                        );
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                                if (
-                                  $steps["refreshData2"] != null &&
-                                  typeof $steps["refreshData2"] === "object" &&
-                                  typeof $steps["refreshData2"].then ===
-                                    "function"
-                                ) {
-                                  $steps["refreshData2"] = await $steps[
-                                    "refreshData2"
-                                  ];
-                                }
-
                                 $steps["runCode"] =
                                   $queries.getPurchases.data.response.data
                                     .length == 0
@@ -3014,7 +3138,7 @@ function PlasmicEvent__RenderFunc(props: {
                                   ? (() => {
                                       const actionArgs = {
                                         queryInvalidation: [
-                                          "c924f63b-4119-4092-99c0-ab3165761f50"
+                                          "0cc6a39e-f808-4bf3-9d06-951fa0e68d3a"
                                         ]
                                       };
                                       return (async ({ queryInvalidation }) => {
@@ -3197,7 +3321,8 @@ function PlasmicEvent__RenderFunc(props: {
                                             },
                                             cacheKey: null,
                                             invalidatedKeys: [
-                                              "plasmic_refresh_all"
+                                              "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
+                                              "ccdf9225-a742-4324-b663-f82fa33e998e"
                                             ],
                                             roleId:
                                               "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
@@ -3277,35 +3402,6 @@ function PlasmicEvent__RenderFunc(props: {
                                 ) {
                                   $steps["updateLoadingCart2"] = await $steps[
                                     "updateLoadingCart2"
-                                  ];
-                                }
-
-                                $steps["refreshData3"] = true
-                                  ? (() => {
-                                      const actionArgs = {
-                                        queryInvalidation: [
-                                          "39ce6cd5-89f5-435d-805a-d075931b334b",
-                                          "e8241829-670e-4701-8c79-ad806ccc30f0"
-                                        ]
-                                      };
-                                      return (async ({ queryInvalidation }) => {
-                                        if (!queryInvalidation) {
-                                          return;
-                                        }
-                                        await plasmicInvalidate(
-                                          queryInvalidation
-                                        );
-                                      })?.apply(null, [actionArgs]);
-                                    })()
-                                  : undefined;
-                                if (
-                                  $steps["refreshData3"] != null &&
-                                  typeof $steps["refreshData3"] === "object" &&
-                                  typeof $steps["refreshData3"].then ===
-                                    "function"
-                                ) {
-                                  $steps["refreshData3"] = await $steps[
-                                    "refreshData3"
                                   ];
                                 }
                               }}
@@ -3395,7 +3491,7 @@ function PlasmicEvent__RenderFunc(props: {
                                   ? (() => {
                                       const actionArgs = {
                                         queryInvalidation: [
-                                          "cb9e1735-daa0-49ac-8f26-bd19c0e17fb3"
+                                          "1ae0bf37-539b-4ed3-b1e0-6c762a2c2586"
                                         ]
                                       };
                                       return (async ({ queryInvalidation }) => {
@@ -3449,7 +3545,7 @@ function PlasmicEvent__RenderFunc(props: {
                                   ? (() => {
                                       const actionArgs = {
                                         queryInvalidation: [
-                                          "c924f63b-4119-4092-99c0-ab3165761f50"
+                                          "0cc6a39e-f808-4bf3-9d06-951fa0e68d3a"
                                         ]
                                       };
                                       return (async ({ queryInvalidation }) => {
@@ -3737,6 +3833,8 @@ const PlasmicDescendants = {
     "donationValue2",
     "roundUp",
     "clearCart",
+    "textInput",
+    "textInput2",
     "checkoutPage",
     "lottie",
     "footer"
@@ -3755,6 +3853,8 @@ const PlasmicDescendants = {
     "donationValue2",
     "roundUp",
     "clearCart",
+    "textInput",
+    "textInput2",
     "checkoutPage",
     "lottie"
   ],
@@ -3764,12 +3864,16 @@ const PlasmicDescendants = {
     "donationValue2",
     "roundUp",
     "clearCart",
+    "textInput",
+    "textInput2",
     "checkoutPage",
     "lottie"
   ],
   donationValue2: ["donationValue2"],
   roundUp: ["roundUp"],
   clearCart: ["clearCart"],
+  textInput: ["textInput"],
+  textInput2: ["textInput2"],
   checkoutPage: ["checkoutPage"],
   lottie: ["lottie"],
   footer: ["footer"]
@@ -3792,6 +3896,8 @@ type NodeDefaultElementType = {
   donationValue2: typeof AntdInputNumber;
   roundUp: typeof AntdSwitch;
   clearCart: typeof Button;
+  textInput: typeof TextInput;
+  textInput2: typeof TextInput;
   checkoutPage: typeof CheckoutPage;
   lottie: typeof LottieWrapper;
   footer: typeof Footer;
@@ -3870,6 +3976,8 @@ export const PlasmicEvent = Object.assign(
     donationValue2: makeNodeComponent("donationValue2"),
     roundUp: makeNodeComponent("roundUp"),
     clearCart: makeNodeComponent("clearCart"),
+    textInput: makeNodeComponent("textInput"),
+    textInput2: makeNodeComponent("textInput2"),
     checkoutPage: makeNodeComponent("checkoutPage"),
     lottie: makeNodeComponent("lottie"),
     footer: makeNodeComponent("footer"),
