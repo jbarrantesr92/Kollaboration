@@ -69,6 +69,7 @@ import {
 import Navbar2 from "../../Navbar2"; // plasmic-import: PlAJ5tJMUQMz/component
 import { ConditionGuard } from "@plasmicpkgs/plasmic-basic-components";
 import QrScanner from "../../QrScanner"; // plasmic-import: yok5nEYnb6DD/component
+import Button from "../../Button"; // plasmic-import: 7c1YDuGGoKuq/component
 import Footer2 from "../../Footer2"; // plasmic-import: afuzx2tfyuUz/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
@@ -78,6 +79,9 @@ import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css";
 import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plasmic.module.css"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: MtmcKR1GuwbKEBJfYkVdj/projectcss
 import sty from "./PlasmicTicketsScanner.module.css"; // plasmic-import: VKlp-7xSYxqT/css
+
+import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: V9lHh1c0c7g6/icon
+import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: _VJXnu9sySb9/icon
 
 createPlasmicElementProxy;
 
@@ -94,7 +98,6 @@ export type PlasmicTicketsScanner__OverridesType = {
   root?: Flex__<"div">;
   navbar2?: Flex__<typeof Navbar2>;
   conditionGuard?: Flex__<typeof ConditionGuard>;
-  text?: Flex__<"div">;
   qrScanner?: Flex__<typeof QrScanner>;
   footer2?: Flex__<typeof Footer2>;
 };
@@ -146,9 +149,10 @@ function PlasmicTicketsScanner__RenderFunc(props: {
   >({});
 
   const dataSourcesCtx = usePlasmicDataSourceContext();
+  const plasmicInvalidate = usePlasmicInvalidate();
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
-    getTicketId: usePlasmicDataOp(() => {
+    getQrTicketId: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
         opId: "62eafe43-5a02-4930-8eb9-8caf48985810",
@@ -165,7 +169,7 @@ function PlasmicTicketsScanner__RenderFunc(props: {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
         opId: "db4bb7a8-a2b3-4bbc-b52d-41f5df52d87e",
         userArgs: {
-          path: [$queries.getTicketId.data.response.data.PurchaseTicketId]
+          path: [$queries.getQrTicketId.data.response.data.TicketPurchaseId]
         },
         cacheKey: `plasmic.$.db4bb7a8-a2b3-4bbc-b52d-41f5df52d87e.$.`,
         invalidatedKeys: null,
@@ -199,11 +203,11 @@ function PlasmicTicketsScanner__RenderFunc(props: {
     currentDomain: usePlasmicDataOp(() => {
       return {
         sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-        opId: "e7b72039-5d29-482a-a512-fac90415c7a3",
+        opId: "b8bbf243-1ef6-4abe-b26a-9d92a0fc0278",
         userArgs: {
           path: [window.location.hostname]
         },
-        cacheKey: `plasmic.$.e7b72039-5d29-482a-a512-fac90415c7a3.$.`,
+        cacheKey: `plasmic.$.b8bbf243-1ef6-4abe-b26a-9d92a0fc0278.$.`,
         invalidatedKeys: null,
         roleId: null
       };
@@ -301,12 +305,10 @@ function PlasmicTicketsScanner__RenderFunc(props: {
           >
             <div className={classNames(projectcss.all, sty.freeBox__uYUgR)}>
               <div
-                data-plasmic-name={"text"}
-                data-plasmic-override={overrides.text}
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text
+                  sty.text___9FdeB
                 )}
               >
                 {"Scan the QR code to validate the ticket"}
@@ -316,8 +318,274 @@ function PlasmicTicketsScanner__RenderFunc(props: {
                   data-plasmic-name={"qrScanner"}
                   data-plasmic-override={overrides.qrScanner}
                   className={classNames("__wab_instance", sty.qrScanner)}
+                  eventId={(() => {
+                    try {
+                      return $ctx.query.uuid;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return undefined;
+                      }
+                      throw e;
+                    }
+                  })()}
                 />
               </div>
+              <div className={classNames(projectcss.all, sty.freeBox__b7Ctx)}>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__h4S7L
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $queries.getEventInformation.data.response.data
+                          .EventName;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__r7F6S
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $queries.getTicketInformation.data.response.data
+                          .SeatSection;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___1CxD6
+                  )}
+                >
+                  <React.Fragment>
+                    {(() => {
+                      try {
+                        return $queries.getTicketInformation.data.response.data
+                          .TicketType;
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return "";
+                        }
+                        throw e;
+                      }
+                    })()}
+                  </React.Fragment>
+                </div>
+              </div>
+              {(() => {
+                try {
+                  return (
+                    $queries.getQrTicketId.data.response.data.Status !=
+                    "validated"
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <Button
+                  className={classNames("__wab_instance", sty.button__ulJ4J)}
+                  color={"green"}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["httpPatch"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            dataOp: {
+                              sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
+                              opId: "253bb331-503d-44d9-82e4-49bc8e63241d",
+                              userArgs: {
+                                path: [
+                                  $queries.getQrTicketId.data.response.data.id
+                                ],
+                                body: [
+                                  {
+                                    Status: "validated"
+                                  }
+                                ]
+                              },
+                              cacheKey: null,
+                              invalidatedKeys: [
+                                "62eafe43-5a02-4930-8eb9-8caf48985810"
+                              ],
+                              roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
+                            }
+                          };
+                          return (async ({ dataOp, continueOnError }) => {
+                            try {
+                              const response = await executePlasmicDataOp(
+                                dataOp,
+                                {
+                                  userAuthToken: dataSourcesCtx?.userAuthToken,
+                                  user: dataSourcesCtx?.user
+                                }
+                              );
+                              await plasmicInvalidate(dataOp.invalidatedKeys);
+                              return response;
+                            } catch (e) {
+                              if (!continueOnError) {
+                                throw e;
+                              }
+                              return e;
+                            }
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["httpPatch"] != null &&
+                      typeof $steps["httpPatch"] === "object" &&
+                      typeof $steps["httpPatch"].then === "function"
+                    ) {
+                      $steps["httpPatch"] = await $steps["httpPatch"];
+                    }
+                  }}
+                  startIcon={
+                    <CheckSvgIcon
+                      className={classNames(projectcss.all, sty.svg___6KAk)}
+                      role={"img"}
+                    />
+                  }
+                >
+                  {"Validate"}
+                </Button>
+              ) : null}
+              {(() => {
+                try {
+                  return (
+                    $queries.getQrTicketId.data.response.data.Status ==
+                    "validated"
+                  );
+                } catch (e) {
+                  if (
+                    e instanceof TypeError ||
+                    e?.plasmicType === "PlasmicUndefinedDataError"
+                  ) {
+                    return false;
+                  }
+                  throw e;
+                }
+              })() ? (
+                <div className={classNames(projectcss.all, sty.freeBox__frwXg)}>
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__tb1Qo
+                    )}
+                  >
+                    {"Ticket has been validated"}
+                  </div>
+                </div>
+              ) : null}
+              <Button
+                className={classNames("__wab_instance", sty.button__qBtiz)}
+                color={"softSand"}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["runCode"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return (() => {
+                              function removeQueryParam(param) {
+                                let urlObj = new URL(window.location.href);
+                                urlObj.searchParams.delete(param);
+                                window.history.replaceState(
+                                  {},
+                                  document.title,
+                                  urlObj.toString()
+                                );
+                              }
+                              return removeQueryParam("uuid");
+                            })();
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode"] != null &&
+                    typeof $steps["runCode"] === "object" &&
+                    typeof $steps["runCode"].then === "function"
+                  ) {
+                    $steps["runCode"] = await $steps["runCode"];
+                  }
+
+                  $steps["runCode2"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          customFunction: async () => {
+                            return (() => {
+                              return location.reload(true);
+                            })();
+                          }
+                        };
+                        return (({ customFunction }) => {
+                          return customFunction();
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["runCode2"] != null &&
+                    typeof $steps["runCode2"] === "object" &&
+                    typeof $steps["runCode2"].then === "function"
+                  ) {
+                    $steps["runCode2"] = await $steps["runCode2"];
+                  }
+                }}
+                startIcon={
+                  <CheckSvgIcon
+                    className={classNames(projectcss.all, sty.svg__mvniY)}
+                    role={"img"}
+                  />
+                }
+              >
+                {"Refresh"}
+              </Button>
             </div>
           </ConditionGuard>
           <Footer2
@@ -332,10 +600,9 @@ function PlasmicTicketsScanner__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "navbar2", "conditionGuard", "text", "qrScanner", "footer2"],
+  root: ["root", "navbar2", "conditionGuard", "qrScanner", "footer2"],
   navbar2: ["navbar2"],
-  conditionGuard: ["conditionGuard", "text", "qrScanner"],
-  text: ["text"],
+  conditionGuard: ["conditionGuard", "qrScanner"],
   qrScanner: ["qrScanner"],
   footer2: ["footer2"]
 } as const;
@@ -346,7 +613,6 @@ type NodeDefaultElementType = {
   root: "div";
   navbar2: typeof Navbar2;
   conditionGuard: typeof ConditionGuard;
-  text: "div";
   qrScanner: typeof QrScanner;
   footer2: typeof Footer2;
 };
@@ -430,7 +696,6 @@ export const PlasmicTicketsScanner = Object.assign(
     // Helper components rendering sub-elements
     navbar2: makeNodeComponent("navbar2"),
     conditionGuard: makeNodeComponent("conditionGuard"),
-    text: makeNodeComponent("text"),
     qrScanner: makeNodeComponent("qrScanner"),
     footer2: makeNodeComponent("footer2"),
 
