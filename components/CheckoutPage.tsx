@@ -36,7 +36,8 @@ export default function CheckoutPage({
   return (
     <Elements stripe={stripePromise}>
       <div className="container mx-auto px-4 py-8 w-full">
-        <CheckoutForm totalAmount={totalAmount} />
+        {/* Pass totalAmount, donation, and roundUp to CheckoutForm */}
+        <CheckoutForm totalAmount={totalAmount} donation={donation} roundup={roundUp} />
       </div>
     </Elements>
   );

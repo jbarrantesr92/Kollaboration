@@ -17,11 +17,11 @@ export default async function handler(
   }
 
   try {
-    // Get the PurchaseId from the request body
-    const purchaseId = req.body.purchaseId as string;
+    // Get the data from the request body
+    const { purchaseId, totalAmount, donation, roundup } = req.body;
 
     if (!purchaseId) {
-      return res.status(400).json({ message: 'PurchaseId not found in local storage' });
+      return res.status(400).json({ message: 'PurchaseId not found in request body' });
     }
 
     // Call Directus API to update the purchase status
@@ -33,6 +33,9 @@ export default async function handler(
       },
       body: JSON.stringify({
         Status: 'purchase_complete',
+        TotalPurchase: totalAmount,  // Updating total amount
+        Donation: donation,        // Updating donation amount
+        RoundUp: roundup           // Updating roundup
       }),
     });
 
@@ -47,10 +50,6 @@ export default async function handler(
     if (!qrCodeResponse.ok) {
       return res.status(qrCodeResponse.status).json({ message: 'Failed to generate QR code' });
     }
-
-    // Optionally, you can handle the QR code image returned from the API
-    // Note: In Node.js, blobs are not typically used. You might want to use buffers instead.
-    // const qrCodeBlob = await qrCodeResponse.blob(); // For client-side use
 
     return res.status(200).json({ message: 'Purchase status updated, QR code generated successfully' });
   } catch (error) {

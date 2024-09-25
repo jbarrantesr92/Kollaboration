@@ -1,0 +1,27 @@
+/* AddressAutocomplete.module.css */
+
+.autocompleteWrapper {
+  width: 100%;
+}
+
+.autocompleteInput {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focused state */
+.autocompleteInput:focus {
+  border: 2px solid #66afe9;
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+/* Placeholder styling */
+.autocompleteInput::placeholder {
+  color: #414242
+  ;
+}

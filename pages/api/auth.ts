@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { createDirectus, rest, createUser, authentication, readMe } from "@directus/sdk";
+import { createDirectus, rest, createUser,staticToken, authentication, readMe } from "@directus/sdk";
+import crypto from "crypto"; // Used to generate a random token
 
-const directusClient = createDirectus(process.env.NEXT_PUBLIC_DIRECTUS_API_URL as string).with(rest());
+const directusClient = createDirectus(process.env.NEXT_PUBLIC_DIRECTUS_API_URL as string).with(staticToken(process.env.DIRECTUS_TOKEN as string)).with(rest());
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { mode, email, password, firstName, lastName } = req.body;
@@ -12,13 +13,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (mode === "signUp") {
       console.log("SignUp mode detected");
 
-      // User registration
+      // Get role from environment variables
+      const userRoleId = process.env.DIRECTUS_USER_ROLE_ID;
+      if (!userRoleId) {
+        throw new Error("User role ID is not defined in environment variables");
+      }
+
+      // Generate a random token
+      const token = crypto.randomBytes(16).toString("hex");
+
+      // User registration with role and token
       const result = await directusClient.request(
         createUser({
           email,
           password,
           first_name: firstName,
           last_name: lastName,
+          role: userRoleId, // Assign the role from the env variable
+          token, // Assign the randomly generated token
         })
       );
 

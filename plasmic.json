@@ -1143,6 +1143,19 @@
           "cssFilePath": "plasmic/standalone_event_ticketing/PlasmicDragAndDropUploader.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "-iO7aBgdbUWd",
+          "name": "AddressAutocomplete",
+          "type": "managed",
+          "projectId": "MtmcKR1GuwbKEBJfYkVdj",
+          "renderModuleFilePath": "plasmic/standalone_event_ticketing/PlasmicAddressAutocomplete.tsx",
+          "importSpec": {
+            "modulePath": "AddressAutocomplete.tsx"
+          },
+          "cssFilePath": "plasmic/standalone_event_ticketing/PlasmicAddressAutocomplete.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [

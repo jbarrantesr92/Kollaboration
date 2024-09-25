@@ -282,29 +282,6 @@ function PlasmicHomepage__RenderFunc(props: {
             })}
           />
 
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__gmxcj
-            )}
-          >
-            <React.Fragment>
-              {(() => {
-                try {
-                  return currentUser.customProperties.email;
-                } catch (e) {
-                  if (
-                    e instanceof TypeError ||
-                    e?.plasmicType === "PlasmicUndefinedDataError"
-                  ) {
-                    return "";
-                  }
-                  throw e;
-                }
-              })()}
-            </React.Fragment>
-          </div>
           <section
             data-plasmic-name={"header"}
             data-plasmic-override={overrides.header}

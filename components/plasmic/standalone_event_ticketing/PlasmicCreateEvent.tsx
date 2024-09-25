@@ -76,6 +76,7 @@ import TextInput from "../../TextInput"; // plasmic-import: KfDAmu4lid5o/compone
 import { AntdTextArea } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { inputHelpers as AntdTextArea_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
 import Select from "../../Select"; // plasmic-import: iiMExIyx9xlD/component
+import AddressAutocomplete from "../../AddressAutocomplete"; // plasmic-import: -iO7aBgdbUWd/component
 import DragAndDropUploader from "../../DragAndDropUploader"; // plasmic-import: dtZdzGKjYtES/component
 import Button from "../../Button"; // plasmic-import: 7c1YDuGGoKuq/component
 import { FormListWrapper } from "@plasmicpkgs/antd5/skinny/FormList";
@@ -83,6 +84,8 @@ import { AntdDatePicker } from "@plasmicpkgs/antd5/skinny/registerDatePicker";
 import { datePickerHelpers as AntdDatePicker_Helpers } from "@plasmicpkgs/antd5/skinny/registerDatePicker";
 import Footer from "../../Footer"; // plasmic-import: THeG5BcdbXeZ/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
+
+import { useScreenVariants as useScreenVariantswiZsHgbT5CnT } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: wiZSHgbT5cnT/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -133,6 +136,7 @@ export type PlasmicCreateEvent__OverridesType = {
   textInput?: Flex__<typeof TextInput>;
   textArea?: Flex__<typeof AntdTextArea>;
   select?: Flex__<typeof Select>;
+  addressAutocomplete?: Flex__<typeof AddressAutocomplete>;
   textInput2?: Flex__<typeof TextInput>;
   textInput3?: Flex__<typeof TextInput>;
   dragAndDropUploader?: Flex__<typeof DragAndDropUploader>;
@@ -145,7 +149,7 @@ export type PlasmicCreateEvent__OverridesType = {
   textInput8?: Flex__<typeof TextInput>;
   eventCalendar2?: Flex__<typeof FormWrapper>;
   paidFormList?: Flex__<typeof FormListWrapper>;
-  select2?: Flex__<typeof Select>;
+  selectTicketType?: Flex__<typeof Select>;
   textInput4?: Flex__<typeof TextInput>;
   textInput5?: Flex__<typeof TextInput>;
   textInput6?: Flex__<typeof TextInput>;
@@ -388,13 +392,13 @@ function PlasmicCreateEvent__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
       },
       {
-        path: "select2.value",
+        path: "selectTicketType.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "select2.dateId",
+        path: "selectTicketType.dateId",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
@@ -684,7 +688,7 @@ function PlasmicCreateEvent__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
       },
       {
-        path: "select2.ticketId",
+        path: "selectTicketType.ticketId",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
@@ -768,6 +772,10 @@ function PlasmicCreateEvent__RenderFunc(props: {
 
     $queries = new$Queries;
   }
+
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantswiZsHgbT5CnT()
+  });
 
   return (
     <React.Fragment>
@@ -1197,6 +1205,36 @@ function PlasmicCreateEvent__RenderFunc(props: {
                           ])}
                         />
                       </FormItemWrapper>
+                      <Stack__
+                        as={"div"}
+                        hasGap={true}
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox__uRZnA,
+                          {
+                            [sty.freeBoxeventStep_step3__uRZnAemNtK]:
+                              hasVariant($state, "eventStep", "step3")
+                          }
+                        )}
+                      >
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text___62L6Z
+                          )}
+                        >
+                          {"Address"}
+                        </div>
+                        <AddressAutocomplete
+                          data-plasmic-name={"addressAutocomplete"}
+                          data-plasmic-override={overrides.addressAutocomplete}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.addressAutocomplete
+                          )}
+                        />
+                      </Stack__>
                       <FormItemWrapper
                         className={classNames(
                           "__wab_instance",
@@ -1206,7 +1244,17 @@ function PlasmicCreateEvent__RenderFunc(props: {
                               hasVariant($state, "eventStep", "step1")
                           }
                         )}
-                        label={"Address"}
+                        label={
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__xiDtl
+                            )}
+                          >
+                            {"Address Details"}
+                          </div>
+                        }
                         name={"EventAddress"}
                         preserve={false}
                       >
@@ -1298,41 +1346,55 @@ function PlasmicCreateEvent__RenderFunc(props: {
                           )}
                         />
 
-                        <PlasmicImg__
-                          data-plasmic-name={"img"}
-                          data-plasmic-override={overrides.img}
-                          alt={""}
-                          className={classNames(sty.img, {
-                            [sty.imgeventStep_step3]: hasVariant(
-                              $state,
-                              "eventStep",
-                              "step3"
-                            )
-                          })}
-                          displayHeight={"100%"}
-                          displayMaxHeight={"none"}
-                          displayMaxWidth={"100%"}
-                          displayMinHeight={"0"}
-                          displayMinWidth={"0"}
-                          displayWidth={"500px"}
-                          loading={"lazy"}
-                          src={(() => {
-                            try {
-                              return (
-                                "https://events-db-directus.6sizjj.easypanel.host/assets/" +
-                                localStorage.getItem("uploadedFileId")
-                              );
-                            } catch (e) {
-                              if (
-                                e instanceof TypeError ||
-                                e?.plasmicType === "PlasmicUndefinedDataError"
-                              ) {
-                                return undefined;
-                              }
-                              throw e;
+                        {(() => {
+                          try {
+                            return localStorage.getItem("uploadedFileId");
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return false;
                             }
-                          })()}
-                        />
+                            throw e;
+                          }
+                        })() ? (
+                          <PlasmicImg__
+                            data-plasmic-name={"img"}
+                            data-plasmic-override={overrides.img}
+                            alt={""}
+                            className={classNames(sty.img, {
+                              [sty.imgeventStep_step3]: hasVariant(
+                                $state,
+                                "eventStep",
+                                "step3"
+                              )
+                            })}
+                            displayHeight={"100%"}
+                            displayMaxHeight={"none"}
+                            displayMaxWidth={"100%"}
+                            displayMinHeight={"0"}
+                            displayMinWidth={"0"}
+                            displayWidth={"500px"}
+                            loading={"lazy"}
+                            src={(() => {
+                              try {
+                                return (
+                                  "https://events-db-directus.6sizjj.easypanel.host/assets/" +
+                                  localStorage.getItem("uploadedFileId")
+                                );
+                              } catch (e) {
+                                if (
+                                  e instanceof TypeError ||
+                                  e?.plasmicType === "PlasmicUndefinedDataError"
+                                ) {
+                                  return undefined;
+                                }
+                                throw e;
+                              }
+                            })()}
+                          />
+                        ) : null}
                       </div>
                       <div
                         className={classNames(
@@ -1579,318 +1641,364 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                 hasGap={true}
                                 className={classNames(
                                   projectcss.all,
-                                  sty.freeBox__jjtWn
+                                  sty.freeBox__jjtWn,
+                                  {
+                                    [sty.freeBoxeventStep_step3__jjtWnEmNtK]:
+                                      hasVariant($state, "eventStep", "step3")
+                                  }
                                 )}
                               >
-                                <FormItemWrapper
+                                <Stack__
+                                  as={"div"}
+                                  hasGap={true}
                                   className={classNames(
-                                    "__wab_instance",
-                                    sty.formField___2Hg0R,
-                                    {
-                                      [sty.formFieldeventStep_step3___2Hg0RemNtK]:
-                                        hasVariant($state, "eventStep", "step3")
-                                    }
+                                    projectcss.all,
+                                    sty.freeBox__fHRdD
                                   )}
-                                  label={
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        projectcss.__wab_text,
-                                        sty.text__wG0Lt
-                                      )}
-                                    >
-                                      {"Start Date"}
-                                    </div>
-                                  }
-                                  name={"StartDate"}
-                                  preserve={false}
                                 >
-                                  {(() => {
-                                    const child$Props = {
-                                      className: classNames(
-                                        "__wab_instance",
-                                        sty.dateTimePicker
-                                      ),
-                                      onChange:
-                                        generateStateOnChangePropForCodeComponents(
-                                          $state,
-                                          "value",
-                                          ["dateTimePicker", "value"],
-                                          AntdDatePicker_Helpers
-                                        ),
-                                      picker: "date",
-                                      popupScopeClassName:
-                                        sty["dateTimePicker__datePickerPopup"],
-                                      showToday: false,
-                                      value: generateStateValueProp($state, [
-                                        "dateTimePicker",
-                                        "value"
-                                      ])
-                                    };
-                                    initializeCodeComponentStates(
-                                      $state,
-                                      [
-                                        {
-                                          name: "value",
-                                          plasmicStateName:
-                                            "dateTimePicker.value"
-                                        }
-                                      ],
-                                      [],
-                                      AntdDatePicker_Helpers ?? {},
-                                      child$Props
-                                    );
-
-                                    return (
-                                      <AntdDatePicker
-                                        data-plasmic-name={"dateTimePicker"}
-                                        data-plasmic-override={
-                                          overrides.dateTimePicker
-                                        }
-                                        {...child$Props}
-                                      />
-                                    );
-                                  })()}
-                                </FormItemWrapper>
-                                <FormItemWrapper
-                                  className={classNames(
-                                    "__wab_instance",
-                                    sty.formField__k2XNk,
-                                    {
-                                      [sty.formFieldeventStep_step2__k2XNk44F2Z]:
-                                        hasVariant(
-                                          $state,
-                                          "eventStep",
-                                          "step2"
-                                        ),
-                                      [sty.formFieldeventStep_step3__k2XNkemNtK]:
-                                        hasVariant($state, "eventStep", "step3")
-                                    }
-                                  )}
-                                  initialValue={(() => {
-                                    try {
-                                      return "00:00:00";
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()}
-                                  label={
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        projectcss.__wab_text,
-                                        sty.text__tc4Bz
-                                      )}
-                                    >
-                                      {"Start Time"}
-                                    </div>
-                                  }
-                                  name={"StartTime"}
-                                  preserve={false}
-                                >
-                                  <TextInput
-                                    data-plasmic-name={"textInput7"}
-                                    data-plasmic-override={overrides.textInput7}
+                                  <FormItemWrapper
                                     className={classNames(
                                       "__wab_instance",
-                                      sty.textInput7,
+                                      sty.formField___2Hg0R,
                                       {
-                                        [sty.textInput7eventStep_step2]:
+                                        [sty.formFieldeventStep_step3___2Hg0RemNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
+                                    )}
+                                    label={
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          projectcss.__wab_text,
+                                          sty.text__wG0Lt
+                                        )}
+                                      >
+                                        {"Start Date"}
+                                      </div>
+                                    }
+                                    name={"StartDate"}
+                                    preserve={false}
+                                  >
+                                    {(() => {
+                                      const child$Props = {
+                                        className: classNames(
+                                          "__wab_instance",
+                                          sty.dateTimePicker
+                                        ),
+                                        onChange:
+                                          generateStateOnChangePropForCodeComponents(
+                                            $state,
+                                            "value",
+                                            ["dateTimePicker", "value"],
+                                            AntdDatePicker_Helpers
+                                          ),
+                                        picker: "date",
+                                        popupScopeClassName:
+                                          sty[
+                                            "dateTimePicker__datePickerPopup"
+                                          ],
+                                        showToday: false,
+                                        value: generateStateValueProp($state, [
+                                          "dateTimePicker",
+                                          "value"
+                                        ])
+                                      };
+                                      initializeCodeComponentStates(
+                                        $state,
+                                        [
+                                          {
+                                            name: "value",
+                                            plasmicStateName:
+                                              "dateTimePicker.value"
+                                          }
+                                        ],
+                                        [],
+                                        AntdDatePicker_Helpers ?? {},
+                                        child$Props
+                                      );
+
+                                      return (
+                                        <AntdDatePicker
+                                          data-plasmic-name={"dateTimePicker"}
+                                          data-plasmic-override={
+                                            overrides.dateTimePicker
+                                          }
+                                          {...child$Props}
+                                        />
+                                      );
+                                    })()}
+                                  </FormItemWrapper>
+                                  <FormItemWrapper
+                                    className={classNames(
+                                      "__wab_instance",
+                                      sty.formField__k2XNk,
+                                      {
+                                        [sty.formFieldeventStep_step2__k2XNk44F2Z]:
                                           hasVariant(
                                             $state,
                                             "eventStep",
                                             "step2"
+                                          ),
+                                        [sty.formFieldeventStep_step3__k2XNkemNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
                                           )
                                       }
                                     )}
-                                    endIcon={
-                                      <CheckSvgIcon
+                                    initialValue={(() => {
+                                      try {
+                                        return "00:00:00";
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()}
+                                    label={
+                                      <div
                                         className={classNames(
                                           projectcss.all,
-                                          sty.svg__wgln0
+                                          projectcss.__wab_text,
+                                          sty.text__tc4Bz
                                         )}
-                                        role={"img"}
-                                      />
+                                      >
+                                        {"Start Time"}
+                                      </div>
                                     }
-                                    onChange={(...eventArgs) => {
-                                      generateStateOnChangeProp($state, [
-                                        "textInput7",
-                                        "value"
-                                      ])(
-                                        (e => e.target?.value).apply(
-                                          null,
-                                          eventArgs
-                                        )
-                                      );
-                                    }}
-                                    type={"time"}
-                                    value={
-                                      generateStateValueProp($state, [
-                                        "textInput7",
-                                        "value"
-                                      ]) ?? ""
-                                    }
-                                  />
-                                </FormItemWrapper>
-                                <FormItemWrapper
-                                  className={classNames(
-                                    "__wab_instance",
-                                    sty.formField___3Yq71,
-                                    {
-                                      [sty.formFieldeventStep_step3___3Yq71EmNtK]:
-                                        hasVariant($state, "eventStep", "step3")
-                                    }
-                                  )}
-                                  label={
-                                    <div
+                                    name={"StartTime"}
+                                    preserve={false}
+                                  >
+                                    <TextInput
+                                      data-plasmic-name={"textInput7"}
+                                      data-plasmic-override={
+                                        overrides.textInput7
+                                      }
                                       className={classNames(
-                                        projectcss.all,
-                                        projectcss.__wab_text,
-                                        sty.text__hvJrX
-                                      )}
-                                    >
-                                      {"End Date"}
-                                    </div>
-                                  }
-                                  name={"EndDate"}
-                                  preserve={false}
-                                >
-                                  {(() => {
-                                    const child$Props = {
-                                      className: classNames(
                                         "__wab_instance",
-                                        sty.dateTimePicker2,
+                                        sty.textInput7,
                                         {
-                                          [sty.dateTimePicker2eventStep_step2]:
+                                          [sty.textInput7eventStep_step2]:
                                             hasVariant(
                                               $state,
                                               "eventStep",
                                               "step2"
                                             )
                                         }
-                                      ),
-                                      onChange:
-                                        generateStateOnChangePropForCodeComponents(
-                                          $state,
-                                          "value",
-                                          ["dateTimePicker2", "value"],
-                                          AntdDatePicker_Helpers
-                                        ),
-                                      picker: "date",
-                                      popupScopeClassName:
-                                        sty["dateTimePicker2__datePickerPopup"],
-                                      showTime: false,
-                                      showToday: false,
-                                      value: generateStateValueProp($state, [
-                                        "dateTimePicker2",
-                                        "value"
-                                      ])
-                                    };
-                                    initializeCodeComponentStates(
-                                      $state,
-                                      [
-                                        {
-                                          name: "value",
-                                          plasmicStateName:
-                                            "dateTimePicker2.value"
-                                        }
-                                      ],
-                                      [],
-                                      AntdDatePicker_Helpers ?? {},
-                                      child$Props
-                                    );
-
-                                    return (
-                                      <AntdDatePicker
-                                        data-plasmic-name={"dateTimePicker2"}
-                                        data-plasmic-override={
-                                          overrides.dateTimePicker2
-                                        }
-                                        {...child$Props}
-                                      />
-                                    );
-                                  })()}
-                                </FormItemWrapper>
-                                <FormItemWrapper
-                                  className={classNames(
-                                    "__wab_instance",
-                                    sty.formField__royWy,
-                                    {
-                                      [sty.formFieldeventStep_step2__royWy44F2Z]:
-                                        hasVariant(
-                                          $state,
-                                          "eventStep",
-                                          "step2"
-                                        ),
-                                      [sty.formFieldeventStep_step3__royWyEmNtK]:
-                                        hasVariant($state, "eventStep", "step3")
-                                    }
-                                  )}
-                                  label={
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        projectcss.__wab_text,
-                                        sty.text__dhBxo
                                       )}
-                                    >
-                                      {"End Time"}
-                                    </div>
-                                  }
-                                  name={"EndTime"}
-                                  preserve={false}
+                                      endIcon={
+                                        <CheckSvgIcon
+                                          className={classNames(
+                                            projectcss.all,
+                                            sty.svg__wgln0
+                                          )}
+                                          role={"img"}
+                                        />
+                                      }
+                                      onChange={(...eventArgs) => {
+                                        generateStateOnChangeProp($state, [
+                                          "textInput7",
+                                          "value"
+                                        ])(
+                                          (e => e.target?.value).apply(
+                                            null,
+                                            eventArgs
+                                          )
+                                        );
+                                      }}
+                                      type={"time"}
+                                      value={
+                                        generateStateValueProp($state, [
+                                          "textInput7",
+                                          "value"
+                                        ]) ?? ""
+                                      }
+                                    />
+                                  </FormItemWrapper>
+                                </Stack__>
+                                <Stack__
+                                  as={"div"}
+                                  hasGap={true}
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.freeBox___88Yfg
+                                  )}
                                 >
-                                  <TextInput
-                                    data-plasmic-name={"textInput8"}
-                                    data-plasmic-override={overrides.textInput8}
+                                  <FormItemWrapper
                                     className={classNames(
                                       "__wab_instance",
-                                      sty.textInput8,
+                                      sty.formField___3Yq71,
                                       {
-                                        [sty.textInput8eventStep_step2]:
+                                        [sty.formFieldeventStep_step3___3Yq71EmNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
+                                    )}
+                                    label={
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          projectcss.__wab_text,
+                                          sty.text__hvJrX
+                                        )}
+                                      >
+                                        {"End Date"}
+                                      </div>
+                                    }
+                                    name={"EndDate"}
+                                    preserve={false}
+                                  >
+                                    {(() => {
+                                      const child$Props = {
+                                        className: classNames(
+                                          "__wab_instance",
+                                          sty.dateTimePicker2,
+                                          {
+                                            [sty.dateTimePicker2eventStep_step2]:
+                                              hasVariant(
+                                                $state,
+                                                "eventStep",
+                                                "step2"
+                                              )
+                                          }
+                                        ),
+                                        onChange:
+                                          generateStateOnChangePropForCodeComponents(
+                                            $state,
+                                            "value",
+                                            ["dateTimePicker2", "value"],
+                                            AntdDatePicker_Helpers
+                                          ),
+                                        picker: "date",
+                                        popupScopeClassName:
+                                          sty[
+                                            "dateTimePicker2__datePickerPopup"
+                                          ],
+                                        showTime: false,
+                                        showToday: false,
+                                        value: generateStateValueProp($state, [
+                                          "dateTimePicker2",
+                                          "value"
+                                        ])
+                                      };
+                                      initializeCodeComponentStates(
+                                        $state,
+                                        [
+                                          {
+                                            name: "value",
+                                            plasmicStateName:
+                                              "dateTimePicker2.value"
+                                          }
+                                        ],
+                                        [],
+                                        AntdDatePicker_Helpers ?? {},
+                                        child$Props
+                                      );
+
+                                      return (
+                                        <AntdDatePicker
+                                          data-plasmic-name={"dateTimePicker2"}
+                                          data-plasmic-override={
+                                            overrides.dateTimePicker2
+                                          }
+                                          {...child$Props}
+                                        />
+                                      );
+                                    })()}
+                                  </FormItemWrapper>
+                                  <FormItemWrapper
+                                    className={classNames(
+                                      "__wab_instance",
+                                      sty.formField__royWy,
+                                      {
+                                        [sty.formFieldeventStep_step2__royWy44F2Z]:
                                           hasVariant(
                                             $state,
                                             "eventStep",
                                             "step2"
+                                          ),
+                                        [sty.formFieldeventStep_step3__royWyEmNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
                                           )
                                       }
                                     )}
-                                    endIcon={
-                                      <CheckSvgIcon
+                                    label={
+                                      <div
                                         className={classNames(
                                           projectcss.all,
-                                          sty.svg__ni7Xy
+                                          projectcss.__wab_text,
+                                          sty.text__dhBxo
                                         )}
-                                        role={"img"}
-                                      />
+                                      >
+                                        {"End Time"}
+                                      </div>
                                     }
-                                    onChange={(...eventArgs) => {
-                                      generateStateOnChangeProp($state, [
-                                        "textInput8",
-                                        "value"
-                                      ])(
-                                        (e => e.target?.value).apply(
-                                          null,
-                                          eventArgs
-                                        )
-                                      );
-                                    }}
-                                    type={"time"}
-                                    value={
-                                      generateStateValueProp($state, [
-                                        "textInput8",
-                                        "value"
-                                      ]) ?? ""
-                                    }
-                                  />
-                                </FormItemWrapper>
+                                    name={"EndTime"}
+                                    preserve={false}
+                                  >
+                                    <TextInput
+                                      data-plasmic-name={"textInput8"}
+                                      data-plasmic-override={
+                                        overrides.textInput8
+                                      }
+                                      className={classNames(
+                                        "__wab_instance",
+                                        sty.textInput8,
+                                        {
+                                          [sty.textInput8eventStep_step2]:
+                                            hasVariant(
+                                              $state,
+                                              "eventStep",
+                                              "step2"
+                                            )
+                                        }
+                                      )}
+                                      endIcon={
+                                        <CheckSvgIcon
+                                          className={classNames(
+                                            projectcss.all,
+                                            sty.svg__ni7Xy
+                                          )}
+                                          role={"img"}
+                                        />
+                                      }
+                                      onChange={(...eventArgs) => {
+                                        generateStateOnChangeProp($state, [
+                                          "textInput8",
+                                          "value"
+                                        ])(
+                                          (e => e.target?.value).apply(
+                                            null,
+                                            eventArgs
+                                          )
+                                        );
+                                      }}
+                                      type={"time"}
+                                      value={
+                                        generateStateValueProp($state, [
+                                          "textInput8",
+                                          "value"
+                                        ]) ?? ""
+                                      }
+                                    />
+                                  </FormItemWrapper>
+                                </Stack__>
                                 <div
                                   className={classNames(
                                     projectcss.all,
@@ -2178,20 +2286,39 @@ function PlasmicCreateEvent__RenderFunc(props: {
                             const actionArgs = {
                               dataOp: {
                                 sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
-                                opId: "bdc77f49-08af-4bdb-bd7e-679d34c8e7b9",
+                                opId: "d8d1565e-e46b-41ed-9529-e9f1a953ca24",
                                 userArgs: {
                                   body: [
                                     $state.eventName.value.name,
                                     $state.eventName.value.description,
                                     $state.eventName.value.category,
                                     $state.eventCalendar.value.EventAddress,
-                                    $state.eventCalendar.value.EventVenue,
-                                    $queries.currentDomainId.data.response.data,
-                                    localStorage.getItem("uploadedFileId")
+                                    $state.eventCalendar.value.EventLocation,
+                                    $queries.currentDomainId.data.response
+                                      .data[0].id,
+                                    localStorage.getItem("uploadedFileId"),
+                                    (() => {
+                                      const storedLocation =
+                                        sessionStorage.getItem(
+                                          "selectedLocation"
+                                        );
+                                      const { latitude } =
+                                        JSON.parse(storedLocation);
+                                      return latitude;
+                                    })(),
+                                    (() => {
+                                      const storedLocation =
+                                        sessionStorage.getItem(
+                                          "selectedLocation"
+                                        );
+                                      const { longitude } =
+                                        JSON.parse(storedLocation);
+                                      return longitude;
+                                    })()
                                   ]
                                 },
                                 cacheKey: null,
-                                invalidatedKeys: ["plasmic_refresh_all"],
+                                invalidatedKeys: [],
                                 roleId: null
                               }
                             };
@@ -2722,13 +2849,25 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                 <div
                                   className={classNames(
                                     projectcss.all,
-                                    sty.freeBox__dS70F
+                                    sty.freeBox__dS70F,
+                                    {
+                                      [sty.freeBoxeventStep_step3__dS70FEmNtK]:
+                                        hasVariant($state, "eventStep", "step3")
+                                    }
                                   )}
                                 >
                                   <div
                                     className={classNames(
                                       projectcss.all,
-                                      sty.freeBox__pVl2C
+                                      sty.freeBox__pVl2C,
+                                      {
+                                        [sty.freeBoxeventStep_step3__pVl2CEmNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
                                     )}
                                   >
                                     <FormItemWrapper
@@ -2760,15 +2899,15 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                       preserve={false}
                                     >
                                       <Select
-                                        data-plasmic-name={"select2"}
+                                        data-plasmic-name={"selectTicketType"}
                                         data-plasmic-override={
-                                          overrides.select2
+                                          overrides.selectTicketType
                                         }
                                         className={classNames(
                                           "__wab_instance",
-                                          sty.select2,
+                                          sty.selectTicketType,
                                           {
-                                            [sty.select2eventStep_step3]:
+                                            [sty.selectTicketTypeeventStep_step3]:
                                               hasVariant(
                                                 $state,
                                                 "eventStep",
@@ -2777,24 +2916,24 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                           }
                                         )}
                                         dateId={generateStateValueProp($state, [
-                                          "select2",
+                                          "selectTicketType",
                                           "dateId"
                                         ])}
                                         onChange={(...eventArgs) => {
                                           generateStateOnChangeProp($state, [
-                                            "select2",
+                                            "selectTicketType",
                                             "value"
                                           ])(eventArgs[0]);
                                         }}
                                         onDateIdChange2={(...eventArgs) => {
                                           generateStateOnChangeProp($state, [
-                                            "select2",
+                                            "selectTicketType",
                                             "dateId"
                                           ])(eventArgs[0]);
                                         }}
                                         onTicketIdChange={(...eventArgs) => {
                                           generateStateOnChangeProp($state, [
-                                            "select2",
+                                            "selectTicketType",
                                             "ticketId"
                                           ])(eventArgs[0]);
                                         }}
@@ -2816,10 +2955,10 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                         })()}
                                         ticketId={generateStateValueProp(
                                           $state,
-                                          ["select2", "ticketId"]
+                                          ["selectTicketType", "ticketId"]
                                         )}
                                         value={generateStateValueProp($state, [
-                                          "select2",
+                                          "selectTicketType",
                                           "value"
                                         ])}
                                       />
@@ -2828,7 +2967,15 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                   <div
                                     className={classNames(
                                       projectcss.all,
-                                      sty.freeBox__w2UwW
+                                      sty.freeBox__w2UwW,
+                                      {
+                                        [sty.freeBoxeventStep_step3__w2UwWemNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
                                     )}
                                   >
                                     <FormItemWrapper
@@ -2909,7 +3056,15 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                   <div
                                     className={classNames(
                                       projectcss.all,
-                                      sty.freeBox__g9DxJ
+                                      sty.freeBox__g9DxJ,
+                                      {
+                                        [sty.freeBoxeventStep_step3__g9DxJemNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
                                     )}
                                   >
                                     <FormItemWrapper
@@ -2917,6 +3072,7 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                         "__wab_instance",
                                         sty.formField__aQW
                                       )}
+                                      initialValue={"0"}
                                       label={
                                         <div
                                           className={classNames(
@@ -2931,6 +3087,16 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                       name={"TicketQuantity0"}
                                       noLabel={true}
                                       preserve={false}
+                                      rules={[
+                                        {
+                                          ruleType: "advanced",
+                                          custom: (rule, value) => {
+                                            return value >= 0;
+                                          },
+                                          message:
+                                            "Value should be major than 0"
+                                        }
+                                      ]}
                                     >
                                       <TextInput
                                         data-plasmic-name={"textInput5"}
@@ -2990,7 +3156,15 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                   <div
                                     className={classNames(
                                       projectcss.all,
-                                      sty.freeBox__qrtvl
+                                      sty.freeBox__qrtvl,
+                                      {
+                                        [sty.freeBoxeventStep_step3__qrtvlemNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
                                     )}
                                   >
                                     <FormItemWrapper
@@ -3006,6 +3180,7 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                             )
                                         }
                                       )}
+                                      initialValue={0}
                                       label={
                                         <div
                                           className={classNames(
@@ -3020,61 +3195,89 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                       name={"TicketPrice0"}
                                       noLabel={true}
                                       preserve={false}
+                                      rules={[
+                                        {
+                                          ruleType: "advanced",
+                                          custom: (rule, value) => {
+                                            return value >= 0;
+                                          },
+                                          message:
+                                            "Value should be major than 0"
+                                        }
+                                      ]}
                                     >
-                                      <TextInput
-                                        data-plasmic-name={"textInput6"}
-                                        data-plasmic-override={
-                                          overrides.textInput6
-                                        }
+                                      <Stack__
+                                        as={"div"}
+                                        hasGap={true}
                                         className={classNames(
-                                          "__wab_instance",
-                                          sty.textInput6,
-                                          {
-                                            [sty.textInput6eventStep_step3]:
-                                              hasVariant(
-                                                $state,
-                                                "eventStep",
-                                                "step3"
-                                              )
-                                          }
+                                          projectcss.all,
+                                          sty.freeBox___9U23U
                                         )}
-                                        endIcon={
-                                          <CheckSvgIcon
-                                            className={classNames(
-                                              projectcss.all,
-                                              sty.svg___7FQoh,
-                                              {
-                                                [sty.svgeventStep_step3___7FQohemNtK]:
-                                                  hasVariant(
-                                                    $state,
-                                                    "eventStep",
-                                                    "step3"
-                                                  )
-                                              }
-                                            )}
-                                            role={"img"}
-                                          />
-                                        }
-                                        onChange={(...eventArgs) => {
-                                          generateStateOnChangeProp($state, [
-                                            "textInput6",
-                                            "value"
-                                          ])(
-                                            (e => e.target?.value).apply(
-                                              null,
-                                              eventArgs
-                                            )
-                                          );
-                                        }}
-                                        placeholder={"0"}
-                                        type={"number"}
-                                        value={
-                                          generateStateValueProp($state, [
-                                            "textInput6",
-                                            "value"
-                                          ]) ?? ""
-                                        }
-                                      />
+                                      >
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__am5Jx
+                                          )}
+                                        >
+                                          {"$"}
+                                        </div>
+                                        <TextInput
+                                          data-plasmic-name={"textInput6"}
+                                          data-plasmic-override={
+                                            overrides.textInput6
+                                          }
+                                          className={classNames(
+                                            "__wab_instance",
+                                            sty.textInput6,
+                                            {
+                                              [sty.textInput6eventStep_step3]:
+                                                hasVariant(
+                                                  $state,
+                                                  "eventStep",
+                                                  "step3"
+                                                )
+                                            }
+                                          )}
+                                          endIcon={
+                                            <CheckSvgIcon
+                                              className={classNames(
+                                                projectcss.all,
+                                                sty.svg___7FQoh,
+                                                {
+                                                  [sty.svgeventStep_step3___7FQohemNtK]:
+                                                    hasVariant(
+                                                      $state,
+                                                      "eventStep",
+                                                      "step3"
+                                                    )
+                                                }
+                                              )}
+                                              role={"img"}
+                                            />
+                                          }
+                                          onChange={(...eventArgs) => {
+                                            generateStateOnChangeProp($state, [
+                                              "textInput6",
+                                              "value"
+                                            ])(
+                                              (e => e.target?.value).apply(
+                                                null,
+                                                eventArgs
+                                              )
+                                            );
+                                          }}
+                                          placeholder={"0"}
+                                          type={"number"}
+                                          value={
+                                            generateStateValueProp($state, [
+                                              "textInput6",
+                                              "value"
+                                            ]) ?? ""
+                                          }
+                                        />
+                                      </Stack__>
                                     </FormItemWrapper>
                                   </div>
                                   <Stack__
@@ -3089,6 +3292,12 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                             $state,
                                             "eventStep",
                                             "step2"
+                                          ),
+                                        [sty.freeBoxeventStep_step3__blv8LemNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
                                           )
                                       }
                                     )}
@@ -8247,7 +8456,7 @@ function PlasmicCreateEvent__RenderFunc(props: {
                           }
                           submitsForm={true}
                         >
-                          {"Submit event"}
+                          {"Submit "}
                         </Button>
                       </Stack__>
                     </FormWrapper>
@@ -8284,6 +8493,7 @@ const PlasmicDescendants = {
     "textInput",
     "textArea",
     "select",
+    "addressAutocomplete",
     "textInput2",
     "textInput3",
     "dragAndDropUploader",
@@ -8296,7 +8506,7 @@ const PlasmicDescendants = {
     "textInput8",
     "eventCalendar2",
     "paidFormList",
-    "select2",
+    "selectTicketType",
     "textInput4",
     "textInput5",
     "textInput6",
@@ -8351,6 +8561,7 @@ const PlasmicDescendants = {
     "textInput",
     "textArea",
     "select",
+    "addressAutocomplete",
     "textInput2",
     "textInput3",
     "dragAndDropUploader",
@@ -8363,7 +8574,7 @@ const PlasmicDescendants = {
     "textInput8",
     "eventCalendar2",
     "paidFormList",
-    "select2",
+    "selectTicketType",
     "textInput4",
     "textInput5",
     "textInput6",
@@ -8415,6 +8626,7 @@ const PlasmicDescendants = {
     "textInput",
     "textArea",
     "select",
+    "addressAutocomplete",
     "textInput2",
     "textInput3",
     "dragAndDropUploader",
@@ -8427,7 +8639,7 @@ const PlasmicDescendants = {
     "textInput8",
     "eventCalendar2",
     "paidFormList",
-    "select2",
+    "selectTicketType",
     "textInput4",
     "textInput5",
     "textInput6",
@@ -8477,6 +8689,7 @@ const PlasmicDescendants = {
     "textInput",
     "textArea",
     "select",
+    "addressAutocomplete",
     "textInput2",
     "textInput3",
     "dragAndDropUploader",
@@ -8485,6 +8698,7 @@ const PlasmicDescendants = {
   textInput: ["textInput"],
   textArea: ["textArea"],
   select: ["select"],
+  addressAutocomplete: ["addressAutocomplete"],
   textInput2: ["textInput2"],
   textInput3: ["textInput3"],
   dragAndDropUploader: ["dragAndDropUploader"],
@@ -8511,7 +8725,7 @@ const PlasmicDescendants = {
   eventCalendar2: [
     "eventCalendar2",
     "paidFormList",
-    "select2",
+    "selectTicketType",
     "textInput4",
     "textInput5",
     "textInput6",
@@ -8558,12 +8772,12 @@ const PlasmicDescendants = {
   ],
   paidFormList: [
     "paidFormList",
-    "select2",
+    "selectTicketType",
     "textInput4",
     "textInput5",
     "textInput6"
   ],
-  select2: ["select2"],
+  selectTicketType: ["selectTicketType"],
   textInput4: ["textInput4"],
   textInput5: ["textInput5"],
   textInput6: ["textInput6"],
@@ -8670,6 +8884,7 @@ type NodeDefaultElementType = {
   textInput: typeof TextInput;
   textArea: typeof AntdTextArea;
   select: typeof Select;
+  addressAutocomplete: typeof AddressAutocomplete;
   textInput2: typeof TextInput;
   textInput3: typeof TextInput;
   dragAndDropUploader: typeof DragAndDropUploader;
@@ -8682,7 +8897,7 @@ type NodeDefaultElementType = {
   textInput8: typeof TextInput;
   eventCalendar2: typeof FormWrapper;
   paidFormList: typeof FormListWrapper;
-  select2: typeof Select;
+  selectTicketType: typeof Select;
   textInput4: typeof TextInput;
   textInput5: typeof TextInput;
   textInput6: typeof TextInput;
@@ -8797,6 +9012,7 @@ export const PlasmicCreateEvent = Object.assign(
     textInput: makeNodeComponent("textInput"),
     textArea: makeNodeComponent("textArea"),
     select: makeNodeComponent("select"),
+    addressAutocomplete: makeNodeComponent("addressAutocomplete"),
     textInput2: makeNodeComponent("textInput2"),
     textInput3: makeNodeComponent("textInput3"),
     dragAndDropUploader: makeNodeComponent("dragAndDropUploader"),
@@ -8809,7 +9025,7 @@ export const PlasmicCreateEvent = Object.assign(
     textInput8: makeNodeComponent("textInput8"),
     eventCalendar2: makeNodeComponent("eventCalendar2"),
     paidFormList: makeNodeComponent("paidFormList"),
-    select2: makeNodeComponent("select2"),
+    selectTicketType: makeNodeComponent("selectTicketType"),
     textInput4: makeNodeComponent("textInput4"),
     textInput5: makeNodeComponent("textInput5"),
     textInput6: makeNodeComponent("textInput6"),

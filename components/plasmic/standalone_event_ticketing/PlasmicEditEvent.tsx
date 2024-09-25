@@ -76,12 +76,16 @@ import TextInput from "../../TextInput"; // plasmic-import: KfDAmu4lid5o/compone
 import { AntdTextArea } from "@plasmicpkgs/antd5/skinny/registerInput";
 import { inputHelpers as AntdTextArea_Helpers } from "@plasmicpkgs/antd5/skinny/registerInput";
 import Select from "../../Select"; // plasmic-import: iiMExIyx9xlD/component
+import AddressAutocomplete from "../../AddressAutocomplete"; // plasmic-import: -iO7aBgdbUWd/component
 import Button from "../../Button"; // plasmic-import: 7c1YDuGGoKuq/component
 import { AntdDatePicker } from "@plasmicpkgs/antd5/skinny/registerDatePicker";
 import { datePickerHelpers as AntdDatePicker_Helpers } from "@plasmicpkgs/antd5/skinny/registerDatePicker";
 import { FormListWrapper } from "@plasmicpkgs/antd5/skinny/FormList";
 import Footer from "../../Footer"; // plasmic-import: THeG5BcdbXeZ/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
+
+import { LocaleValue, useLocale } from "./PlasmicGlobalVariant__Locale"; // plasmic-import: IjXfRSRLVt5J/globalVariant
+import { useScreenVariants as useScreenVariantswiZsHgbT5CnT } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: wiZSHgbT5cnT/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -131,6 +135,7 @@ export type PlasmicEditEvent__OverridesType = {
   textInput?: Flex__<typeof TextInput>;
   textArea?: Flex__<typeof AntdTextArea>;
   select?: Flex__<typeof Select>;
+  addressAutocomplete?: Flex__<typeof AddressAutocomplete>;
   textInput2?: Flex__<typeof TextInput>;
   textInput3?: Flex__<typeof TextInput>;
   selectStartDate?: Flex__<typeof AntdDatePicker>;
@@ -540,6 +545,11 @@ function PlasmicEditEvent__RenderFunc(props: {
     $queries = new$Queries;
   }
 
+  const globalVariants = ensureGlobalVariants({
+    locale: useLocale(),
+    screen: useScreenVariantswiZsHgbT5CnT()
+  });
+
   return (
     <React.Fragment>
       <Head>
@@ -593,6 +603,11 @@ function PlasmicEditEvent__RenderFunc(props: {
                 $state,
                 "eventStep",
                 "step3"
+              ),
+              [sty.rootglobal_locale_es]: hasVariant(
+                globalVariants,
+                "locale",
+                "es"
               )
             }
           )}
@@ -601,6 +616,11 @@ function PlasmicEditEvent__RenderFunc(props: {
             data-plasmic-name={"navbar2"}
             data-plasmic-override={overrides.navbar2}
             className={classNames("__wab_instance", sty.navbar2, {
+              [sty.navbar2eventStep_step2]: hasVariant(
+                $state,
+                "eventStep",
+                "step2"
+              ),
               [sty.navbar2eventStep_step3]: hasVariant(
                 $state,
                 "eventStep",
@@ -706,6 +726,11 @@ function PlasmicEditEvent__RenderFunc(props: {
                         $state,
                         "eventStep",
                         "step3"
+                      ),
+                      [sty.eventNameglobal_locale_es]: hasVariant(
+                        globalVariants,
+                        "locale",
+                        "es"
                       )
                     }),
                     extendedOnValuesChange:
@@ -737,10 +762,30 @@ function PlasmicEditEvent__RenderFunc(props: {
                                 opId: "acde44a6-6de5-4d80-86f6-50818a8a5274",
                                 userArgs: {
                                   path: [$ctx.params["event-id"]],
-                                  body: [$state.eventName.value]
+                                  body: [
+                                    (() => {
+                                      const storedLocation =
+                                        sessionStorage.getItem(
+                                          "selectedLocation"
+                                        );
+                                      const {
+                                        formattedAddress = "",
+                                        latitude = "",
+                                        longitude = ""
+                                      } = JSON.parse(storedLocation) || {};
+                                      return {
+                                        ...$state.eventName.value,
+                                        FormattedAddress: formattedAddress,
+                                        lat: latitude,
+                                        lng: longitude
+                                      };
+                                    })()
+                                  ]
                                 },
                                 cacheKey: null,
-                                invalidatedKeys: ["plasmic_refresh_all"],
+                                invalidatedKeys: [
+                                  "11fa52f7-caeb-4d22-b3ca-d10f617493bc"
+                                ],
                                 roleId: "8b269ef1-445f-41e6-bfa7-17c5a62cd5d3"
                               }
                             };
@@ -773,31 +818,6 @@ function PlasmicEditEvent__RenderFunc(props: {
                         $steps["updateEventDate"] = await $steps[
                           "updateEventDate"
                         ];
-                      }
-
-                      $steps["refreshData"] = true
-                        ? (() => {
-                            const actionArgs = {
-                              queryInvalidation: [
-                                "1890dbd3-76f5-416d-b1ff-c69825ef5cdf",
-                                "11fa52f7-caeb-4d22-b3ca-d10f617493bc",
-                                "9fe03a9f-28d6-4181-bb32-30d6d6adf115"
-                              ]
-                            };
-                            return (async ({ queryInvalidation }) => {
-                              if (!queryInvalidation) {
-                                return;
-                              }
-                              await plasmicInvalidate(queryInvalidation);
-                            })?.apply(null, [actionArgs]);
-                          })()
-                        : undefined;
-                      if (
-                        $steps["refreshData"] != null &&
-                        typeof $steps["refreshData"] === "object" &&
-                        typeof $steps["refreshData"].then === "function"
-                      ) {
-                        $steps["refreshData"] = await $steps["refreshData"];
                       }
                     },
                     onIsSubmittingChange:
@@ -1139,6 +1159,19 @@ function PlasmicEditEvent__RenderFunc(props: {
                             "__wab_instance",
                             sty.textInput
                           )}
+                          endIcon={
+                            <CheckSvgIcon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg__mEg0,
+                                {
+                                  [sty.svgeventStep_step2__mEg0OVvWp]:
+                                    hasVariant($state, "eventStep", "step2")
+                                }
+                              )}
+                              role={"img"}
+                            />
+                          }
                           onChange={(...eventArgs) => {
                             generateStateOnChangeProp($state, [
                               "textInput",
@@ -1305,6 +1338,46 @@ function PlasmicEditEvent__RenderFunc(props: {
                           ])}
                         />
                       </FormItemWrapper>
+                      <Stack__
+                        as={"div"}
+                        hasGap={true}
+                        className={classNames(
+                          projectcss.all,
+                          sty.freeBox___7AIql
+                        )}
+                      >
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__ziblP
+                          )}
+                        >
+                          {"Address"}
+                        </div>
+                        <AddressAutocomplete
+                          data-plasmic-name={"addressAutocomplete"}
+                          data-plasmic-override={overrides.addressAutocomplete}
+                          className={classNames(
+                            "__wab_instance",
+                            sty.addressAutocomplete
+                          )}
+                          initialValue={(() => {
+                            try {
+                              return $queries.eventData.data.response.data
+                                .FormattedAddress;
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
+                        />
+                      </Stack__>
                       <FormItemWrapper
                         className={classNames(
                           "__wab_instance",
@@ -1328,7 +1401,7 @@ function PlasmicEditEvent__RenderFunc(props: {
                             throw e;
                           }
                         })()}
-                        label={"Address"}
+                        label={"Address details"}
                         name={"EventAddress"}
                       >
                         <TextInput
@@ -1353,6 +1426,7 @@ function PlasmicEditEvent__RenderFunc(props: {
                               "value"
                             ])((e => e.target?.value).apply(null, eventArgs));
                           }}
+                          placeholder={"Address details if needed"}
                           value={
                             generateStateValueProp($state, [
                               "textInput2",
@@ -1385,7 +1459,7 @@ function PlasmicEditEvent__RenderFunc(props: {
                           }
                         })()}
                         label={"Venue name"}
-                        name={"EventVenue"}
+                        name={"EventLocation"}
                       >
                         <TextInput
                           data-plasmic-name={"textInput3"}
@@ -2290,6 +2364,8 @@ function PlasmicEditEvent__RenderFunc(props: {
                           projectcss.all,
                           sty.freeBox__aqCaJ,
                           {
+                            [sty.freeBoxeventStep_step2__aqCaJoVvWp]:
+                              hasVariant($state, "eventStep", "step2"),
                             [sty.freeBoxeventStep_step3__aqCaJbbMwL]:
                               hasVariant($state, "eventStep", "step3")
                           }
@@ -2761,6 +2837,8 @@ function PlasmicEditEvent__RenderFunc(props: {
                             projectcss.all,
                             sty.freeBox__n6YNf,
                             {
+                              [sty.freeBoxeventStep_step2__n6YNfOVvWp]:
+                                hasVariant($state, "eventStep", "step2"),
                               [sty.freeBoxeventStep_step3__n6YNfbbMwL]:
                                 hasVariant($state, "eventStep", "step3")
                             }
@@ -3256,6 +3334,11 @@ function PlasmicEditEvent__RenderFunc(props: {
                             $state,
                             "eventStep",
                             "step2"
+                          ),
+                          [sty.buttoneventStep_step3__t14PcbbMwL]: hasVariant(
+                            $state,
+                            "eventStep",
+                            "step3"
                           )
                         }
                       )}
@@ -3858,7 +3941,13 @@ function PlasmicEditEvent__RenderFunc(props: {
                 </div>
                 {(() => {
                   const child$Props = {
-                    className: classNames("__wab_instance", sty.editTickets),
+                    className: classNames("__wab_instance", sty.editTickets, {
+                      [sty.editTicketseventStep_step3]: hasVariant(
+                        $state,
+                        "eventStep",
+                        "step3"
+                      )
+                    }),
                     extendedOnValuesChange:
                       generateStateOnChangePropForCodeComponents(
                         $state,
@@ -3916,7 +4005,11 @@ function PlasmicEditEvent__RenderFunc(props: {
                       <div
                         className={classNames(
                           projectcss.all,
-                          sty.freeBox___0AhDu
+                          sty.freeBox___0AhDu,
+                          {
+                            [sty.freeBoxeventStep_step3___0AhDubbMwL]:
+                              hasVariant($state, "eventStep", "step3")
+                          }
                         )}
                       >
                         <div
@@ -3925,7 +4018,9 @@ function PlasmicEditEvent__RenderFunc(props: {
                             sty.freeBox__dQdvF,
                             {
                               [sty.freeBoxeventStep_step2__dQdvFoVvWp]:
-                                hasVariant($state, "eventStep", "step2")
+                                hasVariant($state, "eventStep", "step2"),
+                              [sty.freeBoxeventStep_step3__dQdvFbbMwL]:
+                                hasVariant($state, "eventStep", "step3")
                             }
                           )}
                         >
@@ -3942,7 +4037,11 @@ function PlasmicEditEvent__RenderFunc(props: {
                         <div
                           className={classNames(
                             projectcss.all,
-                            sty.freeBox__dWCwZ
+                            sty.freeBox__dWCwZ,
+                            {
+                              [sty.freeBoxeventStep_step3__dWCwZbbMwL]:
+                                hasVariant($state, "eventStep", "step3")
+                            }
                           )}
                         >
                           <div
@@ -3958,7 +4057,11 @@ function PlasmicEditEvent__RenderFunc(props: {
                         <div
                           className={classNames(
                             projectcss.all,
-                            sty.freeBox__trwAy
+                            sty.freeBox__trwAy,
+                            {
+                              [sty.freeBoxeventStep_step3__trwAybbMwL]:
+                                hasVariant($state, "eventStep", "step3")
+                            }
                           )}
                         >
                           <div
@@ -3974,7 +4077,11 @@ function PlasmicEditEvent__RenderFunc(props: {
                         <div
                           className={classNames(
                             projectcss.all,
-                            sty.freeBox__pxPm0
+                            sty.freeBox__pxPm0,
+                            {
+                              [sty.freeBoxeventStep_step3__pxPm0BbMwL]:
+                                hasVariant($state, "eventStep", "step3")
+                            }
                           )}
                         >
                           <div
@@ -3990,7 +4097,11 @@ function PlasmicEditEvent__RenderFunc(props: {
                         <div
                           className={classNames(
                             projectcss.all,
-                            sty.freeBox___69Vl7
+                            sty.freeBox___69Vl7,
+                            {
+                              [sty.freeBoxeventStep_step3___69Vl7BbMwL]:
+                                hasVariant($state, "eventStep", "step3")
+                            }
                           )}
                         >
                           <div
@@ -4031,7 +4142,9 @@ function PlasmicEditEvent__RenderFunc(props: {
                               sty.freeBox___37Jed,
                               {
                                 [sty.freeBoxeventStep_step2___37JedOVvWp]:
-                                  hasVariant($state, "eventStep", "step2")
+                                  hasVariant($state, "eventStep", "step2"),
+                                [sty.freeBoxeventStep_step3___37JedbbMwL]:
+                                  hasVariant($state, "eventStep", "step3")
                               }
                             )}
                             key={currentIndex}
@@ -4122,14 +4235,26 @@ function PlasmicEditEvent__RenderFunc(props: {
                                 <div
                                   className={classNames(
                                     projectcss.all,
-                                    sty.freeBox__xi8K
+                                    sty.freeBox__xi8K,
+                                    {
+                                      [sty.freeBoxeventStep_step3__xi8KbbMwL]:
+                                        hasVariant($state, "eventStep", "step3")
+                                    }
                                   )}
                                   key={currentIndex}
                                 >
                                   <div
                                     className={classNames(
                                       projectcss.all,
-                                      sty.freeBox__uxNuf
+                                      sty.freeBox__uxNuf,
+                                      {
+                                        [sty.freeBoxeventStep_step3__uxNufbbMwL]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
                                     )}
                                   >
                                     {(() => {
@@ -4292,7 +4417,15 @@ function PlasmicEditEvent__RenderFunc(props: {
                                     }
                                     className={classNames(
                                       projectcss.all,
-                                      sty.inputTicketName
+                                      sty.inputTicketName,
+                                      {
+                                        [sty.inputTicketNameeventStep_step3]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
                                     )}
                                   >
                                     {(() => {
@@ -4376,7 +4509,15 @@ function PlasmicEditEvent__RenderFunc(props: {
                                   <div
                                     className={classNames(
                                       projectcss.all,
-                                      sty.freeBox__xjv0R
+                                      sty.freeBox__xjv0R,
+                                      {
+                                        [sty.freeBoxeventStep_step3__xjv0RbbMwL]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
                                     )}
                                   >
                                     {(() => {
@@ -4463,7 +4604,15 @@ function PlasmicEditEvent__RenderFunc(props: {
                                   <div
                                     className={classNames(
                                       projectcss.all,
-                                      sty.freeBox__wrpMx
+                                      sty.freeBox__wrpMx,
+                                      {
+                                        [sty.freeBoxeventStep_step3__wrpMXbbMwL]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
                                     )}
                                   >
                                     {(() => {
@@ -4550,7 +4699,15 @@ function PlasmicEditEvent__RenderFunc(props: {
                                     hasGap={true}
                                     className={classNames(
                                       projectcss.all,
-                                      sty.freeBox__fA2Ea
+                                      sty.freeBox__fA2Ea,
+                                      {
+                                        [sty.freeBoxeventStep_step3__fA2EabbMwL]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
                                     )}
                                   >
                                     <div
@@ -4633,7 +4790,11 @@ function PlasmicEditEvent__RenderFunc(props: {
                             <Button
                               className={classNames(
                                 "__wab_instance",
-                                sty.button__ly9Ue
+                                sty.button__ly9Ue,
+                                {
+                                  [sty.buttoneventStep_step3__ly9UebbMwL]:
+                                    hasVariant($state, "eventStep", "step3")
+                                }
                               )}
                               color={"softSand"}
                               onClick={async event => {
@@ -4721,7 +4882,13 @@ function PlasmicEditEvent__RenderFunc(props: {
                   );
                 })()}
                 <Button
-                  className={classNames("__wab_instance", sty.button__k5QJm)}
+                  className={classNames("__wab_instance", sty.button__k5QJm, {
+                    [sty.buttoneventStep_step3__k5QJmbbMwL]: hasVariant(
+                      $state,
+                      "eventStep",
+                      "step3"
+                    )
+                  })}
                   color={"blue"}
                   onClick={async event => {
                     const $steps = {};
@@ -4835,6 +5002,7 @@ const PlasmicDescendants = {
     "textInput",
     "textArea",
     "select",
+    "addressAutocomplete",
     "textInput2",
     "textInput3",
     "selectStartDate",
@@ -4864,6 +5032,7 @@ const PlasmicDescendants = {
     "textInput",
     "textArea",
     "select",
+    "addressAutocomplete",
     "textInput2",
     "textInput3",
     "selectStartDate",
@@ -4890,6 +5059,7 @@ const PlasmicDescendants = {
     "textInput",
     "textArea",
     "select",
+    "addressAutocomplete",
     "textInput2",
     "textInput3",
     "selectStartDate",
@@ -4908,12 +5078,14 @@ const PlasmicDescendants = {
     "textInput",
     "textArea",
     "select",
+    "addressAutocomplete",
     "textInput2",
     "textInput3"
   ],
   textInput: ["textInput"],
   textArea: ["textArea"],
   select: ["select"],
+  addressAutocomplete: ["addressAutocomplete"],
   textInput2: ["textInput2"],
   textInput3: ["textInput3"],
   selectStartDate: ["selectStartDate"],
@@ -4960,6 +5132,7 @@ type NodeDefaultElementType = {
   textInput: typeof TextInput;
   textArea: typeof AntdTextArea;
   select: typeof Select;
+  addressAutocomplete: typeof AddressAutocomplete;
   textInput2: typeof TextInput;
   textInput3: typeof TextInput;
   selectStartDate: typeof AntdDatePicker;
@@ -5066,6 +5239,7 @@ export const PlasmicEditEvent = Object.assign(
     textInput: makeNodeComponent("textInput"),
     textArea: makeNodeComponent("textArea"),
     select: makeNodeComponent("select"),
+    addressAutocomplete: makeNodeComponent("addressAutocomplete"),
     textInput2: makeNodeComponent("textInput2"),
     textInput3: makeNodeComponent("textInput3"),
     selectStartDate: makeNodeComponent("selectStartDate"),

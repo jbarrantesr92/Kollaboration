@@ -85,6 +85,7 @@ import { LottieWrapper } from "@plasmicpkgs/lottie-react";
 import Footer from "../../Footer"; // plasmic-import: THeG5BcdbXeZ/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
+import { useScreenVariants as useScreenVariantswiZsHgbT5CnT } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: wiZSHgbT5cnT/globalVariant
 import { LocaleValue, useLocale } from "./PlasmicGlobalVariant__Locale"; // plasmic-import: IjXfRSRLVt5J/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -502,6 +503,7 @@ function PlasmicEvent__RenderFunc(props: {
   }
 
   const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantswiZsHgbT5CnT(),
     locale: useLocale()
   });
 
@@ -960,6 +962,22 @@ function PlasmicEvent__RenderFunc(props: {
                             "__wab_instance",
                             sty.mapComponent
                           )}
+                          location={(() => {
+                            try {
+                              return {
+                                lng: $queries.getEvent.data.response.data.lng,
+                                lat: $queries.getEvent.data.response.data.lat
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()}
                         />
                       </div>
                     </div>

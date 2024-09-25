@@ -101,6 +101,8 @@ export type PlasmicAuthForm__OverridesType = {
   root?: Flex__<"div">;
   credentialsForm?: Flex__<typeof FormWrapper>;
   textInput?: Flex__<typeof TextInput>;
+  textInput3?: Flex__<typeof TextInput>;
+  textInput2?: Flex__<typeof TextInput>;
   passwordInput?: Flex__<typeof TextInput>;
   button?: Flex__<typeof Button>;
   lottie?: Flex__<typeof LottieWrapper>;
@@ -208,6 +210,18 @@ function PlasmicAuthForm__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "textInput2.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "textInput3.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
       }
     ],
     [$props, $ctx, $refs]
@@ -236,7 +250,8 @@ function PlasmicAuthForm__RenderFunc(props: {
         sty.root,
         {
           [sty.rootmode_checkEmail]: hasVariant($state, "mode", "checkEmail"),
-          [sty.rootmode_signIn]: hasVariant($state, "mode", "signIn")
+          [sty.rootmode_signIn]: hasVariant($state, "mode", "signIn"),
+          [sty.rootmode_signUp]: hasVariant($state, "mode", "signUp")
         }
       )}
     >
@@ -368,7 +383,13 @@ function PlasmicAuthForm__RenderFunc(props: {
                 />
               </div>
               <FormItemWrapper
-                className={classNames("__wab_instance", sty.formField___8AXBz)}
+                className={classNames("__wab_instance", sty.formField___8AXBz, {
+                  [sty.formFieldmode_signIn___8AXBzEuSr]: hasVariant(
+                    $state,
+                    "mode",
+                    "signIn"
+                  )
+                })}
                 label={
                   <div
                     className={classNames(
@@ -400,6 +421,140 @@ function PlasmicAuthForm__RenderFunc(props: {
                   placeholder={"Enter your email adress"}
                   value={
                     generateStateValueProp($state, ["textInput", "value"]) ?? ""
+                  }
+                />
+              </FormItemWrapper>
+            </Stack__>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__qiidh, {
+                [sty.freeBoxmode_signIn__qiidhEuSr]: hasVariant(
+                  $state,
+                  "mode",
+                  "signIn"
+                ),
+                [sty.freeBoxmode_signUp__qiidhUj4Os]: hasVariant(
+                  $state,
+                  "mode",
+                  "signUp"
+                )
+              })}
+            >
+              <div className={classNames(projectcss.all, sty.freeBox__ymKWg)}>
+                <Icon5Icon
+                  className={classNames(projectcss.all, sty.svg__qy45W)}
+                  role={"img"}
+                />
+              </div>
+              <FormItemWrapper
+                className={classNames("__wab_instance", sty.formField___2MvUv, {
+                  [sty.formFieldmode_signIn___2MvUvEuSr]: hasVariant(
+                    $state,
+                    "mode",
+                    "signIn"
+                  )
+                })}
+                hidden={hasVariant($state, "mode", "signIn") ? true : false}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text___0RJvJ
+                    )}
+                  >
+                    {"First name"}
+                  </div>
+                }
+                name={"firstName"}
+              >
+                <TextInput
+                  data-plasmic-name={"textInput3"}
+                  data-plasmic-override={overrides.textInput3}
+                  className={classNames("__wab_instance", sty.textInput3)}
+                  endIcon={
+                    <CheckSvgIcon
+                      className={classNames(projectcss.all, sty.svg__z4XQz)}
+                      role={"img"}
+                    />
+                  }
+                  onChange={(...eventArgs) => {
+                    generateStateOnChangeProp($state, ["textInput3", "value"])(
+                      (e => e.target?.value).apply(null, eventArgs)
+                    );
+                  }}
+                  placeholder={"Enter your email adress"}
+                  value={
+                    generateStateValueProp($state, ["textInput3", "value"]) ??
+                    ""
+                  }
+                />
+              </FormItemWrapper>
+            </Stack__>
+            <Stack__
+              as={"div"}
+              hasGap={true}
+              className={classNames(projectcss.all, sty.freeBox__ioBlp, {
+                [sty.freeBoxmode_signIn__ioBlpEuSr]: hasVariant(
+                  $state,
+                  "mode",
+                  "signIn"
+                ),
+                [sty.freeBoxmode_signUp__ioBlpUj4Os]: hasVariant(
+                  $state,
+                  "mode",
+                  "signUp"
+                )
+              })}
+            >
+              <div className={classNames(projectcss.all, sty.freeBox__hmoDq)}>
+                <Icon5Icon
+                  className={classNames(projectcss.all, sty.svg__epKPm)}
+                  role={"img"}
+                />
+              </div>
+              <FormItemWrapper
+                className={classNames("__wab_instance", sty.formField__p6Etl, {
+                  [sty.formFieldmode_signIn__p6EtlEuSr]: hasVariant(
+                    $state,
+                    "mode",
+                    "signIn"
+                  )
+                })}
+                hidden={hasVariant($state, "mode", "signIn") ? true : false}
+                label={
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__jqHD
+                    )}
+                  >
+                    {"Last name"}
+                  </div>
+                }
+                name={"lastName"}
+              >
+                <TextInput
+                  data-plasmic-name={"textInput2"}
+                  data-plasmic-override={overrides.textInput2}
+                  className={classNames("__wab_instance", sty.textInput2)}
+                  endIcon={
+                    <CheckSvgIcon
+                      className={classNames(projectcss.all, sty.svg__uqncS)}
+                      role={"img"}
+                    />
+                  }
+                  onChange={(...eventArgs) => {
+                    generateStateOnChangeProp($state, ["textInput2", "value"])(
+                      (e => e.target?.value).apply(null, eventArgs)
+                    );
+                  }}
+                  placeholder={"Enter your email adress"}
+                  value={
+                    generateStateValueProp($state, ["textInput2", "value"]) ??
+                    ""
                   }
                 />
               </FormItemWrapper>
@@ -458,6 +613,131 @@ function PlasmicAuthForm__RenderFunc(props: {
                 />
               </FormItemWrapper>
             </Stack__>
+            <div
+              className={classNames(projectcss.all, sty.freeBox__rlv3H, {
+                [sty.freeBoxmode_signUp__rlv3HUj4Os]: hasVariant(
+                  $state,
+                  "mode",
+                  "signUp"
+                )
+              })}
+            >
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text___8EItw,
+                  {
+                    [sty.textmode_signIn___8EItwEuSr]: hasVariant(
+                      $state,
+                      "mode",
+                      "signIn"
+                    )
+                  }
+                )}
+                onClick={async event => {
+                  const $steps = {};
+
+                  $steps["updateCurrentMode"] = true
+                    ? (() => {
+                        const actionArgs = {
+                          variable: {
+                            objRoot: $state,
+                            variablePath: ["currentMode"]
+                          },
+                          operation: 0,
+                          value: "signUp"
+                        };
+                        return (({
+                          variable,
+                          value,
+                          startIndex,
+                          deleteCount
+                        }) => {
+                          if (!variable) {
+                            return;
+                          }
+                          const { objRoot, variablePath } = variable;
+
+                          $stateSet(objRoot, variablePath, value);
+                          return value;
+                        })?.apply(null, [actionArgs]);
+                      })()
+                    : undefined;
+                  if (
+                    $steps["updateCurrentMode"] != null &&
+                    typeof $steps["updateCurrentMode"] === "object" &&
+                    typeof $steps["updateCurrentMode"].then === "function"
+                  ) {
+                    $steps["updateCurrentMode"] = await $steps[
+                      "updateCurrentMode"
+                    ];
+                  }
+                }}
+              >
+                {"Create an account"}
+              </div>
+            </div>
+            {(hasVariant($state, "mode", "signUp") ? true : false) ? (
+              <div
+                className={classNames(projectcss.all, sty.freeBox___39DcW, {
+                  [sty.freeBoxmode_signUp___39DcWUj4Os]: hasVariant(
+                    $state,
+                    "mode",
+                    "signUp"
+                  )
+                })}
+              >
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text___4B5Rl
+                  )}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["updateCurrentMode"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["currentMode"]
+                            },
+                            operation: 0,
+                            value: "signIn"
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateCurrentMode"] != null &&
+                      typeof $steps["updateCurrentMode"] === "object" &&
+                      typeof $steps["updateCurrentMode"].then === "function"
+                    ) {
+                      $steps["updateCurrentMode"] = await $steps[
+                        "updateCurrentMode"
+                      ];
+                    }
+                  }}
+                >
+                  {"Log In to you acount"}
+                </div>
+              </div>
+            ) : null}
             <Stack__
               as={"div"}
               hasGap={true}
@@ -1003,6 +1283,8 @@ const PlasmicDescendants = {
     "root",
     "credentialsForm",
     "textInput",
+    "textInput3",
+    "textInput2",
     "passwordInput",
     "button",
     "lottie"
@@ -1010,11 +1292,15 @@ const PlasmicDescendants = {
   credentialsForm: [
     "credentialsForm",
     "textInput",
+    "textInput3",
+    "textInput2",
     "passwordInput",
     "button",
     "lottie"
   ],
   textInput: ["textInput"],
+  textInput3: ["textInput3"],
+  textInput2: ["textInput2"],
   passwordInput: ["passwordInput"],
   button: ["button"],
   lottie: ["lottie"]
@@ -1026,6 +1312,8 @@ type NodeDefaultElementType = {
   root: "div";
   credentialsForm: typeof FormWrapper;
   textInput: typeof TextInput;
+  textInput3: typeof TextInput;
+  textInput2: typeof TextInput;
   passwordInput: typeof TextInput;
   button: typeof Button;
   lottie: typeof LottieWrapper;
@@ -1093,6 +1381,8 @@ export const PlasmicAuthForm = Object.assign(
     // Helper components rendering sub-elements
     credentialsForm: makeNodeComponent("credentialsForm"),
     textInput: makeNodeComponent("textInput"),
+    textInput3: makeNodeComponent("textInput3"),
+    textInput2: makeNodeComponent("textInput2"),
     passwordInput: makeNodeComponent("passwordInput"),
     button: makeNodeComponent("button"),
     lottie: makeNodeComponent("lottie"),

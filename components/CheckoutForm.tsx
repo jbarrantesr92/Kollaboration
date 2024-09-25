@@ -10,9 +10,11 @@ import { useRouter } from 'next/router';
 
 interface CheckoutFormProps {
   totalAmount: number;
+  donation:number,
+  roundup:boolean
 }
 
-export default function CheckoutForm({ totalAmount }: CheckoutFormProps) {
+export default function CheckoutForm({ totalAmount, donation, roundup }: CheckoutFormProps) {
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
@@ -43,7 +45,7 @@ export default function CheckoutForm({ totalAmount }: CheckoutFormProps) {
     };
 
     fetchClientSecret();
-  }, [totalAmount]);
+  }, [totalAmount, donation, roundup]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -91,6 +93,9 @@ export default function CheckoutForm({ totalAmount }: CheckoutFormProps) {
               body: JSON.stringify({
                 purchaseId,
                 status: 'purchase_complete',
+                totalAmount: totalAmount,
+                donation: donation,
+                roundup:roundup
               }),
             });
 
