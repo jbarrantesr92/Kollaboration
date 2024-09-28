@@ -416,12 +416,6 @@ function PlasmicCreateEvent__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
       },
       {
-        path: "textInput6.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      },
-      {
         path: "dateTickets",
         type: "private",
         variableType: "number",
@@ -737,6 +731,12 @@ function PlasmicCreateEvent__RenderFunc(props: {
       },
       {
         path: "select10.ticketId",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "textInput6.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
@@ -3143,7 +3143,8 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                             )
                                           );
                                         }}
-                                        placeholder={"Quantity"}
+                                        placeholder={"0"}
+                                        type={"number"}
                                         value={
                                           generateStateValueProp($state, [
                                             "textInput5",
@@ -3170,26 +3171,18 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                     <FormItemWrapper
                                       className={classNames(
                                         "__wab_instance",
-                                        sty.formField___4ZVlt,
-                                        {
-                                          [sty.formFieldeventStep_step2___4ZVlt44F2Z]:
-                                            hasVariant(
-                                              $state,
-                                              "eventStep",
-                                              "step2"
-                                            )
-                                        }
+                                        sty.formField__cGBs
                                       )}
-                                      initialValue={0}
+                                      initialValue={"0"}
                                       label={
                                         <div
                                           className={classNames(
                                             projectcss.all,
                                             projectcss.__wab_text,
-                                            sty.text__rSldN
+                                            sty.text__to9Qf
                                           )}
                                         >
-                                          {"Price"}
+                                          {"Quantity"}
                                         </div>
                                       }
                                       name={"TicketPrice0"}
@@ -3206,78 +3199,60 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                         }
                                       ]}
                                     >
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <TextInput
+                                        data-plasmic-name={"textInput6"}
+                                        data-plasmic-override={
+                                          overrides.textInput6
+                                        }
                                         className={classNames(
-                                          projectcss.all,
-                                          sty.freeBox___9U23U
-                                        )}
-                                      >
-                                        <div
-                                          className={classNames(
-                                            projectcss.all,
-                                            projectcss.__wab_text,
-                                            sty.text__am5Jx
-                                          )}
-                                        >
-                                          {"$"}
-                                        </div>
-                                        <TextInput
-                                          data-plasmic-name={"textInput6"}
-                                          data-plasmic-override={
-                                            overrides.textInput6
-                                          }
-                                          className={classNames(
-                                            "__wab_instance",
-                                            sty.textInput6,
-                                            {
-                                              [sty.textInput6eventStep_step3]:
-                                                hasVariant(
-                                                  $state,
-                                                  "eventStep",
-                                                  "step3"
-                                                )
-                                            }
-                                          )}
-                                          endIcon={
-                                            <CheckSvgIcon
-                                              className={classNames(
-                                                projectcss.all,
-                                                sty.svg___7FQoh,
-                                                {
-                                                  [sty.svgeventStep_step3___7FQohemNtK]:
-                                                    hasVariant(
-                                                      $state,
-                                                      "eventStep",
-                                                      "step3"
-                                                    )
-                                                }
-                                              )}
-                                              role={"img"}
-                                            />
-                                          }
-                                          onChange={(...eventArgs) => {
-                                            generateStateOnChangeProp($state, [
-                                              "textInput6",
-                                              "value"
-                                            ])(
-                                              (e => e.target?.value).apply(
-                                                null,
-                                                eventArgs
+                                          "__wab_instance",
+                                          sty.textInput6,
+                                          {
+                                            [sty.textInput6eventStep_step3]:
+                                              hasVariant(
+                                                $state,
+                                                "eventStep",
+                                                "step3"
                                               )
-                                            );
-                                          }}
-                                          placeholder={"0"}
-                                          type={"number"}
-                                          value={
-                                            generateStateValueProp($state, [
-                                              "textInput6",
-                                              "value"
-                                            ]) ?? ""
                                           }
-                                        />
-                                      </Stack__>
+                                        )}
+                                        endIcon={
+                                          <CheckSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__bYtQ4,
+                                              {
+                                                [sty.svgeventStep_step3__bYtQ4EmNtK]:
+                                                  hasVariant(
+                                                    $state,
+                                                    "eventStep",
+                                                    "step3"
+                                                  )
+                                              }
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                        onChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "textInput6",
+                                            "value"
+                                          ])(
+                                            (e => e.target?.value).apply(
+                                              null,
+                                              eventArgs
+                                            )
+                                          );
+                                        }}
+                                        placeholder={"0"}
+                                        type={"number"}
+                                        value={
+                                          generateStateValueProp($state, [
+                                            "textInput6",
+                                            "value"
+                                          ]) ?? ""
+                                        }
+                                      />
                                     </FormItemWrapper>
                                   </div>
                                   <Stack__
@@ -3408,7 +3383,25 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                     const actionArgs = {
                                       tplRef: "paidFormList",
                                       action: "add",
-                                      args: [undefined, 0]
+                                      args: [
+                                        [{}],
+                                        (() => {
+                                          try {
+                                            return $state.eventCalendar2.value[
+                                              "Paid Form List0"
+                                            ].length;
+                                          } catch (e) {
+                                            if (
+                                              e instanceof TypeError ||
+                                              e?.plasmicType ===
+                                                "PlasmicUndefinedDataError"
+                                            ) {
+                                              return 0;
+                                            }
+                                            throw e;
+                                          }
+                                        })()
+                                      ]
                                     };
                                     return (({ tplRef, action, args }) => {
                                       return $refs?.[tplRef]?.[action]?.(
@@ -3546,25 +3539,56 @@ function PlasmicCreateEvent__RenderFunc(props: {
                           >
                             <DataCtxReader__>
                               {$ctx => (
-                                <React.Fragment>
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    sty.freeBox__x5GXk
+                                  )}
+                                >
                                   <div
                                     className={classNames(
                                       projectcss.all,
-                                      sty.freeBox__x5GXk
+                                      sty.freeBox__rnXwJ
                                     )}
                                   >
-                                    <div
+                                    <FormItemWrapper
                                       className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox__rnXwJ
+                                        "__wab_instance",
+                                        sty.formField___66Yjw,
+                                        {
+                                          [sty.formFieldeventStep_step3___66YjwemNtK]:
+                                            hasVariant(
+                                              $state,
+                                              "eventStep",
+                                              "step3"
+                                            )
+                                        }
                                       )}
+                                      label={
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__a1Lw
+                                          )}
+                                        >
+                                          {"Ticket name"}
+                                        </div>
+                                      }
+                                      name={"TicketType1"}
+                                      noLabel={true}
+                                      preserve={false}
                                     >
-                                      <FormItemWrapper
+                                      <Select
+                                        data-plasmic-name={"select3"}
+                                        data-plasmic-override={
+                                          overrides.select3
+                                        }
                                         className={classNames(
                                           "__wab_instance",
-                                          sty.formField___66Yjw,
+                                          sty.select3,
                                           {
-                                            [sty.formFieldeventStep_step3___66YjwemNtK]:
+                                            [sty.select3eventStep_step3]:
                                               hasVariant(
                                                 $state,
                                                 "eventStep",
@@ -3572,349 +3596,231 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                               )
                                           }
                                         )}
-                                        label={
-                                          <div
-                                            className={classNames(
-                                              projectcss.all,
-                                              projectcss.__wab_text,
-                                              sty.text__a1Lw
-                                            )}
-                                          >
-                                            {"Ticket name"}
-                                          </div>
-                                        }
-                                        name={"TicketType1"}
-                                        noLabel={true}
-                                        preserve={false}
-                                      >
-                                        <Select
-                                          data-plasmic-name={"select3"}
-                                          data-plasmic-override={
-                                            overrides.select3
-                                          }
-                                          className={classNames(
-                                            "__wab_instance",
-                                            sty.select3,
-                                            {
-                                              [sty.select3eventStep_step3]:
-                                                hasVariant(
-                                                  $state,
-                                                  "eventStep",
-                                                  "step3"
-                                                )
-                                            }
-                                          )}
-                                          dateId={generateStateValueProp(
-                                            $state,
-                                            ["select3", "dateId"]
-                                          )}
-                                          onChange={(...eventArgs) => {
-                                            generateStateOnChangeProp($state, [
-                                              "select3",
-                                              "value"
-                                            ])(eventArgs[0]);
-                                          }}
-                                          onDateIdChange2={(...eventArgs) => {
-                                            generateStateOnChangeProp($state, [
-                                              "select3",
-                                              "dateId"
-                                            ])(eventArgs[0]);
-                                          }}
-                                          onTicketIdChange={(...eventArgs) => {
-                                            generateStateOnChangeProp($state, [
-                                              "select3",
-                                              "ticketId"
-                                            ])(eventArgs[0]);
-                                          }}
-                                          options={(() => {
-                                            const __composite = [
-                                              { value: null, label: null },
-                                              { value: null, label: null },
-                                              { value: null, label: null }
-                                            ];
-                                            __composite["0"]["value"] = "Paid";
-                                            __composite["0"]["label"] = "Paid";
-                                            __composite["1"]["value"] = "Free";
-                                            __composite["1"]["label"] = "Free";
-                                            __composite["2"]["value"] =
-                                              "Donation";
-                                            __composite["2"]["label"] =
-                                              "Donation";
-                                            return __composite;
-                                          })()}
-                                          ticketId={generateStateValueProp(
-                                            $state,
-                                            ["select3", "ticketId"]
-                                          )}
-                                          value={generateStateValueProp(
-                                            $state,
-                                            ["select3", "value"]
-                                          )}
-                                        />
-                                      </FormItemWrapper>
-                                    </div>
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox__zff4P
-                                      )}
-                                    >
-                                      <FormItemWrapper
-                                        className={classNames(
-                                          "__wab_instance",
-                                          sty.formField___3CuBh
+                                        dateId={generateStateValueProp($state, [
+                                          "select3",
+                                          "dateId"
+                                        ])}
+                                        onChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "select3",
+                                            "value"
+                                          ])(eventArgs[0]);
+                                        }}
+                                        onDateIdChange2={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "select3",
+                                            "dateId"
+                                          ])(eventArgs[0]);
+                                        }}
+                                        onTicketIdChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "select3",
+                                            "ticketId"
+                                          ])(eventArgs[0]);
+                                        }}
+                                        options={(() => {
+                                          const __composite = [
+                                            { value: null, label: null },
+                                            { value: null, label: null },
+                                            { value: null, label: null }
+                                          ];
+                                          __composite["0"]["value"] = "Paid";
+                                          __composite["0"]["label"] = "Paid";
+                                          __composite["1"]["value"] = "Free";
+                                          __composite["1"]["label"] = "Free";
+                                          __composite["2"]["value"] =
+                                            "Donation";
+                                          __composite["2"]["label"] =
+                                            "Donation";
+                                          return __composite;
+                                        })()}
+                                        ticketId={generateStateValueProp(
+                                          $state,
+                                          ["select3", "ticketId"]
                                         )}
-                                        label={
-                                          <div
-                                            className={classNames(
-                                              projectcss.all,
-                                              projectcss.__wab_text,
-                                              sty.text__ii8F3
-                                            )}
-                                          >
-                                            {"Ticket name"}
-                                          </div>
-                                        }
-                                        name={"TicketName1"}
-                                        noLabel={true}
-                                        preserve={false}
-                                        shouldUpdate={false}
-                                      >
-                                        <TextInput
-                                          data-plasmic-name={"textInput9"}
-                                          data-plasmic-override={
-                                            overrides.textInput9
-                                          }
-                                          className={classNames(
-                                            "__wab_instance",
-                                            sty.textInput9,
-                                            {
-                                              [sty.textInput9eventStep_step3]:
-                                                hasVariant(
-                                                  $state,
-                                                  "eventStep",
-                                                  "step3"
-                                                )
-                                            }
-                                          )}
-                                          endIcon={
-                                            <CheckSvgIcon
-                                              className={classNames(
-                                                projectcss.all,
-                                                sty.svg__g4Ajs,
-                                                {
-                                                  [sty.svgeventStep_step3__g4AjsemNtK]:
-                                                    hasVariant(
-                                                      $state,
-                                                      "eventStep",
-                                                      "step3"
-                                                    )
-                                                }
-                                              )}
-                                              role={"img"}
-                                            />
-                                          }
-                                          onChange={(...eventArgs) => {
-                                            generateStateOnChangeProp($state, [
-                                              "textInput9",
-                                              "value"
-                                            ])(
-                                              (e => e.target?.value).apply(
-                                                null,
-                                                eventArgs
-                                              )
-                                            );
-                                          }}
-                                          placeholder={"Ticket Name"}
-                                          type={"text"}
-                                          value={
-                                            generateStateValueProp($state, [
-                                              "textInput9",
-                                              "value"
-                                            ]) ?? ""
-                                          }
-                                        />
-                                      </FormItemWrapper>
-                                    </div>
-                                    <div
+                                        value={generateStateValueProp($state, [
+                                          "select3",
+                                          "value"
+                                        ])}
+                                      />
+                                    </FormItemWrapper>
+                                  </div>
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__zff4P
+                                    )}
+                                  >
+                                    <FormItemWrapper
                                       className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox__dpo
+                                        "__wab_instance",
+                                        sty.formField___3CuBh
                                       )}
+                                      label={
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__ii8F3
+                                          )}
+                                        >
+                                          {"Ticket name"}
+                                        </div>
+                                      }
+                                      name={"TicketName1"}
+                                      noLabel={true}
+                                      preserve={false}
+                                      shouldUpdate={false}
                                     >
-                                      <FormItemWrapper
+                                      <TextInput
+                                        data-plasmic-name={"textInput9"}
+                                        data-plasmic-override={
+                                          overrides.textInput9
+                                        }
                                         className={classNames(
                                           "__wab_instance",
-                                          sty.formField__vfQcI
-                                        )}
-                                        label={
-                                          <div
-                                            className={classNames(
-                                              projectcss.all,
-                                              projectcss.__wab_text,
-                                              sty.text__ezKav
-                                            )}
-                                          >
-                                            {"Quantity"}
-                                          </div>
-                                        }
-                                        name={"TicketQuantity1"}
-                                        noLabel={true}
-                                        preserve={false}
-                                      >
-                                        <TextInput
-                                          data-plasmic-name={"textInput10"}
-                                          data-plasmic-override={
-                                            overrides.textInput10
-                                          }
-                                          className={classNames(
-                                            "__wab_instance",
-                                            sty.textInput10,
-                                            {
-                                              [sty.textInput10eventStep_step3]:
-                                                hasVariant(
-                                                  $state,
-                                                  "eventStep",
-                                                  "step3"
-                                                )
-                                            }
-                                          )}
-                                          endIcon={
-                                            <CheckSvgIcon
-                                              className={classNames(
-                                                projectcss.all,
-                                                sty.svg__lf3ZS,
-                                                {
-                                                  [sty.svgeventStep_step3__lf3ZSemNtK]:
-                                                    hasVariant(
-                                                      $state,
-                                                      "eventStep",
-                                                      "step3"
-                                                    )
-                                                }
-                                              )}
-                                              role={"img"}
-                                            />
-                                          }
-                                          onChange={(...eventArgs) => {
-                                            generateStateOnChangeProp($state, [
-                                              "textInput10",
-                                              "value"
-                                            ])(
-                                              (e => e.target?.value).apply(
-                                                null,
-                                                eventArgs
-                                              )
-                                            );
-                                          }}
-                                          placeholder={"Quantity"}
-                                          value={
-                                            generateStateValueProp($state, [
-                                              "textInput10",
-                                              "value"
-                                            ]) ?? ""
-                                          }
-                                        />
-                                      </FormItemWrapper>
-                                    </div>
-                                    <div
-                                      className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox__qcK6B
-                                      )}
-                                    >
-                                      <FormItemWrapper
-                                        className={classNames(
-                                          "__wab_instance",
-                                          sty.formField__pwPa,
+                                          sty.textInput9,
                                           {
-                                            [sty.formFieldeventStep_step2__pwPa44F2Z]:
+                                            [sty.textInput9eventStep_step3]:
                                               hasVariant(
                                                 $state,
                                                 "eventStep",
-                                                "step2"
+                                                "step3"
                                               )
                                           }
                                         )}
-                                        label={
-                                          <div
+                                        endIcon={
+                                          <CheckSvgIcon
                                             className={classNames(
                                               projectcss.all,
-                                              projectcss.__wab_text,
-                                              sty.text__dfMmH
+                                              sty.svg__g4Ajs,
+                                              {
+                                                [sty.svgeventStep_step3__g4AjsemNtK]:
+                                                  hasVariant(
+                                                    $state,
+                                                    "eventStep",
+                                                    "step3"
+                                                  )
+                                              }
                                             )}
-                                          >
-                                            {"Price"}
-                                          </div>
+                                            role={"img"}
+                                          />
                                         }
-                                        name={"TicketPrice1"}
-                                        noLabel={true}
-                                        preserve={false}
-                                      >
-                                        <TextInput
-                                          data-plasmic-name={"textInput11"}
-                                          data-plasmic-override={
-                                            overrides.textInput11
-                                          }
-                                          className={classNames(
-                                            "__wab_instance",
-                                            sty.textInput11,
-                                            {
-                                              [sty.textInput11eventStep_step3]:
-                                                hasVariant(
-                                                  $state,
-                                                  "eventStep",
-                                                  "step3"
-                                                )
-                                            }
-                                          )}
-                                          endIcon={
-                                            <CheckSvgIcon
-                                              className={classNames(
-                                                projectcss.all,
-                                                sty.svg__q6BYs,
-                                                {
-                                                  [sty.svgeventStep_step3__q6BYsEmNtK]:
-                                                    hasVariant(
-                                                      $state,
-                                                      "eventStep",
-                                                      "step3"
-                                                    )
-                                                }
-                                              )}
-                                              role={"img"}
-                                            />
-                                          }
-                                          onChange={(...eventArgs) => {
-                                            generateStateOnChangeProp($state, [
-                                              "textInput11",
-                                              "value"
-                                            ])(
-                                              (e => e.target?.value).apply(
-                                                null,
-                                                eventArgs
-                                              )
-                                            );
-                                          }}
-                                          placeholder={"0"}
-                                          type={"number"}
-                                          value={
-                                            generateStateValueProp($state, [
-                                              "textInput11",
-                                              "value"
-                                            ]) ?? ""
-                                          }
-                                        />
-                                      </FormItemWrapper>
-                                    </div>
-                                    <Stack__
-                                      as={"div"}
-                                      hasGap={true}
+                                        onChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "textInput9",
+                                            "value"
+                                          ])(
+                                            (e => e.target?.value).apply(
+                                              null,
+                                              eventArgs
+                                            )
+                                          );
+                                        }}
+                                        placeholder={"Ticket Name"}
+                                        type={"text"}
+                                        value={
+                                          generateStateValueProp($state, [
+                                            "textInput9",
+                                            "value"
+                                          ]) ?? ""
+                                        }
+                                      />
+                                    </FormItemWrapper>
+                                  </div>
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__dpo
+                                    )}
+                                  >
+                                    <FormItemWrapper
                                       className={classNames(
-                                        projectcss.all,
-                                        sty.freeBox__wMdyn,
+                                        "__wab_instance",
+                                        sty.formField__vfQcI
+                                      )}
+                                      label={
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__ezKav
+                                          )}
+                                        >
+                                          {"Quantity"}
+                                        </div>
+                                      }
+                                      name={"TicketQuantity1"}
+                                      noLabel={true}
+                                      preserve={false}
+                                    >
+                                      <TextInput
+                                        data-plasmic-name={"textInput10"}
+                                        data-plasmic-override={
+                                          overrides.textInput10
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.textInput10,
+                                          {
+                                            [sty.textInput10eventStep_step3]:
+                                              hasVariant(
+                                                $state,
+                                                "eventStep",
+                                                "step3"
+                                              )
+                                          }
+                                        )}
+                                        endIcon={
+                                          <CheckSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__lf3ZS,
+                                              {
+                                                [sty.svgeventStep_step3__lf3ZSemNtK]:
+                                                  hasVariant(
+                                                    $state,
+                                                    "eventStep",
+                                                    "step3"
+                                                  )
+                                              }
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                        onChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "textInput10",
+                                            "value"
+                                          ])(
+                                            (e => e.target?.value).apply(
+                                              null,
+                                              eventArgs
+                                            )
+                                          );
+                                        }}
+                                        placeholder={"Quantity"}
+                                        value={
+                                          generateStateValueProp($state, [
+                                            "textInput10",
+                                            "value"
+                                          ]) ?? ""
+                                        }
+                                      />
+                                    </FormItemWrapper>
+                                  </div>
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__qcK6B
+                                    )}
+                                  >
+                                    <FormItemWrapper
+                                      className={classNames(
+                                        "__wab_instance",
+                                        sty.formField__pwPa,
                                         {
-                                          [sty.freeBoxeventStep_step2__wMdyn44F2Z]:
+                                          [sty.formFieldeventStep_step2__pwPa44F2Z]:
                                             hasVariant(
                                               $state,
                                               "eventStep",
@@ -3922,13 +3828,31 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                             )
                                         }
                                       )}
+                                      label={
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__dfMmH
+                                          )}
+                                        >
+                                          {"Price"}
+                                        </div>
+                                      }
+                                      name={"TicketPrice1"}
+                                      noLabel={true}
+                                      preserve={false}
                                     >
-                                      <div
+                                      <TextInput
+                                        data-plasmic-name={"textInput11"}
+                                        data-plasmic-override={
+                                          overrides.textInput11
+                                        }
                                         className={classNames(
-                                          projectcss.all,
-                                          sty.freeBox__fq7Q5,
+                                          "__wab_instance",
+                                          sty.textInput11,
                                           {
-                                            [sty.freeBoxeventStep_step3__fq7Q5EmNtK]:
+                                            [sty.textInput11eventStep_step3]:
                                               hasVariant(
                                                 $state,
                                                 "eventStep",
@@ -3936,175 +3860,227 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                               )
                                           }
                                         )}
-                                        onClick={async event => {
-                                          const $steps = {};
-
-                                          $steps["runActionOnPaidFormList2"] =
-                                            true
-                                              ? (() => {
-                                                  const actionArgs = {
-                                                    tplRef: "paidFormList2",
-                                                    action: "remove",
-                                                    args: [
-                                                      (() => {
-                                                        try {
-                                                          return $ctx.currentFieldIndex;
-                                                        } catch (e) {
-                                                          if (
-                                                            e instanceof
-                                                              TypeError ||
-                                                            e?.plasmicType ===
-                                                              "PlasmicUndefinedDataError"
-                                                          ) {
-                                                            return undefined;
-                                                          }
-                                                          throw e;
-                                                        }
-                                                      })()
-                                                    ]
-                                                  };
-                                                  return (({
-                                                    tplRef,
-                                                    action,
-                                                    args
-                                                  }) => {
-                                                    return $refs?.[tplRef]?.[
-                                                      action
-                                                    ]?.(...(args ?? []));
-                                                  })?.apply(null, [actionArgs]);
-                                                })()
-                                              : undefined;
-                                          if (
-                                            $steps[
-                                              "runActionOnPaidFormList2"
-                                            ] != null &&
-                                            typeof $steps[
-                                              "runActionOnPaidFormList2"
-                                            ] === "object" &&
-                                            typeof $steps[
-                                              "runActionOnPaidFormList2"
-                                            ].then === "function"
-                                          ) {
-                                            $steps["runActionOnPaidFormList2"] =
-                                              await $steps[
-                                                "runActionOnPaidFormList2"
-                                              ];
-                                          }
-
-                                          $steps["refreshData"] = true
-                                            ? (() => {
-                                                const actionArgs = {
-                                                  queryInvalidation: []
-                                                };
-                                                return (async ({
-                                                  queryInvalidation
-                                                }) => {
-                                                  if (!queryInvalidation) {
-                                                    return;
-                                                  }
-                                                  await plasmicInvalidate(
-                                                    queryInvalidation
-                                                  );
-                                                })?.apply(null, [actionArgs]);
-                                              })()
-                                            : undefined;
-                                          if (
-                                            $steps["refreshData"] != null &&
-                                            typeof $steps["refreshData"] ===
-                                              "object" &&
-                                            typeof $steps["refreshData"]
-                                              .then === "function"
-                                          ) {
-                                            $steps["refreshData"] =
-                                              await $steps["refreshData"];
-                                          }
+                                        endIcon={
+                                          <CheckSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__q6BYs,
+                                              {
+                                                [sty.svgeventStep_step3__q6BYsEmNtK]:
+                                                  hasVariant(
+                                                    $state,
+                                                    "eventStep",
+                                                    "step3"
+                                                  )
+                                              }
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                        onChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "textInput11",
+                                            "value"
+                                          ])(
+                                            (e => e.target?.value).apply(
+                                              null,
+                                              eventArgs
+                                            )
+                                          );
                                         }}
-                                      >
-                                        <TrashSvgIcon
-                                          className={classNames(
-                                            projectcss.all,
-                                            sty.svg__psDWh
-                                          )}
-                                          role={"img"}
-                                        />
-                                      </div>
-                                    </Stack__>
+                                        placeholder={"0"}
+                                        type={"number"}
+                                        value={
+                                          generateStateValueProp($state, [
+                                            "textInput11",
+                                            "value"
+                                          ]) ?? ""
+                                        }
+                                      />
+                                    </FormItemWrapper>
                                   </div>
-                                  <Button
+                                  <Stack__
+                                    as={"div"}
+                                    hasGap={true}
                                     className={classNames(
-                                      "__wab_instance",
-                                      sty.button___4WGp5,
+                                      projectcss.all,
+                                      sty.freeBox__wMdyn,
                                       {
-                                        [sty.buttoneventStep_step2___4WGp544F2Z]:
+                                        [sty.freeBoxeventStep_step2__wMdyn44F2Z]:
                                           hasVariant(
                                             $state,
                                             "eventStep",
                                             "step2"
-                                          ),
-                                        [sty.buttoneventStep_step3___4WGp5EmNtK]:
-                                          hasVariant(
-                                            $state,
-                                            "eventStep",
-                                            "step3"
                                           )
                                       }
                                     )}
-                                    color={"softSand"}
-                                    onClick={async event => {
-                                      const $steps = {};
+                                  >
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
+                                        sty.freeBox__fq7Q5,
+                                        {
+                                          [sty.freeBoxeventStep_step3__fq7Q5EmNtK]:
+                                            hasVariant(
+                                              $state,
+                                              "eventStep",
+                                              "step3"
+                                            )
+                                        }
+                                      )}
+                                      onClick={async event => {
+                                        const $steps = {};
 
-                                      $steps["runActionOnFormList"] = true
-                                        ? (() => {
-                                            const actionArgs = {
-                                              tplRef: "paidFormList2",
-                                              action: "add"
-                                            };
-                                            return (({
-                                              tplRef,
-                                              action,
-                                              args
-                                            }) => {
-                                              return $refs?.[tplRef]?.[
-                                                action
-                                              ]?.(...(args ?? []));
-                                            })?.apply(null, [actionArgs]);
-                                          })()
-                                        : undefined;
-                                      if (
-                                        $steps["runActionOnFormList"] != null &&
-                                        typeof $steps["runActionOnFormList"] ===
-                                          "object" &&
-                                        typeof $steps["runActionOnFormList"]
-                                          .then === "function"
-                                      ) {
-                                        $steps["runActionOnFormList"] =
-                                          await $steps["runActionOnFormList"];
-                                      }
-                                    }}
-                                    startIcon={
-                                      <CheckSvgIcon
+                                        $steps["runActionOnPaidFormList2"] =
+                                          true
+                                            ? (() => {
+                                                const actionArgs = {
+                                                  tplRef: "paidFormList2",
+                                                  action: "remove",
+                                                  args: [
+                                                    (() => {
+                                                      try {
+                                                        return $ctx.currentFieldIndex;
+                                                      } catch (e) {
+                                                        if (
+                                                          e instanceof
+                                                            TypeError ||
+                                                          e?.plasmicType ===
+                                                            "PlasmicUndefinedDataError"
+                                                        ) {
+                                                          return undefined;
+                                                        }
+                                                        throw e;
+                                                      }
+                                                    })()
+                                                  ]
+                                                };
+                                                return (({
+                                                  tplRef,
+                                                  action,
+                                                  args
+                                                }) => {
+                                                  return $refs?.[tplRef]?.[
+                                                    action
+                                                  ]?.(...(args ?? []));
+                                                })?.apply(null, [actionArgs]);
+                                              })()
+                                            : undefined;
+                                        if (
+                                          $steps["runActionOnPaidFormList2"] !=
+                                            null &&
+                                          typeof $steps[
+                                            "runActionOnPaidFormList2"
+                                          ] === "object" &&
+                                          typeof $steps[
+                                            "runActionOnPaidFormList2"
+                                          ].then === "function"
+                                        ) {
+                                          $steps["runActionOnPaidFormList2"] =
+                                            await $steps[
+                                              "runActionOnPaidFormList2"
+                                            ];
+                                        }
+
+                                        $steps["refreshData"] = true
+                                          ? (() => {
+                                              const actionArgs = {
+                                                queryInvalidation: []
+                                              };
+                                              return (async ({
+                                                queryInvalidation
+                                              }) => {
+                                                if (!queryInvalidation) {
+                                                  return;
+                                                }
+                                                await plasmicInvalidate(
+                                                  queryInvalidation
+                                                );
+                                              })?.apply(null, [actionArgs]);
+                                            })()
+                                          : undefined;
+                                        if (
+                                          $steps["refreshData"] != null &&
+                                          typeof $steps["refreshData"] ===
+                                            "object" &&
+                                          typeof $steps["refreshData"].then ===
+                                            "function"
+                                        ) {
+                                          $steps["refreshData"] = await $steps[
+                                            "refreshData"
+                                          ];
+                                        }
+                                      }}
+                                    >
+                                      <TrashSvgIcon
                                         className={classNames(
                                           projectcss.all,
-                                          sty.svg__t1Hgw,
-                                          {
-                                            [sty.svgeventStep_step3__t1HgwemNtK]:
-                                              hasVariant(
-                                                $state,
-                                                "eventStep",
-                                                "step3"
-                                              )
-                                          }
+                                          sty.svg__psDWh
                                         )}
                                         role={"img"}
                                       />
-                                    }
-                                  >
-                                    {"Add Ticket"}
-                                  </Button>
-                                </React.Fragment>
+                                    </div>
+                                  </Stack__>
+                                </div>
                               )}
                             </DataCtxReader__>
                           </FormListWrapper>
+                          <Button
+                            className={classNames(
+                              "__wab_instance",
+                              sty.button___4WGp5,
+                              {
+                                [sty.buttoneventStep_step2___4WGp544F2Z]:
+                                  hasVariant($state, "eventStep", "step2"),
+                                [sty.buttoneventStep_step3___4WGp5EmNtK]:
+                                  hasVariant($state, "eventStep", "step3")
+                              }
+                            )}
+                            color={"softSand"}
+                            onClick={async event => {
+                              const $steps = {};
+
+                              $steps["runActionOnFormList"] = true
+                                ? (() => {
+                                    const actionArgs = {
+                                      tplRef: "paidFormList2",
+                                      action: "add"
+                                    };
+                                    return (({ tplRef, action, args }) => {
+                                      return $refs?.[tplRef]?.[action]?.(
+                                        ...(args ?? [])
+                                      );
+                                    })?.apply(null, [actionArgs]);
+                                  })()
+                                : undefined;
+                              if (
+                                $steps["runActionOnFormList"] != null &&
+                                typeof $steps["runActionOnFormList"] ===
+                                  "object" &&
+                                typeof $steps["runActionOnFormList"].then ===
+                                  "function"
+                              ) {
+                                $steps["runActionOnFormList"] = await $steps[
+                                  "runActionOnFormList"
+                                ];
+                              }
+                            }}
+                            startIcon={
+                              <CheckSvgIcon
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.svg__t1Hgw,
+                                  {
+                                    [sty.svgeventStep_step3__t1HgwemNtK]:
+                                      hasVariant($state, "eventStep", "step3")
+                                  }
+                                )}
+                                role={"img"}
+                              />
+                            }
+                          >
+                            {"Add Ticket"}
+                          </Button>
                         </Stack__>
                       ) : null}
                       {(() => {

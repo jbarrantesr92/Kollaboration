@@ -66,7 +66,6 @@ import {
 } from "@plasmicapp/react-web/lib/data-sources";
 
 import { NavigationBar } from "@plasmicpkgs/plasmic-nav";
-import TextInput from "../../TextInput"; // plasmic-import: KfDAmu4lid5o/component
 import Button from "../../Button"; // plasmic-import: 7c1YDuGGoKuq/component
 import LanguageSwitcher from "../../LanguageSwitcher"; // plasmic-import: DKpzFq_s80_Q/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
@@ -80,7 +79,6 @@ import plasmic_plasmic_rich_components_css from "../plasmic_rich_components/plas
 import projectcss from "./plasmic.module.css"; // plasmic-import: MtmcKR1GuwbKEBJfYkVdj/projectcss
 import sty from "./PlasmicNavbar2.module.css"; // plasmic-import: PlAJ5tJMUQMz/css
 
-import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: mFdXj3H03u7X/icon
 import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: V9lHh1c0c7g6/icon
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: _VJXnu9sySb9/icon
 
@@ -98,7 +96,6 @@ export const PlasmicNavbar2__ArgProps = new Array<ArgPropType>();
 export type PlasmicNavbar2__OverridesType = {
   root?: Flex__<typeof NavigationBar>;
   link?: Flex__<"a"> & Partial<LinkProps>;
-  textInput?: Flex__<typeof TextInput>;
   languageSwitcher?: Flex__<typeof LanguageSwitcher>;
 };
 
@@ -149,23 +146,6 @@ function PlasmicNavbar2__RenderFunc(props: {
   let [$queries, setDollarQueries] = React.useState<
     Record<string, ReturnType<typeof usePlasmicDataOp>>
   >({});
-  const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
-    () => [
-      {
-        path: "textInput.value",
-        type: "private",
-        variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
-      }
-    ],
-    [$props, $ctx, $refs]
-  );
-  const $state = useDollarState(stateSpecs, {
-    $props,
-    $ctx,
-    $queries: $queries,
-    $refs
-  });
 
   const new$Queries: Record<string, ReturnType<typeof usePlasmicDataOp>> = {
     currentDomain: usePlasmicDataOp(() => {
@@ -265,32 +245,114 @@ function PlasmicNavbar2__RenderFunc(props: {
       itemsGap={8}
       menuItems={
         <React.Fragment>
-          <TextInput
-            data-plasmic-name={"textInput"}
-            data-plasmic-override={overrides.textInput}
-            className={classNames("__wab_instance", sty.textInput)}
-            color={"softSand"}
-            endIcon={
-              <CheckSvgIcon
-                className={classNames(projectcss.all, sty.svg__bgVb3)}
-                role={"img"}
-              />
-            }
-            onChange={(...eventArgs) => {
-              generateStateOnChangeProp($state, ["textInput", "value"])(
-                (e => e.target?.value).apply(null, eventArgs)
-              );
-            }}
-            placeholder={"Search"}
-            startIcon={
-              <SearchSvgIcon
-                className={classNames(projectcss.all, sty.svg__oQQio)}
-                role={"img"}
-              />
-            }
-            value={generateStateValueProp($state, ["textInput", "value"]) ?? ""}
-          />
+          <Button
+            className={classNames("__wab_instance", sty.button__rHXj, {
+              [sty.buttonglobal_locale_es__rHXjzPCq4]: hasVariant(
+                globalVariants,
+                "locale",
+                "es"
+              )
+            })}
+            color={"clear"}
+            onClick={async event => {
+              const $steps = {};
 
+              $steps["goToLogin"] = true
+                ? (() => {
+                    const actionArgs = { destination: `/login` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToLogin"] != null &&
+                typeof $steps["goToLogin"] === "object" &&
+                typeof $steps["goToLogin"].then === "function"
+              ) {
+                $steps["goToLogin"] = await $steps["goToLogin"];
+              }
+            }}
+            startIcon={
+              <CheckSvgIcon
+                className={classNames(projectcss.all, sty.svg__daYbo)}
+                role={"img"}
+              />
+            }
+          >
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__nQFuP
+              )}
+            >
+              {"View events"}
+            </div>
+          </Button>
+          <Button
+            className={classNames("__wab_instance", sty.button___3JjHr, {
+              [sty.buttonglobal_locale_es___3JjHRzPCq4]: hasVariant(
+                globalVariants,
+                "locale",
+                "es"
+              )
+            })}
+            color={"clear"}
+            onClick={async event => {
+              const $steps = {};
+
+              $steps["goToLogin"] = true
+                ? (() => {
+                    const actionArgs = { destination: `/login` };
+                    return (({ destination }) => {
+                      if (
+                        typeof destination === "string" &&
+                        destination.startsWith("#")
+                      ) {
+                        document
+                          .getElementById(destination.substr(1))
+                          .scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        __nextRouter?.push(destination);
+                      }
+                    })?.apply(null, [actionArgs]);
+                  })()
+                : undefined;
+              if (
+                $steps["goToLogin"] != null &&
+                typeof $steps["goToLogin"] === "object" &&
+                typeof $steps["goToLogin"].then === "function"
+              ) {
+                $steps["goToLogin"] = await $steps["goToLogin"];
+              }
+            }}
+            startIcon={
+              <CheckSvgIcon
+                className={classNames(projectcss.all, sty.svg__dmgvI)}
+                role={"img"}
+              />
+            }
+          >
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__guNNj
+              )}
+            >
+              {"Host events"}
+            </div>
+          </Button>
           <Button
             className={classNames("__wab_instance", sty.button__dceHi, {
               [sty.buttonglobal_locale_es__dceHizPCq4]: hasVariant(
@@ -335,7 +397,15 @@ function PlasmicNavbar2__RenderFunc(props: {
               />
             }
           >
-            {"Login"}
+            <div
+              className={classNames(
+                projectcss.all,
+                projectcss.__wab_text,
+                sty.text__y9MB
+              )}
+            >
+              {"Login"}
+            </div>
           </Button>
           <Button
             className={classNames("__wab_instance", sty.button__hkcE)}
@@ -375,9 +445,8 @@ function PlasmicNavbar2__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "link", "textInput", "languageSwitcher"],
+  root: ["root", "link", "languageSwitcher"],
   link: ["link"],
-  textInput: ["textInput"],
   languageSwitcher: ["languageSwitcher"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -386,7 +455,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: typeof NavigationBar;
   link: "a";
-  textInput: typeof TextInput;
   languageSwitcher: typeof LanguageSwitcher;
 };
 
@@ -451,7 +519,6 @@ export const PlasmicNavbar2 = Object.assign(
   {
     // Helper components rendering sub-elements
     link: makeNodeComponent("link"),
-    textInput: makeNodeComponent("textInput"),
     languageSwitcher: makeNodeComponent("languageSwitcher"),
 
     // Metadata about props expected for PlasmicNavbar2
