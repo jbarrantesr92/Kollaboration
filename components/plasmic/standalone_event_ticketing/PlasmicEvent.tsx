@@ -256,7 +256,22 @@ function PlasmicEvent__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
-          "0cfa50af-a399-46e8-9643-e54773de9988"
+          (() => {
+            try {
+              return $queries.eventDates.data.response.data.map(date => ({
+                label: date.StartDate,
+                value: date.id
+              }))[0].value;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return "0cfa50af-a399-46e8-9643-e54773de9988";
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "ticketsAvailable",
@@ -715,7 +730,24 @@ function PlasmicEvent__RenderFunc(props: {
                         "__wab_instance",
                         sty.selectEventDate
                       )}
-                      defaultValue={"0cfa50af-a399-46e8-9643-e54773de9988"}
+                      defaultValue={(() => {
+                        try {
+                          return $queries.eventDates.data.response.data.map(
+                            date => ({
+                              label: date.StartDate,
+                              value: date.id
+                            })
+                          )[0].value;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return "0cfa50af-a399-46e8-9643-e54773de9988";
+                          }
+                          throw e;
+                        }
+                      })()}
                       onChange={async (...eventArgs: any) => {
                         generateStateOnChangeProp($state, [
                           "selectEventDate",
