@@ -722,92 +722,113 @@ function PlasmicEvent__RenderFunc(props: {
                   <div
                     className={classNames(projectcss.all, sty.freeBox__r1Y6C)}
                   >
-                    <AntdRadioGroup
-                      data-plasmic-name={"selectEventDate"}
-                      data-plasmic-override={overrides.selectEventDate}
-                      children={null}
-                      className={classNames(
-                        "__wab_instance",
-                        sty.selectEventDate
-                      )}
-                      defaultValue={(() => {
-                        try {
-                          return $queries.eventDates.data.response.data.map(
-                            date => ({
-                              label: date.StartDate,
-                              value: date.id
-                            })
-                          )[0].value;
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return "0cfa50af-a399-46e8-9643-e54773de9988";
-                          }
-                          throw e;
+                    {(() => {
+                      try {
+                        return (
+                          $queries.eventDates.data.response.data.map(date => ({
+                            label: date.StartDate,
+                            value: date.id
+                          })).length > 0
+                        );
+                      } catch (e) {
+                        if (
+                          e instanceof TypeError ||
+                          e?.plasmicType === "PlasmicUndefinedDataError"
+                        ) {
+                          return false;
                         }
-                      })()}
-                      onChange={async (...eventArgs: any) => {
-                        generateStateOnChangeProp($state, [
+                        throw e;
+                      }
+                    })() ? (
+                      <AntdRadioGroup
+                        data-plasmic-name={"selectEventDate"}
+                        data-plasmic-override={overrides.selectEventDate}
+                        children={null}
+                        className={classNames(
+                          "__wab_instance",
+                          sty.selectEventDate
+                        )}
+                        defaultValue={(() => {
+                          try {
+                            return $queries.eventDates.data.response.data.map(
+                              date => ({
+                                label: date.StartDate,
+                                value: date.id
+                              })
+                            )[0].value;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "0cfa50af-a399-46e8-9643-e54773de9988";
+                            }
+                            throw e;
+                          }
+                        })()}
+                        onChange={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "selectEventDate",
+                            "value"
+                          ]).apply(null, eventArgs);
+                          (async value => {
+                            const $steps = {};
+
+                            $steps["refreshData"] = true
+                              ? (() => {
+                                  const actionArgs = {
+                                    queryInvalidation: [
+                                      "1890dbd3-76f5-416d-b1ff-c69825ef5cdf",
+                                      "1ae0bf37-539b-4ed3-b1e0-6c762a2c2586"
+                                    ]
+                                  };
+                                  return (async ({ queryInvalidation }) => {
+                                    if (!queryInvalidation) {
+                                      return;
+                                    }
+                                    await plasmicInvalidate(queryInvalidation);
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                            if (
+                              $steps["refreshData"] != null &&
+                              typeof $steps["refreshData"] === "object" &&
+                              typeof $steps["refreshData"].then === "function"
+                            ) {
+                              $steps["refreshData"] = await $steps[
+                                "refreshData"
+                              ];
+                            }
+                          }).apply(null, eventArgs);
+                        }}
+                        optionType={"default"}
+                        options={(() => {
+                          try {
+                            return $queries.eventDates.data.response.data.map(
+                              date => ({
+                                label: date.StartDate,
+                                value: date.id
+                              })
+                            );
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return [
+                                { value: "option1", label: "Option 1" },
+                                { value: "option2", label: "Option 2" }
+                              ];
+                            }
+                            throw e;
+                          }
+                        })()}
+                        value={generateStateValueProp($state, [
                           "selectEventDate",
                           "value"
-                        ]).apply(null, eventArgs);
-                        (async value => {
-                          const $steps = {};
-
-                          $steps["refreshData"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  queryInvalidation: [
-                                    "1890dbd3-76f5-416d-b1ff-c69825ef5cdf",
-                                    "1ae0bf37-539b-4ed3-b1e0-6c762a2c2586"
-                                  ]
-                                };
-                                return (async ({ queryInvalidation }) => {
-                                  if (!queryInvalidation) {
-                                    return;
-                                  }
-                                  await plasmicInvalidate(queryInvalidation);
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["refreshData"] != null &&
-                            typeof $steps["refreshData"] === "object" &&
-                            typeof $steps["refreshData"].then === "function"
-                          ) {
-                            $steps["refreshData"] = await $steps["refreshData"];
-                          }
-                        }).apply(null, eventArgs);
-                      }}
-                      optionType={"default"}
-                      options={(() => {
-                        try {
-                          return $queries.eventDates.data.response.data.map(
-                            date => ({
-                              label: date.StartDate,
-                              value: date.id
-                            })
-                          );
-                        } catch (e) {
-                          if (
-                            e instanceof TypeError ||
-                            e?.plasmicType === "PlasmicUndefinedDataError"
-                          ) {
-                            return [
-                              { value: "option1", label: "Option 1" },
-                              { value: "option2", label: "Option 2" }
-                            ];
-                          }
-                          throw e;
-                        }
-                      })()}
-                      value={generateStateValueProp($state, [
-                        "selectEventDate",
-                        "value"
-                      ])}
-                    />
+                        ])}
+                      />
+                    ) : null}
                   </div>
                 </div>
                 <Stack__
