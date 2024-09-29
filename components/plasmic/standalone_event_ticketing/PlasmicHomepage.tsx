@@ -74,7 +74,6 @@ import FooterEspanol from "../../FooterEspanol"; // plasmic-import: HJtSqCLuEANf
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { LocaleValue, useLocale } from "./PlasmicGlobalVariant__Locale"; // plasmic-import: IjXfRSRLVt5J/globalVariant
-import { useScreenVariants as useScreenVariantswiZsHgbT5CnT } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: wiZSHgbT5cnT/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -86,6 +85,7 @@ import sty from "./PlasmicHomepage.module.css"; // plasmic-import: m986b-5AcW5P/
 import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: mFdXj3H03u7X/icon
 import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: V9lHh1c0c7g6/icon
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: _VJXnu9sySb9/icon
+import CalendarDotsDuotone1SvgIcon from "./icons/PlasmicIcon__CalendarDotsDuotone1Svg"; // plasmic-import: SG0SFfjUmVKv/icon
 import MapPinSvgIcon from "./icons/PlasmicIcon__MapPinSvg"; // plasmic-import: TYZZ5eUar4tN/icon
 
 createPlasmicElementProxy;
@@ -211,6 +211,20 @@ function PlasmicHomepage__RenderFunc(props: {
         invalidatedKeys: null,
         roleId: null
       };
+    }),
+    eventDates: usePlasmicDataOp(() => {
+      return {
+        sourceId: "2jPYjgtJgbD3LaNLTLfSHG",
+        opId: "4b2eaec2-499f-49b2-8ba8-e070a0905978",
+        userArgs: {
+          path: [
+            $queries.events.data.response.data.map(event => event.id).join(",")
+          ]
+        },
+        cacheKey: `plasmic.$.4b2eaec2-499f-49b2-8ba8-e070a0905978.$.`,
+        invalidatedKeys: null,
+        roleId: null
+      };
     })
   };
   if (Object.keys(new$Queries).some(k => new$Queries[k] !== $queries[k])) {
@@ -220,8 +234,7 @@ function PlasmicHomepage__RenderFunc(props: {
   }
 
   const globalVariants = ensureGlobalVariants({
-    locale: useLocale(),
-    screen: useScreenVariantswiZsHgbT5CnT()
+    locale: useLocale()
   });
 
   return (
@@ -248,58 +261,43 @@ function PlasmicHomepage__RenderFunc(props: {
             projectcss.plasmic_tokens,
             plasmic_antd_5_hostless_css.plasmic_tokens,
             plasmic_plasmic_rich_components_css.plasmic_tokens,
-            sty.root,
-            {
-              [sty.rootglobal_locale_es]: hasVariant(
-                globalVariants,
-                "locale",
-                "es"
-              )
-            }
+            sty.root
           )}
         >
           <Navbar2
             data-plasmic-name={"navbar2"}
             data-plasmic-override={overrides.navbar2}
-            className={classNames("__wab_instance", sty.navbar2, {
-              [sty.navbar2global_locale_es]: hasVariant(
-                globalVariants,
-                "locale",
-                "es"
-              )
-            })}
+            className={classNames("__wab_instance", sty.navbar2)}
           />
 
           <NavbarEs
             data-plasmic-name={"navbarEs"}
             data-plasmic-override={overrides.navbarEs}
-            className={classNames("__wab_instance", sty.navbarEs, {
-              [sty.navbarEsglobal_locale_es]: hasVariant(
-                globalVariants,
-                "locale",
-                "es"
-              )
-            })}
+            className={classNames("__wab_instance", sty.navbarEs)}
           />
 
           <section
             data-plasmic-name={"header"}
             data-plasmic-override={overrides.header}
-            className={classNames(projectcss.all, sty.header)}
+            className={classNames(projectcss.all, sty.header, {
+              [sty.headerglobal_locale_en]: hasVariant(
+                globalVariants,
+                "locale",
+                "en"
+              ),
+              [sty.headerglobal_locale_es]: hasVariant(
+                globalVariants,
+                "locale",
+                "es"
+              )
+            })}
           >
             <div className={classNames(projectcss.all, sty.freeBox__bew6P)}>
               <div
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__giptL,
-                  {
-                    [sty.textglobal_locale_es__giptLzPCq4]: hasVariant(
-                      globalVariants,
-                      "locale",
-                      "es"
-                    )
-                  }
+                  sty.text__giptL
                 )}
               >
                 <React.Fragment>
@@ -315,14 +313,7 @@ function PlasmicHomepage__RenderFunc(props: {
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__gghTk,
-                  {
-                    [sty.textglobal_locale_es__gghTKzPCq4]: hasVariant(
-                      globalVariants,
-                      "locale",
-                      "es"
-                    )
-                  }
+                  sty.text__gghTk
                 )}
               >
                 <React.Fragment>
@@ -337,13 +328,7 @@ function PlasmicHomepage__RenderFunc(props: {
               <TextInput
                 data-plasmic-name={"searchEventEs"}
                 data-plasmic-override={overrides.searchEventEs}
-                className={classNames("__wab_instance", sty.searchEventEs, {
-                  [sty.searchEventEsglobal_locale_es]: hasVariant(
-                    globalVariants,
-                    "locale",
-                    "es"
-                  )
-                })}
+                className={classNames("__wab_instance", sty.searchEventEs)}
                 endIcon={
                   <Button
                     className={classNames("__wab_instance", sty.button___7Zo3)}
@@ -418,13 +403,7 @@ function PlasmicHomepage__RenderFunc(props: {
               <TextInput
                 data-plasmic-name={"searchEvent3"}
                 data-plasmic-override={overrides.searchEvent3}
-                className={classNames("__wab_instance", sty.searchEvent3, {
-                  [sty.searchEvent3global_locale_es]: hasVariant(
-                    globalVariants,
-                    "locale",
-                    "es"
-                  )
-                })}
+                className={classNames("__wab_instance", sty.searchEvent3)}
                 endIcon={
                   <Button
                     className={classNames("__wab_instance", sty.button__uotlT)}
@@ -496,80 +475,6 @@ function PlasmicHomepage__RenderFunc(props: {
                 }
               />
             </div>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__pUHkK)}
-            >
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__nBcYp)}
-              >
-                <MapPinSvgIcon
-                  className={classNames(projectcss.all, sty.svg__r9XAe)}
-                  role={"img"}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text___3Tsfx
-                  )}
-                >
-                  <React.Fragment>
-                    <span
-                      className={"plasmic_default__all plasmic_default__span"}
-                      style={{ fontWeight: 700 }}
-                    >
-                      {"Near San Francisco, CA"}
-                    </span>
-                  </React.Fragment>
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__bzcdn
-                  )}
-                >
-                  {"Within 100 miles"}
-                </div>
-              </Stack__>
-              <div className={classNames(projectcss.all, sty.freeBox___8NeRb)}>
-                <MapPinSvgIcon
-                  className={classNames(projectcss.all, sty.svg__hgMyd)}
-                  role={"img"}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__qBdu9
-                  )}
-                >
-                  <React.Fragment>
-                    <span
-                      className={"plasmic_default__all plasmic_default__span"}
-                      style={{ fontWeight: 700 }}
-                    >
-                      {"Any date"}
-                    </span>
-                  </React.Fragment>
-                </div>
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__zhTpa
-                  )}
-                >
-                  {"Any date"}
-                </div>
-              </div>
-            </Stack__>
           </section>
           <section
             data-plasmic-name={"section"}
@@ -697,7 +602,9 @@ function PlasmicHomepage__RenderFunc(props: {
                         width={"240"}
                       />
 
-                      <div
+                      <Stack__
+                        as={"div"}
+                        hasGap={true}
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__oylld
@@ -726,7 +633,135 @@ function PlasmicHomepage__RenderFunc(props: {
                             })()}
                           </React.Fragment>
                         </div>
-                      </div>
+                        <Stack__
+                          as={"div"}
+                          hasGap={true}
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__jtmJd
+                          )}
+                        >
+                          <CalendarDotsDuotone1SvgIcon
+                            className={classNames(
+                              projectcss.all,
+                              sty.svg__sEsJi
+                            )}
+                            role={"img"}
+                          />
+
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__ibRsM
+                            )}
+                          >
+                            <React.Fragment>
+                              {(() => {
+                                try {
+                                  return (() => {
+                                    const dates =
+                                      $queries.eventDates.data.response.data.filter(
+                                        dates => dates.EventId == currentItem.id
+                                      );
+                                    const multiple_dates =
+                                      dates.length > 1
+                                        ? "Multiple Dates"
+                                        : dates.length == 1
+                                        ? dates[0].StartDate
+                                        : "";
+                                    return multiple_dates;
+                                  })();
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return "";
+                                  }
+                                  throw e;
+                                }
+                              })()}
+                            </React.Fragment>
+                          </div>
+                        </Stack__>
+                        {(() => {
+                          try {
+                            return currentItem.FormattedAddress;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return false;
+                            }
+                            throw e;
+                          }
+                        })() ? (
+                          <Stack__
+                            as={"div"}
+                            hasGap={true}
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__oyMPm
+                            )}
+                          >
+                            <MapPinSvgIcon
+                              className={classNames(
+                                projectcss.all,
+                                sty.svg__s8VZf
+                              )}
+                              role={"img"}
+                            />
+
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__ixxUc
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return (() => {
+                                      function shortenAddress(address) {
+                                        const parts = address.split(",");
+                                        if (parts.length >= 3) {
+                                          const cityStateZip = parts[2].trim();
+                                          const cityStateZipParts = cityStateZip
+                                            .replace("USA", "")
+                                            .trim();
+                                          const shortenedAddress =
+                                            parts[1].trim() +
+                                            ", " +
+                                            cityStateZipParts;
+                                          return shortenedAddress;
+                                        }
+                                        return address;
+                                      }
+                                      const address =
+                                        currentItem.FormattedAddress;
+                                      const shortened = shortenAddress(address);
+                                      return shortened;
+                                    })();
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          </Stack__>
+                        ) : null}
+                      </Stack__>
                     </Stack__>
                   );
                 })}
@@ -736,26 +771,36 @@ function PlasmicHomepage__RenderFunc(props: {
           <Footer2
             data-plasmic-name={"footer2"}
             data-plasmic-override={overrides.footer2}
-            className={classNames("__wab_instance", sty.footer2, {
-              [sty.footer2global_locale_es]: hasVariant(
-                globalVariants,
-                "locale",
-                "es"
-              )
-            })}
+            className={classNames("__wab_instance", sty.footer2)}
           />
 
           <FooterEspanol
             data-plasmic-name={"footerEspanol"}
             data-plasmic-override={overrides.footerEspanol}
-            className={classNames("__wab_instance", sty.footerEspanol, {
-              [sty.footerEspanolglobal_locale_es]: hasVariant(
-                globalVariants,
-                "locale",
-                "es"
-              )
-            })}
+            className={classNames("__wab_instance", sty.footerEspanol)}
           />
+
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__ywjop,
+              {
+                [sty.textglobal_locale_en__ywjopg2TuR]: hasVariant(
+                  globalVariants,
+                  "locale",
+                  "en"
+                ),
+                [sty.textglobal_locale_es__ywjopTnYnw]: hasVariant(
+                  globalVariants,
+                  "locale",
+                  "es"
+                )
+              }
+            )}
+          >
+            {"Enter some text"}
+          </div>
         </div>
       </div>
     </React.Fragment>

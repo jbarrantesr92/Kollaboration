@@ -70,8 +70,6 @@ import TextInput from "../../TextInput"; // plasmic-import: KfDAmu4lid5o/compone
 import Button from "../../Button"; // plasmic-import: 7c1YDuGGoKuq/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
-import { LocaleValue, useLocale } from "./PlasmicGlobalVariant__Locale"; // plasmic-import: IjXfRSRLVt5J/globalVariant
-
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
@@ -185,10 +183,6 @@ function PlasmicNavbarEs__RenderFunc(props: {
     $queries = new$Queries;
   }
 
-  const globalVariants = ensureGlobalVariants({
-    locale: useLocale()
-  });
-
   return (
     <NavigationBar
       data-plasmic-name={"root"}
@@ -274,10 +268,7 @@ function PlasmicNavbarEs__RenderFunc(props: {
         projectcss.plasmic_tokens,
         plasmic_antd_5_hostless_css.plasmic_tokens,
         plasmic_plasmic_rich_components_css.plasmic_tokens,
-        sty.root,
-        {
-          [sty.rootglobal_locale_es]: hasVariant(globalVariants, "locale", "es")
-        }
+        sty.root
       )}
       closeButton={
         <PlasmicImg__
@@ -322,13 +313,7 @@ function PlasmicNavbarEs__RenderFunc(props: {
           />
 
           <Button
-            className={classNames("__wab_instance", sty.button__aWsx1, {
-              [sty.buttonglobal_locale_es__aWsx1ZPCq4]: hasVariant(
-                globalVariants,
-                "locale",
-                "es"
-              )
-            })}
+            className={classNames("__wab_instance", sty.button__aWsx1)}
             color={"blue"}
             onClick={async event => {
               const $steps = {};

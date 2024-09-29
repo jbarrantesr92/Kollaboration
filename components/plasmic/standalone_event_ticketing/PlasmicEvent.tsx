@@ -86,7 +86,6 @@ import Footer from "../../Footer"; // plasmic-import: THeG5BcdbXeZ/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantswiZsHgbT5CnT } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: wiZSHgbT5cnT/globalVariant
-import { LocaleValue, useLocale } from "./PlasmicGlobalVariant__Locale"; // plasmic-import: IjXfRSRLVt5J/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
@@ -518,8 +517,7 @@ function PlasmicEvent__RenderFunc(props: {
   }
 
   const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantswiZsHgbT5CnT(),
-    locale: useLocale()
+    screen: useScreenVariantswiZsHgbT5CnT()
   });
 
   return (
@@ -848,14 +846,7 @@ function PlasmicEvent__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.__wab_text,
-                          sty.text__h74Gj,
-                          {
-                            [sty.textglobal_locale_es__h74GjzPCq4]: hasVariant(
-                              globalVariants,
-                              "locale",
-                              "es"
-                            )
-                          }
+                          sty.text__h74Gj
                         )}
                       >
                         <React.Fragment>
@@ -873,14 +864,7 @@ function PlasmicEvent__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.__wab_text,
-                          sty.text__jnuGy,
-                          {
-                            [sty.textglobal_locale_es__jnuGyzPCq4]: hasVariant(
-                              globalVariants,
-                              "locale",
-                              "es"
-                            )
-                          }
+                          sty.text__jnuGy
                         )}
                       >
                         <React.Fragment>
@@ -928,14 +912,7 @@ function PlasmicEvent__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.__wab_text,
-                          sty.text__fXYa3,
-                          {
-                            [sty.textglobal_locale_es__fXYa3ZPCq4]: hasVariant(
-                              globalVariants,
-                              "locale",
-                              "es"
-                            )
-                          }
+                          sty.text__fXYa3
                         )}
                       >
                         <React.Fragment>
@@ -953,14 +930,7 @@ function PlasmicEvent__RenderFunc(props: {
                         className={classNames(
                           projectcss.all,
                           projectcss.__wab_text,
-                          sty.text__o1JOk,
-                          {
-                            [sty.textglobal_locale_es__o1JOkzPCq4]: hasVariant(
-                              globalVariants,
-                              "locale",
-                              "es"
-                            )
-                          }
+                          sty.text__o1JOk
                         )}
                       >
                         <React.Fragment>
@@ -1001,11 +971,7 @@ function PlasmicEvent__RenderFunc(props: {
                       <div
                         className={classNames(
                           projectcss.all,
-                          sty.freeBox__d8AxN,
-                          {
-                            [sty.freeBoxglobal_locale_es__d8AxNzPCq4]:
-                              hasVariant(globalVariants, "locale", "es")
-                          }
+                          sty.freeBox__d8AxN
                         )}
                       >
                         <MapComponent
@@ -3602,11 +3568,7 @@ function PlasmicEvent__RenderFunc(props: {
                             hasGap={true}
                             className={classNames(
                               projectcss.all,
-                              sty.freeBox___9WLjB,
-                              {
-                                [sty.freeBoxglobal_locale_es___9WLjBzPCq4]:
-                                  hasVariant(globalVariants, "locale", "es")
-                              }
+                              sty.freeBox___9WLjB
                             )}
                             onClick={async event => {
                               const $steps = {};
@@ -3615,11 +3577,7 @@ function PlasmicEvent__RenderFunc(props: {
                             <Button
                               className={classNames(
                                 "__wab_instance",
-                                sty.button__g8LVw,
-                                {
-                                  [sty.buttonglobal_locale_es__g8LVwzPCq4]:
-                                    hasVariant(globalVariants, "locale", "es")
-                                }
+                                sty.button__g8LVw
                               )}
                               color={"blue"}
                               onClick={async event => {
@@ -4034,11 +3992,7 @@ function PlasmicEvent__RenderFunc(props: {
                             <Button
                               className={classNames(
                                 "__wab_instance",
-                                sty.button__utvE,
-                                {
-                                  [sty.buttonglobal_locale_es__utvEzPCq4]:
-                                    hasVariant(globalVariants, "locale", "es")
-                                }
+                                sty.button__utvE
                               )}
                               color={"blue"}
                               onClick={async event => {

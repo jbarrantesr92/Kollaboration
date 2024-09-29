@@ -68,7 +68,6 @@ import {
 import Button from "../../Button"; // plasmic-import: 7c1YDuGGoKuq/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
-import { LocaleValue, useLocale } from "./PlasmicGlobalVariant__Locale"; // plasmic-import: IjXfRSRLVt5J/globalVariant
 import { useScreenVariants as useScreenVariantswiZsHgbT5CnT } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: wiZSHgbT5cnT/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -170,7 +169,6 @@ function PlasmicFooter__RenderFunc(props: {
   }
 
   const globalVariants = ensureGlobalVariants({
-    locale: useLocale(),
     screen: useScreenVariantswiZsHgbT5CnT()
   });
 
@@ -188,10 +186,7 @@ function PlasmicFooter__RenderFunc(props: {
         projectcss.plasmic_tokens,
         plasmic_antd_5_hostless_css.plasmic_tokens,
         plasmic_plasmic_rich_components_css.plasmic_tokens,
-        sty.root,
-        {
-          [sty.rootglobal_locale_es]: hasVariant(globalVariants, "locale", "es")
-        }
+        sty.root
       )}
     >
       <Stack__

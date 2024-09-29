@@ -6,7 +6,7 @@
 import * as React from "react";
 import { createUseScreenVariants } from "@plasmicapp/react-web";
 
-export type LocaleValue = "es";
+export type LocaleValue = "en" | "es";
 export const LocaleContext = React.createContext<LocaleValue | undefined>(
   "PLEASE_RENDER_INSIDE_PROVIDER" as any
 );

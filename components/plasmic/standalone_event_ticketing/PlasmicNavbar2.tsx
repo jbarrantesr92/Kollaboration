@@ -70,8 +70,6 @@ import Button from "../../Button"; // plasmic-import: 7c1YDuGGoKuq/component
 import LanguageSwitcher from "../../LanguageSwitcher"; // plasmic-import: DKpzFq_s80_Q/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
-import { LocaleValue, useLocale } from "./PlasmicGlobalVariant__Locale"; // plasmic-import: IjXfRSRLVt5J/globalVariant
-
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
@@ -167,10 +165,6 @@ function PlasmicNavbar2__RenderFunc(props: {
     $queries = new$Queries;
   }
 
-  const globalVariants = ensureGlobalVariants({
-    locale: useLocale()
-  });
-
   return (
     <NavigationBar
       data-plasmic-name={"root"}
@@ -224,10 +218,7 @@ function PlasmicNavbar2__RenderFunc(props: {
         projectcss.plasmic_tokens,
         plasmic_antd_5_hostless_css.plasmic_tokens,
         plasmic_plasmic_rich_components_css.plasmic_tokens,
-        sty.root,
-        {
-          [sty.rootglobal_locale_es]: hasVariant(globalVariants, "locale", "es")
-        }
+        sty.root
       )}
       closeButton={
         <PlasmicImg__
@@ -246,20 +237,14 @@ function PlasmicNavbar2__RenderFunc(props: {
       menuItems={
         <React.Fragment>
           <Button
-            className={classNames("__wab_instance", sty.button__rHXj, {
-              [sty.buttonglobal_locale_es__rHXjzPCq4]: hasVariant(
-                globalVariants,
-                "locale",
-                "es"
-              )
-            })}
+            className={classNames("__wab_instance", sty.button__rHXj)}
             color={"clear"}
             onClick={async event => {
               const $steps = {};
 
-              $steps["goToLogin"] = true
+              $steps["goToHomepage"] = true
                 ? (() => {
-                    const actionArgs = { destination: `/login` };
+                    const actionArgs = { destination: `/` };
                     return (({ destination }) => {
                       if (
                         typeof destination === "string" &&
@@ -275,11 +260,11 @@ function PlasmicNavbar2__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["goToLogin"] != null &&
-                typeof $steps["goToLogin"] === "object" &&
-                typeof $steps["goToLogin"].then === "function"
+                $steps["goToHomepage"] != null &&
+                typeof $steps["goToHomepage"] === "object" &&
+                typeof $steps["goToHomepage"].then === "function"
               ) {
-                $steps["goToLogin"] = await $steps["goToLogin"];
+                $steps["goToHomepage"] = await $steps["goToHomepage"];
               }
             }}
             startIcon={
@@ -300,20 +285,14 @@ function PlasmicNavbar2__RenderFunc(props: {
             </div>
           </Button>
           <Button
-            className={classNames("__wab_instance", sty.button___3JjHr, {
-              [sty.buttonglobal_locale_es___3JjHRzPCq4]: hasVariant(
-                globalVariants,
-                "locale",
-                "es"
-              )
-            })}
+            className={classNames("__wab_instance", sty.button___3JjHr)}
             color={"clear"}
             onClick={async event => {
               const $steps = {};
 
-              $steps["goToLogin"] = true
+              $steps["goToCreateEvent"] = true
                 ? (() => {
-                    const actionArgs = { destination: `/login` };
+                    const actionArgs = { destination: `/create-event` };
                     return (({ destination }) => {
                       if (
                         typeof destination === "string" &&
@@ -329,11 +308,11 @@ function PlasmicNavbar2__RenderFunc(props: {
                   })()
                 : undefined;
               if (
-                $steps["goToLogin"] != null &&
-                typeof $steps["goToLogin"] === "object" &&
-                typeof $steps["goToLogin"].then === "function"
+                $steps["goToCreateEvent"] != null &&
+                typeof $steps["goToCreateEvent"] === "object" &&
+                typeof $steps["goToCreateEvent"].then === "function"
               ) {
-                $steps["goToLogin"] = await $steps["goToLogin"];
+                $steps["goToCreateEvent"] = await $steps["goToCreateEvent"];
               }
             }}
             startIcon={
@@ -354,13 +333,7 @@ function PlasmicNavbar2__RenderFunc(props: {
             </div>
           </Button>
           <Button
-            className={classNames("__wab_instance", sty.button__dceHi, {
-              [sty.buttonglobal_locale_es__dceHizPCq4]: hasVariant(
-                globalVariants,
-                "locale",
-                "es"
-              )
-            })}
+            className={classNames("__wab_instance", sty.button__dceHi)}
             color={"blue"}
             onClick={async event => {
               const $steps = {};

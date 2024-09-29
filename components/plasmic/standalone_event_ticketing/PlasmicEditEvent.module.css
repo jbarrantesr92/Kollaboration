@@ -27,9 +27,6 @@
     grid-column: 4;
   }
 }
-.rootglobal_locale_es > * {
-  grid-column: 4;
-}
 .rooteventStep_step1 > * {
   grid-column: 4;
 }

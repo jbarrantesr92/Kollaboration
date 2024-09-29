@@ -11,6 +11,7 @@
 }
 
 .plasmic_default_styles,
+.plasmic_default_styles:where(.global_locale_en),
 .plasmic_default_styles:where(.global_locale_es) {
   --mixin-v008RA2lF_Jh_font-family: "Inter", sans-serif;
   --mixin-v008RA2lF_Jh_font-size: 16px;
@@ -136,6 +137,7 @@
 }
 
 .plasmic_mixins,
+.plasmic_mixins:where(.global_locale_en),
 .plasmic_mixins:where(.global_locale_es) {
   --mixin-iWvvHxchxp77_white-space: pre-wrap;
   --plasmic-mixin-unnamed-style-preset_white-space: var(

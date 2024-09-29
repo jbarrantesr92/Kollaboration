@@ -84,7 +84,6 @@ import { FormListWrapper } from "@plasmicpkgs/antd5/skinny/FormList";
 import Footer from "../../Footer"; // plasmic-import: THeG5BcdbXeZ/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
-import { LocaleValue, useLocale } from "./PlasmicGlobalVariant__Locale"; // plasmic-import: IjXfRSRLVt5J/globalVariant
 import { useScreenVariants as useScreenVariantswiZsHgbT5CnT } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: wiZSHgbT5cnT/globalVariant
 
 import "@plasmicapp/react-web/lib/plasmic.css";
@@ -546,7 +545,6 @@ function PlasmicEditEvent__RenderFunc(props: {
   }
 
   const globalVariants = ensureGlobalVariants({
-    locale: useLocale(),
     screen: useScreenVariantswiZsHgbT5CnT()
   });
 
@@ -603,11 +601,6 @@ function PlasmicEditEvent__RenderFunc(props: {
                 $state,
                 "eventStep",
                 "step3"
-              ),
-              [sty.rootglobal_locale_es]: hasVariant(
-                globalVariants,
-                "locale",
-                "es"
               )
             }
           )}
@@ -726,11 +719,6 @@ function PlasmicEditEvent__RenderFunc(props: {
                         $state,
                         "eventStep",
                         "step3"
-                      ),
-                      [sty.eventNameglobal_locale_es]: hasVariant(
-                        globalVariants,
-                        "locale",
-                        "es"
                       )
                     }),
                     extendedOnValuesChange:
