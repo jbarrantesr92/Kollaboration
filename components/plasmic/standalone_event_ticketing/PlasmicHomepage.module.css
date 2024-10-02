@@ -24,6 +24,12 @@
     grid-column: 4;
   }
 }
+.rootglobal_locale_en > * {
+  grid-column: 4;
+}
+.rootglobal_locale_es > * {
+  grid-column: 4;
+}
 .navbar2:global(.__wab_instance):global(.__wab_instance) {
   margin-bottom: 20px;
 }
@@ -127,6 +133,25 @@
     font-size: 35px;
   }
 }
+.textglobal_locale_es__gghTkTnYnw {
+  display: none;
+}
+.text__xohAx {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  color: #ffffff;
+  font-size: 48px;
+  font-family: "Inter Tight", sans-serif;
+  margin-bottom: 30px;
+  min-width: 0;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .text__xohAx {
+    font-size: 35px;
+  }
+}
 .searchEventEs:global(.__wab_instance) {
   max-width: 100%;
   width: 500px;
@@ -174,6 +199,9 @@
     min-width: 0;
   }
 }
+.searchEvent3global_locale_es:global(.__wab_instance) {
+  display: none;
+}
 .svg__s1VYo {
   position: relative;
   object-fit: cover;
@@ -193,6 +221,41 @@
   display: none;
 }
 .svg__lc5Pf {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.searchEvent4:global(.__wab_instance) {
+  max-width: 100%;
+  width: 500px;
+  height: auto;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .searchEvent4:global(.__wab_instance) {
+    width: 100%;
+    min-width: 0;
+  }
+}
+.svg__ka3XF {
+  position: relative;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.button__bnAC:global(.__wab_instance) {
+  max-width: 100%;
+}
+.svg__hitSt {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+  display: none;
+}
+.svg__eCKA {
   position: relative;
   object-fit: cover;
   width: auto;
@@ -265,6 +328,21 @@
   max-width: 100%;
   font-size: 18px;
   min-width: 0;
+}
+.textglobal_locale_es__tTxivTnYnw {
+  display: none;
+}
+.text__ikTZ {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  font-size: 18px;
+  min-width: 0;
+  display: none;
+}
+.textglobal_locale_es__ikTZTnYnw {
+  display: block;
 }
 .freeBox__f0DmX {
   display: grid;
@@ -459,18 +537,4 @@
 .footerEspanol:global(.__wab_instance):global(.__wab_instance) {
   max-width: 100%;
   display: none;
-}
-.text__ywjop {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  min-width: 0;
-  display: none;
-}
-.textglobal_locale_en__ywjopg2TuR {
-  display: none;
-}
-.textglobal_locale_es__ywjopTnYnw {
-  display: block;
 }

@@ -153,46 +153,55 @@ export type PlasmicCreateEvent__OverridesType = {
   textInput4?: Flex__<typeof TextInput>;
   textInput5?: Flex__<typeof TextInput>;
   textInput6?: Flex__<typeof TextInput>;
+  textInput33?: Flex__<typeof TextInput>;
   paidFormList2?: Flex__<typeof FormListWrapper>;
   select3?: Flex__<typeof Select>;
   textInput9?: Flex__<typeof TextInput>;
   textInput10?: Flex__<typeof TextInput>;
   textInput11?: Flex__<typeof TextInput>;
+  textInput34?: Flex__<typeof TextInput>;
   paidFormList3?: Flex__<typeof FormListWrapper>;
   select4?: Flex__<typeof Select>;
   textInput12?: Flex__<typeof TextInput>;
   textInput13?: Flex__<typeof TextInput>;
   textInput14?: Flex__<typeof TextInput>;
+  textInput35?: Flex__<typeof TextInput>;
   paidFormList4?: Flex__<typeof FormListWrapper>;
   select5?: Flex__<typeof Select>;
   textInput15?: Flex__<typeof TextInput>;
   textInput16?: Flex__<typeof TextInput>;
   textInput17?: Flex__<typeof TextInput>;
+  textInput36?: Flex__<typeof TextInput>;
   paidFormList5?: Flex__<typeof FormListWrapper>;
   select6?: Flex__<typeof Select>;
   textInput18?: Flex__<typeof TextInput>;
   textInput19?: Flex__<typeof TextInput>;
   textInput20?: Flex__<typeof TextInput>;
+  textInput37?: Flex__<typeof TextInput>;
   paidFormList6?: Flex__<typeof FormListWrapper>;
   select7?: Flex__<typeof Select>;
   textInput21?: Flex__<typeof TextInput>;
   textInput22?: Flex__<typeof TextInput>;
   textInput23?: Flex__<typeof TextInput>;
+  textInput38?: Flex__<typeof TextInput>;
   paidFormList7?: Flex__<typeof FormListWrapper>;
   select8?: Flex__<typeof Select>;
   textInput24?: Flex__<typeof TextInput>;
   textInput25?: Flex__<typeof TextInput>;
   textInput26?: Flex__<typeof TextInput>;
+  textInput39?: Flex__<typeof TextInput>;
   paidFormList8?: Flex__<typeof FormListWrapper>;
   select9?: Flex__<typeof Select>;
   textInput27?: Flex__<typeof TextInput>;
   textInput28?: Flex__<typeof TextInput>;
   textInput29?: Flex__<typeof TextInput>;
+  textInput40?: Flex__<typeof TextInput>;
   paidFormList9?: Flex__<typeof FormListWrapper>;
   select10?: Flex__<typeof Select>;
   textInput30?: Flex__<typeof TextInput>;
   textInput31?: Flex__<typeof TextInput>;
   textInput32?: Flex__<typeof TextInput>;
+  textInput41?: Flex__<typeof TextInput>;
   footer?: Flex__<typeof Footer>;
 };
 
@@ -737,6 +746,60 @@ function PlasmicCreateEvent__RenderFunc(props: {
       },
       {
         path: "textInput6.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "textInput33.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "textInput34.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "textInput35.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "textInput36.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "textInput37.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "textInput38.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "textInput39.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "textInput40.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "textInput41.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
@@ -2458,7 +2521,9 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                               TicketQuantity:
                                                 tickets[`TicketQuantity${i}`],
                                               TicketPrice:
-                                                tickets[`TicketPrice${i}`]
+                                                tickets[`TicketPrice${i}`],
+                                              TicketFee:
+                                                tickets[`TicketFee${i}`]
                                             }));
                                           form.push(...formData);
                                         }
@@ -2728,6 +2793,22 @@ function PlasmicCreateEvent__RenderFunc(props: {
                             )}
                           >
                             {"Price"}
+                          </div>
+                        </div>
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            sty.freeBox__otcFi
+                          )}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              projectcss.__wab_text,
+                              sty.text__r7ZpB
+                            )}
+                          >
+                            {"Ticket Fee %"}
                           </div>
                         </div>
                         <div
@@ -3249,6 +3330,107 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                         value={
                                           generateStateValueProp($state, [
                                             "textInput6",
+                                            "value"
+                                          ]) ?? ""
+                                        }
+                                      />
+                                    </FormItemWrapper>
+                                  </div>
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__bX9Yp,
+                                      {
+                                        [sty.freeBoxeventStep_step3__bX9YpEmNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
+                                    )}
+                                  >
+                                    <FormItemWrapper
+                                      className={classNames(
+                                        "__wab_instance",
+                                        sty.formField__wXmBl
+                                      )}
+                                      initialValue={"0"}
+                                      label={
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__wrDzW
+                                          )}
+                                        >
+                                          {"Quantity"}
+                                        </div>
+                                      }
+                                      name={"TicketFee0"}
+                                      noLabel={true}
+                                      preserve={false}
+                                      rules={[
+                                        {
+                                          ruleType: "advanced",
+                                          custom: (rule, value) => {
+                                            return value >= 0 || value <= 100;
+                                          },
+                                          message:
+                                            "Value should be major than 0 or less than 100"
+                                        }
+                                      ]}
+                                    >
+                                      <TextInput
+                                        data-plasmic-name={"textInput33"}
+                                        data-plasmic-override={
+                                          overrides.textInput33
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.textInput33,
+                                          {
+                                            [sty.textInput33eventStep_step3]:
+                                              hasVariant(
+                                                $state,
+                                                "eventStep",
+                                                "step3"
+                                              )
+                                          }
+                                        )}
+                                        endIcon={
+                                          <CheckSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__n6KYx,
+                                              {
+                                                [sty.svgeventStep_step3__n6KYxEmNtK]:
+                                                  hasVariant(
+                                                    $state,
+                                                    "eventStep",
+                                                    "step3"
+                                                  )
+                                              }
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                        onChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "textInput33",
+                                            "value"
+                                          ])(
+                                            (e => e.target?.value).apply(
+                                              null,
+                                              eventArgs
+                                            )
+                                          );
+                                        }}
+                                        placeholder={"0"}
+                                        type={"number"}
+                                        value={
+                                          generateStateValueProp($state, [
+                                            "textInput33",
                                             "value"
                                           ]) ?? ""
                                         }
@@ -3899,6 +4081,107 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                       />
                                     </FormItemWrapper>
                                   </div>
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__xiMea,
+                                      {
+                                        [sty.freeBoxeventStep_step3__xiMeaEmNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
+                                    )}
+                                  >
+                                    <FormItemWrapper
+                                      className={classNames(
+                                        "__wab_instance",
+                                        sty.formField__g1Xlx
+                                      )}
+                                      initialValue={"0"}
+                                      label={
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text___2XtRp
+                                          )}
+                                        >
+                                          {"Quantity"}
+                                        </div>
+                                      }
+                                      name={"TicketFee1"}
+                                      noLabel={true}
+                                      preserve={false}
+                                      rules={[
+                                        {
+                                          ruleType: "advanced",
+                                          custom: (rule, value) => {
+                                            return value >= 0 || value <= 100;
+                                          },
+                                          message:
+                                            "Value should be major than 0 or less than 100"
+                                        }
+                                      ]}
+                                    >
+                                      <TextInput
+                                        data-plasmic-name={"textInput34"}
+                                        data-plasmic-override={
+                                          overrides.textInput34
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.textInput34,
+                                          {
+                                            [sty.textInput34eventStep_step3]:
+                                              hasVariant(
+                                                $state,
+                                                "eventStep",
+                                                "step3"
+                                              )
+                                          }
+                                        )}
+                                        endIcon={
+                                          <CheckSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__s5ZiN,
+                                              {
+                                                [sty.svgeventStep_step3__s5ZiNemNtK]:
+                                                  hasVariant(
+                                                    $state,
+                                                    "eventStep",
+                                                    "step3"
+                                                  )
+                                              }
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                        onChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "textInput34",
+                                            "value"
+                                          ])(
+                                            (e => e.target?.value).apply(
+                                              null,
+                                              eventArgs
+                                            )
+                                          );
+                                        }}
+                                        placeholder={"0"}
+                                        type={"number"}
+                                        value={
+                                          generateStateValueProp($state, [
+                                            "textInput34",
+                                            "value"
+                                          ]) ?? ""
+                                        }
+                                      />
+                                    </FormItemWrapper>
+                                  </div>
                                   <Stack__
                                     as={"div"}
                                     hasGap={true}
@@ -4540,6 +4823,107 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                       />
                                     </FormItemWrapper>
                                   </div>
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__a6N0C,
+                                      {
+                                        [sty.freeBoxeventStep_step3__a6N0CemNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
+                                    )}
+                                  >
+                                    <FormItemWrapper
+                                      className={classNames(
+                                        "__wab_instance",
+                                        sty.formField___30Vdn
+                                      )}
+                                      initialValue={"0"}
+                                      label={
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__x0Sow
+                                          )}
+                                        >
+                                          {"Quantity"}
+                                        </div>
+                                      }
+                                      name={"TicketFee2"}
+                                      noLabel={true}
+                                      preserve={false}
+                                      rules={[
+                                        {
+                                          ruleType: "advanced",
+                                          custom: (rule, value) => {
+                                            return value >= 0 || value <= 100;
+                                          },
+                                          message:
+                                            "Value should be major than 0 or less than 100"
+                                        }
+                                      ]}
+                                    >
+                                      <TextInput
+                                        data-plasmic-name={"textInput35"}
+                                        data-plasmic-override={
+                                          overrides.textInput35
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.textInput35,
+                                          {
+                                            [sty.textInput35eventStep_step3]:
+                                              hasVariant(
+                                                $state,
+                                                "eventStep",
+                                                "step3"
+                                              )
+                                          }
+                                        )}
+                                        endIcon={
+                                          <CheckSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__zrtug,
+                                              {
+                                                [sty.svgeventStep_step3__zrtugemNtK]:
+                                                  hasVariant(
+                                                    $state,
+                                                    "eventStep",
+                                                    "step3"
+                                                  )
+                                              }
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                        onChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "textInput35",
+                                            "value"
+                                          ])(
+                                            (e => e.target?.value).apply(
+                                              null,
+                                              eventArgs
+                                            )
+                                          );
+                                        }}
+                                        placeholder={"0"}
+                                        type={"number"}
+                                        value={
+                                          generateStateValueProp($state, [
+                                            "textInput35",
+                                            "value"
+                                          ]) ?? ""
+                                        }
+                                      />
+                                    </FormItemWrapper>
+                                  </div>
                                   <Stack__
                                     as={"div"}
                                     hasGap={true}
@@ -5146,6 +5530,107 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                         value={
                                           generateStateValueProp($state, [
                                             "textInput17",
+                                            "value"
+                                          ]) ?? ""
+                                        }
+                                      />
+                                    </FormItemWrapper>
+                                  </div>
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__hHwx,
+                                      {
+                                        [sty.freeBoxeventStep_step3__hHwxEmNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
+                                    )}
+                                  >
+                                    <FormItemWrapper
+                                      className={classNames(
+                                        "__wab_instance",
+                                        sty.formField__yGacK
+                                      )}
+                                      initialValue={"0"}
+                                      label={
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__vt175
+                                          )}
+                                        >
+                                          {"Quantity"}
+                                        </div>
+                                      }
+                                      name={"TicketFee3"}
+                                      noLabel={true}
+                                      preserve={false}
+                                      rules={[
+                                        {
+                                          ruleType: "advanced",
+                                          custom: (rule, value) => {
+                                            return value >= 0 || value <= 100;
+                                          },
+                                          message:
+                                            "Value should be major than 0 or less than 100"
+                                        }
+                                      ]}
+                                    >
+                                      <TextInput
+                                        data-plasmic-name={"textInput36"}
+                                        data-plasmic-override={
+                                          overrides.textInput36
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.textInput36,
+                                          {
+                                            [sty.textInput36eventStep_step3]:
+                                              hasVariant(
+                                                $state,
+                                                "eventStep",
+                                                "step3"
+                                              )
+                                          }
+                                        )}
+                                        endIcon={
+                                          <CheckSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__sAsis,
+                                              {
+                                                [sty.svgeventStep_step3__sAsisemNtK]:
+                                                  hasVariant(
+                                                    $state,
+                                                    "eventStep",
+                                                    "step3"
+                                                  )
+                                              }
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                        onChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "textInput36",
+                                            "value"
+                                          ])(
+                                            (e => e.target?.value).apply(
+                                              null,
+                                              eventArgs
+                                            )
+                                          );
+                                        }}
+                                        placeholder={"0"}
+                                        type={"number"}
+                                        value={
+                                          generateStateValueProp($state, [
+                                            "textInput36",
                                             "value"
                                           ]) ?? ""
                                         }
@@ -5764,6 +6249,107 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                       />
                                     </FormItemWrapper>
                                   </div>
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__omKl,
+                                      {
+                                        [sty.freeBoxeventStep_step3__omKlEmNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
+                                    )}
+                                  >
+                                    <FormItemWrapper
+                                      className={classNames(
+                                        "__wab_instance",
+                                        sty.formField__nkrhX
+                                      )}
+                                      initialValue={"0"}
+                                      label={
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text___4YErD
+                                          )}
+                                        >
+                                          {"Quantity"}
+                                        </div>
+                                      }
+                                      name={"TicketFee4"}
+                                      noLabel={true}
+                                      preserve={false}
+                                      rules={[
+                                        {
+                                          ruleType: "advanced",
+                                          custom: (rule, value) => {
+                                            return value >= 0 || value <= 100;
+                                          },
+                                          message:
+                                            "Value should be major than 0 or less than 100"
+                                        }
+                                      ]}
+                                    >
+                                      <TextInput
+                                        data-plasmic-name={"textInput37"}
+                                        data-plasmic-override={
+                                          overrides.textInput37
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.textInput37,
+                                          {
+                                            [sty.textInput37eventStep_step3]:
+                                              hasVariant(
+                                                $state,
+                                                "eventStep",
+                                                "step3"
+                                              )
+                                          }
+                                        )}
+                                        endIcon={
+                                          <CheckSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg___8Lmhp,
+                                              {
+                                                [sty.svgeventStep_step3___8LmhpemNtK]:
+                                                  hasVariant(
+                                                    $state,
+                                                    "eventStep",
+                                                    "step3"
+                                                  )
+                                              }
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                        onChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "textInput37",
+                                            "value"
+                                          ])(
+                                            (e => e.target?.value).apply(
+                                              null,
+                                              eventArgs
+                                            )
+                                          );
+                                        }}
+                                        placeholder={"0"}
+                                        type={"number"}
+                                        value={
+                                          generateStateValueProp($state, [
+                                            "textInput37",
+                                            "value"
+                                          ]) ?? ""
+                                        }
+                                      />
+                                    </FormItemWrapper>
+                                  </div>
                                   <Stack__
                                     as={"div"}
                                     hasGap={true}
@@ -6370,6 +6956,107 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                         value={
                                           generateStateValueProp($state, [
                                             "textInput23",
+                                            "value"
+                                          ]) ?? ""
+                                        }
+                                      />
+                                    </FormItemWrapper>
+                                  </div>
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__xQgOo,
+                                      {
+                                        [sty.freeBoxeventStep_step3__xQgOoEmNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
+                                    )}
+                                  >
+                                    <FormItemWrapper
+                                      className={classNames(
+                                        "__wab_instance",
+                                        sty.formField__aXefH
+                                      )}
+                                      initialValue={"0"}
+                                      label={
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text___6BVi
+                                          )}
+                                        >
+                                          {"Quantity"}
+                                        </div>
+                                      }
+                                      name={"TicketFee5"}
+                                      noLabel={true}
+                                      preserve={false}
+                                      rules={[
+                                        {
+                                          ruleType: "advanced",
+                                          custom: (rule, value) => {
+                                            return value >= 0 || value <= 100;
+                                          },
+                                          message:
+                                            "Value should be major than 0 or less than 100"
+                                        }
+                                      ]}
+                                    >
+                                      <TextInput
+                                        data-plasmic-name={"textInput38"}
+                                        data-plasmic-override={
+                                          overrides.textInput38
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.textInput38,
+                                          {
+                                            [sty.textInput38eventStep_step3]:
+                                              hasVariant(
+                                                $state,
+                                                "eventStep",
+                                                "step3"
+                                              )
+                                          }
+                                        )}
+                                        endIcon={
+                                          <CheckSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__sEq4Y,
+                                              {
+                                                [sty.svgeventStep_step3__sEq4YEmNtK]:
+                                                  hasVariant(
+                                                    $state,
+                                                    "eventStep",
+                                                    "step3"
+                                                  )
+                                              }
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                        onChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "textInput38",
+                                            "value"
+                                          ])(
+                                            (e => e.target?.value).apply(
+                                              null,
+                                              eventArgs
+                                            )
+                                          );
+                                        }}
+                                        placeholder={"0"}
+                                        type={"number"}
+                                        value={
+                                          generateStateValueProp($state, [
+                                            "textInput38",
                                             "value"
                                           ]) ?? ""
                                         }
@@ -6988,6 +7675,107 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                       />
                                     </FormItemWrapper>
                                   </div>
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__wxcIa,
+                                      {
+                                        [sty.freeBoxeventStep_step3__wxcIaemNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
+                                    )}
+                                  >
+                                    <FormItemWrapper
+                                      className={classNames(
+                                        "__wab_instance",
+                                        sty.formField__zebpf
+                                      )}
+                                      initialValue={"0"}
+                                      label={
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__nMNfb
+                                          )}
+                                        >
+                                          {"Quantity"}
+                                        </div>
+                                      }
+                                      name={"TicketFee6"}
+                                      noLabel={true}
+                                      preserve={false}
+                                      rules={[
+                                        {
+                                          ruleType: "advanced",
+                                          custom: (rule, value) => {
+                                            return value >= 0 || value <= 100;
+                                          },
+                                          message:
+                                            "Value should be major than 0 or less than 100"
+                                        }
+                                      ]}
+                                    >
+                                      <TextInput
+                                        data-plasmic-name={"textInput39"}
+                                        data-plasmic-override={
+                                          overrides.textInput39
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.textInput39,
+                                          {
+                                            [sty.textInput39eventStep_step3]:
+                                              hasVariant(
+                                                $state,
+                                                "eventStep",
+                                                "step3"
+                                              )
+                                          }
+                                        )}
+                                        endIcon={
+                                          <CheckSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__rOso,
+                                              {
+                                                [sty.svgeventStep_step3__rOsoEmNtK]:
+                                                  hasVariant(
+                                                    $state,
+                                                    "eventStep",
+                                                    "step3"
+                                                  )
+                                              }
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                        onChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "textInput39",
+                                            "value"
+                                          ])(
+                                            (e => e.target?.value).apply(
+                                              null,
+                                              eventArgs
+                                            )
+                                          );
+                                        }}
+                                        placeholder={"0"}
+                                        type={"number"}
+                                        value={
+                                          generateStateValueProp($state, [
+                                            "textInput39",
+                                            "value"
+                                          ]) ?? ""
+                                        }
+                                      />
+                                    </FormItemWrapper>
+                                  </div>
                                   <Stack__
                                     as={"div"}
                                     hasGap={true}
@@ -7600,6 +8388,107 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                       />
                                     </FormItemWrapper>
                                   </div>
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__aIZE,
+                                      {
+                                        [sty.freeBoxeventStep_step3__aIZEemNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
+                                    )}
+                                  >
+                                    <FormItemWrapper
+                                      className={classNames(
+                                        "__wab_instance",
+                                        sty.formField__d5J0
+                                      )}
+                                      initialValue={"0"}
+                                      label={
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__rtz2P
+                                          )}
+                                        >
+                                          {"Quantity"}
+                                        </div>
+                                      }
+                                      name={"TicketFee7"}
+                                      noLabel={true}
+                                      preserve={false}
+                                      rules={[
+                                        {
+                                          ruleType: "advanced",
+                                          custom: (rule, value) => {
+                                            return value >= 0 || value <= 100;
+                                          },
+                                          message:
+                                            "Value should be major than 0 or less than 100"
+                                        }
+                                      ]}
+                                    >
+                                      <TextInput
+                                        data-plasmic-name={"textInput40"}
+                                        data-plasmic-override={
+                                          overrides.textInput40
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.textInput40,
+                                          {
+                                            [sty.textInput40eventStep_step3]:
+                                              hasVariant(
+                                                $state,
+                                                "eventStep",
+                                                "step3"
+                                              )
+                                          }
+                                        )}
+                                        endIcon={
+                                          <CheckSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__rBk5A,
+                                              {
+                                                [sty.svgeventStep_step3__rBk5AEmNtK]:
+                                                  hasVariant(
+                                                    $state,
+                                                    "eventStep",
+                                                    "step3"
+                                                  )
+                                              }
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                        onChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "textInput40",
+                                            "value"
+                                          ])(
+                                            (e => e.target?.value).apply(
+                                              null,
+                                              eventArgs
+                                            )
+                                          );
+                                        }}
+                                        placeholder={"0"}
+                                        type={"number"}
+                                        value={
+                                          generateStateValueProp($state, [
+                                            "textInput40",
+                                            "value"
+                                          ]) ?? ""
+                                        }
+                                      />
+                                    </FormItemWrapper>
+                                  </div>
                                   <Stack__
                                     as={"div"}
                                     hasGap={true}
@@ -8194,6 +9083,107 @@ function PlasmicCreateEvent__RenderFunc(props: {
                                       />
                                     </FormItemWrapper>
                                   </div>
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__c3O0T,
+                                      {
+                                        [sty.freeBoxeventStep_step3__c3O0TEmNtK]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
+                                    )}
+                                  >
+                                    <FormItemWrapper
+                                      className={classNames(
+                                        "__wab_instance",
+                                        sty.formField__towKo
+                                      )}
+                                      initialValue={"0"}
+                                      label={
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__td5Vc
+                                          )}
+                                        >
+                                          {"Quantity"}
+                                        </div>
+                                      }
+                                      name={"TicketFee8"}
+                                      noLabel={true}
+                                      preserve={false}
+                                      rules={[
+                                        {
+                                          ruleType: "advanced",
+                                          custom: (rule, value) => {
+                                            return value >= 0 || value <= 100;
+                                          },
+                                          message:
+                                            "Value should be major than 0 or less than 100"
+                                        }
+                                      ]}
+                                    >
+                                      <TextInput
+                                        data-plasmic-name={"textInput41"}
+                                        data-plasmic-override={
+                                          overrides.textInput41
+                                        }
+                                        className={classNames(
+                                          "__wab_instance",
+                                          sty.textInput41,
+                                          {
+                                            [sty.textInput41eventStep_step3]:
+                                              hasVariant(
+                                                $state,
+                                                "eventStep",
+                                                "step3"
+                                              )
+                                          }
+                                        )}
+                                        endIcon={
+                                          <CheckSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__fUkIe,
+                                              {
+                                                [sty.svgeventStep_step3__fUkIeEmNtK]:
+                                                  hasVariant(
+                                                    $state,
+                                                    "eventStep",
+                                                    "step3"
+                                                  )
+                                              }
+                                            )}
+                                            role={"img"}
+                                          />
+                                        }
+                                        onChange={(...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "textInput41",
+                                            "value"
+                                          ])(
+                                            (e => e.target?.value).apply(
+                                              null,
+                                              eventArgs
+                                            )
+                                          );
+                                        }}
+                                        placeholder={"0"}
+                                        type={"number"}
+                                        value={
+                                          generateStateValueProp($state, [
+                                            "textInput41",
+                                            "value"
+                                          ]) ?? ""
+                                        }
+                                      />
+                                    </FormItemWrapper>
+                                  </div>
                                   <Stack__
                                     as={"div"}
                                     hasGap={true}
@@ -8486,46 +9476,55 @@ const PlasmicDescendants = {
     "textInput4",
     "textInput5",
     "textInput6",
+    "textInput33",
     "paidFormList2",
     "select3",
     "textInput9",
     "textInput10",
     "textInput11",
+    "textInput34",
     "paidFormList3",
     "select4",
     "textInput12",
     "textInput13",
     "textInput14",
+    "textInput35",
     "paidFormList4",
     "select5",
     "textInput15",
     "textInput16",
     "textInput17",
+    "textInput36",
     "paidFormList5",
     "select6",
     "textInput18",
     "textInput19",
     "textInput20",
+    "textInput37",
     "paidFormList6",
     "select7",
     "textInput21",
     "textInput22",
     "textInput23",
+    "textInput38",
     "paidFormList7",
     "select8",
     "textInput24",
     "textInput25",
     "textInput26",
+    "textInput39",
     "paidFormList8",
     "select9",
     "textInput27",
     "textInput28",
     "textInput29",
+    "textInput40",
     "paidFormList9",
     "select10",
     "textInput30",
     "textInput31",
     "textInput32",
+    "textInput41",
     "footer"
   ],
   navbar2: ["navbar2"],
@@ -8554,46 +9553,55 @@ const PlasmicDescendants = {
     "textInput4",
     "textInput5",
     "textInput6",
+    "textInput33",
     "paidFormList2",
     "select3",
     "textInput9",
     "textInput10",
     "textInput11",
+    "textInput34",
     "paidFormList3",
     "select4",
     "textInput12",
     "textInput13",
     "textInput14",
+    "textInput35",
     "paidFormList4",
     "select5",
     "textInput15",
     "textInput16",
     "textInput17",
+    "textInput36",
     "paidFormList5",
     "select6",
     "textInput18",
     "textInput19",
     "textInput20",
+    "textInput37",
     "paidFormList6",
     "select7",
     "textInput21",
     "textInput22",
     "textInput23",
+    "textInput38",
     "paidFormList7",
     "select8",
     "textInput24",
     "textInput25",
     "textInput26",
+    "textInput39",
     "paidFormList8",
     "select9",
     "textInput27",
     "textInput28",
     "textInput29",
+    "textInput40",
     "paidFormList9",
     "select10",
     "textInput30",
     "textInput31",
-    "textInput32"
+    "textInput32",
+    "textInput41"
   ],
   options: ["options"],
   newEvent: [
@@ -8619,46 +9627,55 @@ const PlasmicDescendants = {
     "textInput4",
     "textInput5",
     "textInput6",
+    "textInput33",
     "paidFormList2",
     "select3",
     "textInput9",
     "textInput10",
     "textInput11",
+    "textInput34",
     "paidFormList3",
     "select4",
     "textInput12",
     "textInput13",
     "textInput14",
+    "textInput35",
     "paidFormList4",
     "select5",
     "textInput15",
     "textInput16",
     "textInput17",
+    "textInput36",
     "paidFormList5",
     "select6",
     "textInput18",
     "textInput19",
     "textInput20",
+    "textInput37",
     "paidFormList6",
     "select7",
     "textInput21",
     "textInput22",
     "textInput23",
+    "textInput38",
     "paidFormList7",
     "select8",
     "textInput24",
     "textInput25",
     "textInput26",
+    "textInput39",
     "paidFormList8",
     "select9",
     "textInput27",
     "textInput28",
     "textInput29",
+    "textInput40",
     "paidFormList9",
     "select10",
     "textInput30",
     "textInput31",
-    "textInput32"
+    "textInput32",
+    "textInput41"
   ],
   eventName: [
     "eventName",
@@ -8705,146 +9722,173 @@ const PlasmicDescendants = {
     "textInput4",
     "textInput5",
     "textInput6",
+    "textInput33",
     "paidFormList2",
     "select3",
     "textInput9",
     "textInput10",
     "textInput11",
+    "textInput34",
     "paidFormList3",
     "select4",
     "textInput12",
     "textInput13",
     "textInput14",
+    "textInput35",
     "paidFormList4",
     "select5",
     "textInput15",
     "textInput16",
     "textInput17",
+    "textInput36",
     "paidFormList5",
     "select6",
     "textInput18",
     "textInput19",
     "textInput20",
+    "textInput37",
     "paidFormList6",
     "select7",
     "textInput21",
     "textInput22",
     "textInput23",
+    "textInput38",
     "paidFormList7",
     "select8",
     "textInput24",
     "textInput25",
     "textInput26",
+    "textInput39",
     "paidFormList8",
     "select9",
     "textInput27",
     "textInput28",
     "textInput29",
+    "textInput40",
     "paidFormList9",
     "select10",
     "textInput30",
     "textInput31",
-    "textInput32"
+    "textInput32",
+    "textInput41"
   ],
   paidFormList: [
     "paidFormList",
     "selectTicketType",
     "textInput4",
     "textInput5",
-    "textInput6"
+    "textInput6",
+    "textInput33"
   ],
   selectTicketType: ["selectTicketType"],
   textInput4: ["textInput4"],
   textInput5: ["textInput5"],
   textInput6: ["textInput6"],
+  textInput33: ["textInput33"],
   paidFormList2: [
     "paidFormList2",
     "select3",
     "textInput9",
     "textInput10",
-    "textInput11"
+    "textInput11",
+    "textInput34"
   ],
   select3: ["select3"],
   textInput9: ["textInput9"],
   textInput10: ["textInput10"],
   textInput11: ["textInput11"],
+  textInput34: ["textInput34"],
   paidFormList3: [
     "paidFormList3",
     "select4",
     "textInput12",
     "textInput13",
-    "textInput14"
+    "textInput14",
+    "textInput35"
   ],
   select4: ["select4"],
   textInput12: ["textInput12"],
   textInput13: ["textInput13"],
   textInput14: ["textInput14"],
+  textInput35: ["textInput35"],
   paidFormList4: [
     "paidFormList4",
     "select5",
     "textInput15",
     "textInput16",
-    "textInput17"
+    "textInput17",
+    "textInput36"
   ],
   select5: ["select5"],
   textInput15: ["textInput15"],
   textInput16: ["textInput16"],
   textInput17: ["textInput17"],
+  textInput36: ["textInput36"],
   paidFormList5: [
     "paidFormList5",
     "select6",
     "textInput18",
     "textInput19",
-    "textInput20"
+    "textInput20",
+    "textInput37"
   ],
   select6: ["select6"],
   textInput18: ["textInput18"],
   textInput19: ["textInput19"],
   textInput20: ["textInput20"],
+  textInput37: ["textInput37"],
   paidFormList6: [
     "paidFormList6",
     "select7",
     "textInput21",
     "textInput22",
-    "textInput23"
+    "textInput23",
+    "textInput38"
   ],
   select7: ["select7"],
   textInput21: ["textInput21"],
   textInput22: ["textInput22"],
   textInput23: ["textInput23"],
+  textInput38: ["textInput38"],
   paidFormList7: [
     "paidFormList7",
     "select8",
     "textInput24",
     "textInput25",
-    "textInput26"
+    "textInput26",
+    "textInput39"
   ],
   select8: ["select8"],
   textInput24: ["textInput24"],
   textInput25: ["textInput25"],
   textInput26: ["textInput26"],
+  textInput39: ["textInput39"],
   paidFormList8: [
     "paidFormList8",
     "select9",
     "textInput27",
     "textInput28",
-    "textInput29"
+    "textInput29",
+    "textInput40"
   ],
   select9: ["select9"],
   textInput27: ["textInput27"],
   textInput28: ["textInput28"],
   textInput29: ["textInput29"],
+  textInput40: ["textInput40"],
   paidFormList9: [
     "paidFormList9",
     "select10",
     "textInput30",
     "textInput31",
-    "textInput32"
+    "textInput32",
+    "textInput41"
   ],
   select10: ["select10"],
   textInput30: ["textInput30"],
   textInput31: ["textInput31"],
   textInput32: ["textInput32"],
+  textInput41: ["textInput41"],
   footer: ["footer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -8877,46 +9921,55 @@ type NodeDefaultElementType = {
   textInput4: typeof TextInput;
   textInput5: typeof TextInput;
   textInput6: typeof TextInput;
+  textInput33: typeof TextInput;
   paidFormList2: typeof FormListWrapper;
   select3: typeof Select;
   textInput9: typeof TextInput;
   textInput10: typeof TextInput;
   textInput11: typeof TextInput;
+  textInput34: typeof TextInput;
   paidFormList3: typeof FormListWrapper;
   select4: typeof Select;
   textInput12: typeof TextInput;
   textInput13: typeof TextInput;
   textInput14: typeof TextInput;
+  textInput35: typeof TextInput;
   paidFormList4: typeof FormListWrapper;
   select5: typeof Select;
   textInput15: typeof TextInput;
   textInput16: typeof TextInput;
   textInput17: typeof TextInput;
+  textInput36: typeof TextInput;
   paidFormList5: typeof FormListWrapper;
   select6: typeof Select;
   textInput18: typeof TextInput;
   textInput19: typeof TextInput;
   textInput20: typeof TextInput;
+  textInput37: typeof TextInput;
   paidFormList6: typeof FormListWrapper;
   select7: typeof Select;
   textInput21: typeof TextInput;
   textInput22: typeof TextInput;
   textInput23: typeof TextInput;
+  textInput38: typeof TextInput;
   paidFormList7: typeof FormListWrapper;
   select8: typeof Select;
   textInput24: typeof TextInput;
   textInput25: typeof TextInput;
   textInput26: typeof TextInput;
+  textInput39: typeof TextInput;
   paidFormList8: typeof FormListWrapper;
   select9: typeof Select;
   textInput27: typeof TextInput;
   textInput28: typeof TextInput;
   textInput29: typeof TextInput;
+  textInput40: typeof TextInput;
   paidFormList9: typeof FormListWrapper;
   select10: typeof Select;
   textInput30: typeof TextInput;
   textInput31: typeof TextInput;
   textInput32: typeof TextInput;
+  textInput41: typeof TextInput;
   footer: typeof Footer;
 };
 
@@ -9005,46 +10058,55 @@ export const PlasmicCreateEvent = Object.assign(
     textInput4: makeNodeComponent("textInput4"),
     textInput5: makeNodeComponent("textInput5"),
     textInput6: makeNodeComponent("textInput6"),
+    textInput33: makeNodeComponent("textInput33"),
     paidFormList2: makeNodeComponent("paidFormList2"),
     select3: makeNodeComponent("select3"),
     textInput9: makeNodeComponent("textInput9"),
     textInput10: makeNodeComponent("textInput10"),
     textInput11: makeNodeComponent("textInput11"),
+    textInput34: makeNodeComponent("textInput34"),
     paidFormList3: makeNodeComponent("paidFormList3"),
     select4: makeNodeComponent("select4"),
     textInput12: makeNodeComponent("textInput12"),
     textInput13: makeNodeComponent("textInput13"),
     textInput14: makeNodeComponent("textInput14"),
+    textInput35: makeNodeComponent("textInput35"),
     paidFormList4: makeNodeComponent("paidFormList4"),
     select5: makeNodeComponent("select5"),
     textInput15: makeNodeComponent("textInput15"),
     textInput16: makeNodeComponent("textInput16"),
     textInput17: makeNodeComponent("textInput17"),
+    textInput36: makeNodeComponent("textInput36"),
     paidFormList5: makeNodeComponent("paidFormList5"),
     select6: makeNodeComponent("select6"),
     textInput18: makeNodeComponent("textInput18"),
     textInput19: makeNodeComponent("textInput19"),
     textInput20: makeNodeComponent("textInput20"),
+    textInput37: makeNodeComponent("textInput37"),
     paidFormList6: makeNodeComponent("paidFormList6"),
     select7: makeNodeComponent("select7"),
     textInput21: makeNodeComponent("textInput21"),
     textInput22: makeNodeComponent("textInput22"),
     textInput23: makeNodeComponent("textInput23"),
+    textInput38: makeNodeComponent("textInput38"),
     paidFormList7: makeNodeComponent("paidFormList7"),
     select8: makeNodeComponent("select8"),
     textInput24: makeNodeComponent("textInput24"),
     textInput25: makeNodeComponent("textInput25"),
     textInput26: makeNodeComponent("textInput26"),
+    textInput39: makeNodeComponent("textInput39"),
     paidFormList8: makeNodeComponent("paidFormList8"),
     select9: makeNodeComponent("select9"),
     textInput27: makeNodeComponent("textInput27"),
     textInput28: makeNodeComponent("textInput28"),
     textInput29: makeNodeComponent("textInput29"),
+    textInput40: makeNodeComponent("textInput40"),
     paidFormList9: makeNodeComponent("paidFormList9"),
     select10: makeNodeComponent("select10"),
     textInput30: makeNodeComponent("textInput30"),
     textInput31: makeNodeComponent("textInput31"),
     textInput32: makeNodeComponent("textInput32"),
+    textInput41: makeNodeComponent("textInput41"),
     footer: makeNodeComponent("footer"),
 
     // Metadata about props expected for PlasmicCreateEvent

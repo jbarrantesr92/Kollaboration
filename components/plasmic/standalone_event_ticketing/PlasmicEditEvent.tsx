@@ -153,6 +153,7 @@ export type PlasmicEditEvent__OverridesType = {
   inputTicketName2?: Flex__<typeof TextInput>;
   inputTicketQuantity?: Flex__<typeof TextInput>;
   inputTicketPrice?: Flex__<typeof TextInput>;
+  inputTicketFee?: Flex__<typeof TextInput>;
   footer?: Flex__<typeof Footer>;
 };
 
@@ -473,6 +474,11 @@ function PlasmicEditEvent__RenderFunc(props: {
       },
       {
         path: "selectTicketType[][].ticketId",
+        type: "private",
+        variableType: "text"
+      },
+      {
+        path: "inputTicketFee[][].value",
         type: "private",
         variableType: "text"
       }
@@ -3990,119 +3996,6 @@ function PlasmicEditEvent__RenderFunc(props: {
                       data-plasmic-override={overrides.editTickets}
                       {...child$Props}
                     >
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          sty.freeBox___0AhDu,
-                          {
-                            [sty.freeBoxeventStep_step3___0AhDubbMwL]:
-                              hasVariant($state, "eventStep", "step3")
-                          }
-                        )}
-                      >
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__dQdvF,
-                            {
-                              [sty.freeBoxeventStep_step2__dQdvFoVvWp]:
-                                hasVariant($state, "eventStep", "step2"),
-                              [sty.freeBoxeventStep_step3__dQdvFbbMwL]:
-                                hasVariant($state, "eventStep", "step3")
-                            }
-                          )}
-                        >
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text___7BnZw
-                            )}
-                          >
-                            {"Ticket type"}
-                          </div>
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__dWCwZ,
-                            {
-                              [sty.freeBoxeventStep_step3__dWCwZbbMwL]:
-                                hasVariant($state, "eventStep", "step3")
-                            }
-                          )}
-                        >
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__yPi3O
-                            )}
-                          >
-                            {"Ticket name"}
-                          </div>
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__trwAy,
-                            {
-                              [sty.freeBoxeventStep_step3__trwAybbMwL]:
-                                hasVariant($state, "eventStep", "step3")
-                            }
-                          )}
-                        >
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__fLDrd
-                            )}
-                          >
-                            {"Quantity"}
-                          </div>
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox__pxPm0,
-                            {
-                              [sty.freeBoxeventStep_step3__pxPm0BbMwL]:
-                                hasVariant($state, "eventStep", "step3")
-                            }
-                          )}
-                        >
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__xBlFq
-                            )}
-                          >
-                            {"Price"}
-                          </div>
-                        </div>
-                        <div
-                          className={classNames(
-                            projectcss.all,
-                            sty.freeBox___69Vl7,
-                            {
-                              [sty.freeBoxeventStep_step3___69Vl7BbMwL]:
-                                hasVariant($state, "eventStep", "step3")
-                            }
-                          )}
-                        >
-                          <div
-                            className={classNames(
-                              projectcss.all,
-                              projectcss.__wab_text,
-                              sty.text__nrYYo
-                            )}
-                          >
-                            {"Actions"}
-                          </div>
-                        </div>
-                      </div>
                       {(_par =>
                         !_par ? [] : Array.isArray(_par) ? _par : [_par])(
                         (() => {
@@ -4148,7 +4041,6 @@ function PlasmicEditEvent__RenderFunc(props: {
                                 {(() => {
                                   try {
                                     return (() => {
-                                      undefined;
                                       function formatDate(inputDate) {
                                         if (
                                           /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(
@@ -4196,6 +4088,139 @@ function PlasmicEditEvent__RenderFunc(props: {
                                   }
                                 })()}
                               </React.Fragment>
+                            </div>
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                sty.freeBox__xKf8Z,
+                                {
+                                  [sty.freeBoxeventStep_step3__xKf8ZbbMwL]:
+                                    hasVariant($state, "eventStep", "step3")
+                                }
+                              )}
+                            >
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__xyB7V,
+                                  {
+                                    [sty.freeBoxeventStep_step2__xyB7VOVvWp]:
+                                      hasVariant($state, "eventStep", "step2"),
+                                    [sty.freeBoxeventStep_step3__xyB7VbbMwL]:
+                                      hasVariant($state, "eventStep", "step3")
+                                  }
+                                )}
+                              >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__cmZdN
+                                  )}
+                                >
+                                  {"Ticket type"}
+                                </div>
+                              </div>
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__tpYei,
+                                  {
+                                    [sty.freeBoxeventStep_step3__tpYeibbMwL]:
+                                      hasVariant($state, "eventStep", "step3")
+                                  }
+                                )}
+                              >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__lOouW
+                                  )}
+                                >
+                                  {"Ticket name"}
+                                </div>
+                              </div>
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__p5F9,
+                                  {
+                                    [sty.freeBoxeventStep_step3__p5F9BbMwL]:
+                                      hasVariant($state, "eventStep", "step3")
+                                  }
+                                )}
+                              >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text___1I1AP
+                                  )}
+                                >
+                                  {"Quantity"}
+                                </div>
+                              </div>
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__dfLVq,
+                                  {
+                                    [sty.freeBoxeventStep_step3__dfLVqbbMwL]:
+                                      hasVariant($state, "eventStep", "step3")
+                                  }
+                                )}
+                              >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__wgFsL
+                                  )}
+                                >
+                                  {"Price"}
+                                </div>
+                              </div>
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox___2Vq12,
+                                  {
+                                    [sty.freeBoxeventStep_step3___2Vq12BbMwL]:
+                                      hasVariant($state, "eventStep", "step3")
+                                  }
+                                )}
+                              >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__wnIB
+                                  )}
+                                >
+                                  {"Ticket Fee %"}
+                                </div>
+                              </div>
+                              <div
+                                className={classNames(
+                                  projectcss.all,
+                                  sty.freeBox__tbleD,
+                                  {
+                                    [sty.freeBoxeventStep_step3__tbleDbbMwL]:
+                                      hasVariant($state, "eventStep", "step3")
+                                  }
+                                )}
+                              >
+                                <div
+                                  className={classNames(
+                                    projectcss.all,
+                                    projectcss.__wab_text,
+                                    sty.text__mxaZt
+                                  )}
+                                >
+                                  {"Actions"}
+                                </div>
+                              </div>
                             </div>
                             {(_par =>
                               !_par ? [] : Array.isArray(_par) ? _par : [_par])(
@@ -4682,6 +4707,99 @@ function PlasmicEditEvent__RenderFunc(props: {
                                       );
                                     })()}
                                   </div>
+                                  <div
+                                    className={classNames(
+                                      projectcss.all,
+                                      sty.freeBox__tdMb2,
+                                      {
+                                        [sty.freeBoxeventStep_step3__tdMb2BbMwL]:
+                                          hasVariant(
+                                            $state,
+                                            "eventStep",
+                                            "step3"
+                                          )
+                                      }
+                                    )}
+                                  >
+                                    {(() => {
+                                      const child$Props = {
+                                        className: classNames(
+                                          "__wab_instance",
+                                          sty.inputTicketFee
+                                        ),
+                                        endIcon: (
+                                          <CheckSvgIcon
+                                            className={classNames(
+                                              projectcss.all,
+                                              sty.svg__niTpH
+                                            )}
+                                            role={"img"}
+                                          />
+                                        ),
+
+                                        onChange: (...eventArgs) => {
+                                          generateStateOnChangeProp($state, [
+                                            "inputTicketFee",
+                                            __plasmic_idx_0,
+                                            __plasmic_idx_1,
+                                            "value"
+                                          ])(
+                                            (e => e.target?.value).apply(
+                                              null,
+                                              eventArgs
+                                            )
+                                          );
+                                        },
+                                        placeholder: "0",
+                                        type: "number",
+                                        value:
+                                          generateStateValueProp($state, [
+                                            "inputTicketFee",
+                                            __plasmic_idx_0,
+                                            __plasmic_idx_1,
+                                            "value"
+                                          ]) ?? ""
+                                      };
+
+                                      initializePlasmicStates(
+                                        $state,
+                                        [
+                                          {
+                                            name: "inputTicketFee[][].value",
+                                            initFunc: ({
+                                              $props,
+                                              $state,
+                                              $queries
+                                            }) =>
+                                              (() => {
+                                                try {
+                                                  return currentItem.TicketFee;
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return undefined;
+                                                  }
+                                                  throw e;
+                                                }
+                                              })()
+                                          }
+                                        ],
+                                        [__plasmic_idx_0, __plasmic_idx_1]
+                                      );
+                                      return (
+                                        <TextInput
+                                          data-plasmic-name={"inputTicketFee"}
+                                          data-plasmic-override={
+                                            overrides.inputTicketFee
+                                          }
+                                          {...child$Props}
+                                        />
+                                      );
+                                    })()}
+                                  </div>
                                   <Stack__
                                     as={"div"}
                                     hasGap={true}
@@ -4801,6 +4919,7 @@ function PlasmicEditEvent__RenderFunc(props: {
                                                 TicketType: "Paid",
                                                 TicketQuantity: 0,
                                                 TicketPrice: 0,
+                                                TicketFee: 0,
                                                 EventId: currentItem.EventId,
                                                 EventDateId: currentItem.id
                                               }
@@ -4898,6 +5017,8 @@ function PlasmicEditEvent__RenderFunc(props: {
                                       $state.inputTicketQuantity;
                                     const inputTicketPrice =
                                       $state.inputTicketPrice;
+                                    const inputTicketFee =
+                                      $state.inputTicketFee;
                                     const result = [];
                                     selectTicketType.forEach(
                                       (ticketTypeArray, i) => {
@@ -4913,7 +5034,9 @@ function PlasmicEditEvent__RenderFunc(props: {
                                               TicketQuantity:
                                                 inputTicketQuantity[i][j].value,
                                               TicketPrice:
-                                                inputTicketPrice[i][j].value
+                                                inputTicketPrice[i][j].value,
+                                              TicketFee:
+                                                inputTicketFee[i][j].value
                                             });
                                           }
                                         );
@@ -5009,6 +5132,7 @@ const PlasmicDescendants = {
     "inputTicketName2",
     "inputTicketQuantity",
     "inputTicketPrice",
+    "inputTicketFee",
     "footer"
   ],
   navbar2: ["navbar2"],
@@ -5038,7 +5162,8 @@ const PlasmicDescendants = {
     "inputTicketName",
     "inputTicketName2",
     "inputTicketQuantity",
-    "inputTicketPrice"
+    "inputTicketPrice",
+    "inputTicketFee"
   ],
   options: ["options"],
   newEvent: [
@@ -5098,13 +5223,15 @@ const PlasmicDescendants = {
     "inputTicketName",
     "inputTicketName2",
     "inputTicketQuantity",
-    "inputTicketPrice"
+    "inputTicketPrice",
+    "inputTicketFee"
   ],
   selectTicketType: ["selectTicketType"],
   inputTicketName: ["inputTicketName", "inputTicketName2"],
   inputTicketName2: ["inputTicketName2"],
   inputTicketQuantity: ["inputTicketQuantity"],
   inputTicketPrice: ["inputTicketPrice"],
+  inputTicketFee: ["inputTicketFee"],
   footer: ["footer"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
@@ -5139,6 +5266,7 @@ type NodeDefaultElementType = {
   inputTicketName2: typeof TextInput;
   inputTicketQuantity: typeof TextInput;
   inputTicketPrice: typeof TextInput;
+  inputTicketFee: typeof TextInput;
   footer: typeof Footer;
 };
 
@@ -5246,6 +5374,7 @@ export const PlasmicEditEvent = Object.assign(
     inputTicketName2: makeNodeComponent("inputTicketName2"),
     inputTicketQuantity: makeNodeComponent("inputTicketQuantity"),
     inputTicketPrice: makeNodeComponent("inputTicketPrice"),
+    inputTicketFee: makeNodeComponent("inputTicketFee"),
     footer: makeNodeComponent("footer"),
 
     // Metadata about props expected for PlasmicEditEvent

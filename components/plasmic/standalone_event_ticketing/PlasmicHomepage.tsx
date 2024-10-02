@@ -106,6 +106,7 @@ export type PlasmicHomepage__OverridesType = {
   header?: Flex__<"section">;
   searchEventEs?: Flex__<typeof TextInput>;
   searchEvent3?: Flex__<typeof TextInput>;
+  searchEvent4?: Flex__<typeof TextInput>;
   section?: Flex__<"section">;
   img?: Flex__<typeof PlasmicImg__>;
   footer2?: Flex__<typeof Footer2>;
@@ -173,6 +174,12 @@ function PlasmicHomepage__RenderFunc(props: {
       },
       {
         path: "searchEvent3.value",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "searchEvent4.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
@@ -261,7 +268,19 @@ function PlasmicHomepage__RenderFunc(props: {
             projectcss.plasmic_tokens,
             plasmic_antd_5_hostless_css.plasmic_tokens,
             plasmic_plasmic_rich_components_css.plasmic_tokens,
-            sty.root
+            sty.root,
+            {
+              [sty.rootglobal_locale_en]: hasVariant(
+                globalVariants,
+                "locale",
+                "en"
+              ),
+              [sty.rootglobal_locale_es]: hasVariant(
+                globalVariants,
+                "locale",
+                "es"
+              )
+            }
           )}
         >
           <Navbar2
@@ -292,7 +311,15 @@ function PlasmicHomepage__RenderFunc(props: {
               )
             })}
           >
-            <div className={classNames(projectcss.all, sty.freeBox__bew6P)}>
+            <div
+              className={classNames(projectcss.all, sty.freeBox__bew6P, {
+                [sty.freeBoxglobal_locale_es__bew6PTnYnw]: hasVariant(
+                  globalVariants,
+                  "locale",
+                  "es"
+                )
+              })}
+            >
               <div
                 className={classNames(
                   projectcss.all,
@@ -313,7 +340,14 @@ function PlasmicHomepage__RenderFunc(props: {
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__gghTk
+                  sty.text__gghTk,
+                  {
+                    [sty.textglobal_locale_es__gghTkTnYnw]: hasVariant(
+                      globalVariants,
+                      "locale",
+                      "es"
+                    )
+                  }
                 )}
               >
                 <React.Fragment>
@@ -325,10 +359,46 @@ function PlasmicHomepage__RenderFunc(props: {
                   </span>
                 </React.Fragment>
               </div>
+              {(hasVariant(globalVariants, "locale", "es") ? true : false) ? (
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__xohAx,
+                    {
+                      [sty.textglobal_locale_en__xohAxg2TuR]: hasVariant(
+                        globalVariants,
+                        "locale",
+                        "en"
+                      ),
+                      [sty.textglobal_locale_es__xohAxTnYnw]: hasVariant(
+                        globalVariants,
+                        "locale",
+                        "es"
+                      )
+                    }
+                  )}
+                >
+                  <React.Fragment>
+                    <span
+                      className={"plasmic_default__all plasmic_default__span"}
+                      style={{ fontWeight: 700 }}
+                    >
+                      {"Encuentra tu pr\u00f3ximo evento"}
+                    </span>
+                  </React.Fragment>
+                </div>
+              ) : null}
               <TextInput
                 data-plasmic-name={"searchEventEs"}
                 data-plasmic-override={overrides.searchEventEs}
-                className={classNames("__wab_instance", sty.searchEventEs)}
+                className={classNames("__wab_instance", sty.searchEventEs, {
+                  [sty.searchEventEsglobal_locale_es]: hasVariant(
+                    globalVariants,
+                    "locale",
+                    "es"
+                  )
+                })}
                 endIcon={
                   <Button
                     className={classNames("__wab_instance", sty.button___7Zo3)}
@@ -403,7 +473,13 @@ function PlasmicHomepage__RenderFunc(props: {
               <TextInput
                 data-plasmic-name={"searchEvent3"}
                 data-plasmic-override={overrides.searchEvent3}
-                className={classNames("__wab_instance", sty.searchEvent3)}
+                className={classNames("__wab_instance", sty.searchEvent3, {
+                  [sty.searchEvent3global_locale_es]: hasVariant(
+                    globalVariants,
+                    "locale",
+                    "es"
+                  )
+                })}
                 endIcon={
                   <Button
                     className={classNames("__wab_instance", sty.button__uotlT)}
@@ -474,6 +550,90 @@ function PlasmicHomepage__RenderFunc(props: {
                   ""
                 }
               />
+
+              {(hasVariant(globalVariants, "locale", "es") ? true : false) ? (
+                <TextInput
+                  data-plasmic-name={"searchEvent4"}
+                  data-plasmic-override={overrides.searchEvent4}
+                  className={classNames("__wab_instance", sty.searchEvent4, {
+                    [sty.searchEvent4global_locale_es]: hasVariant(
+                      globalVariants,
+                      "locale",
+                      "es"
+                    )
+                  })}
+                  endIcon={
+                    <Button
+                      className={classNames("__wab_instance", sty.button__bnAC)}
+                      color={"blue"}
+                      onClick={async event => {
+                        const $steps = {};
+
+                        $steps["updateSearchEvent"] = true
+                          ? (() => {
+                              const actionArgs = {
+                                variable: {
+                                  objRoot: $state,
+                                  variablePath: ["searchEvent"]
+                                },
+                                operation: 0,
+                                value: $state.searchEvent4.value
+                              };
+                              return (({
+                                variable,
+                                value,
+                                startIndex,
+                                deleteCount
+                              }) => {
+                                if (!variable) {
+                                  return;
+                                }
+                                const { objRoot, variablePath } = variable;
+
+                                $stateSet(objRoot, variablePath, value);
+                                return value;
+                              })?.apply(null, [actionArgs]);
+                            })()
+                          : undefined;
+                        if (
+                          $steps["updateSearchEvent"] != null &&
+                          typeof $steps["updateSearchEvent"] === "object" &&
+                          typeof $steps["updateSearchEvent"].then === "function"
+                        ) {
+                          $steps["updateSearchEvent"] = await $steps[
+                            "updateSearchEvent"
+                          ];
+                        }
+                      }}
+                      startIcon={
+                        <CheckSvgIcon
+                          className={classNames(projectcss.all, sty.svg__hitSt)}
+                          role={"img"}
+                        />
+                      }
+                    >
+                      {"Buscar"}
+                    </Button>
+                  }
+                  onChange={(...eventArgs) => {
+                    generateStateOnChangeProp($state, [
+                      "searchEvent4",
+                      "value"
+                    ])((e => e.target?.value).apply(null, eventArgs));
+                  }}
+                  placeholder={"Busca eventos y m\u00e1s"}
+                  startIcon={
+                    <SearchSvgIcon
+                      className={classNames(projectcss.all, sty.svg__ka3XF)}
+                      role={"img"}
+                    />
+                  }
+                  value={
+                    generateStateValueProp($state, ["searchEvent4", "value"]) ??
+                    ""
+                  }
+                />
+              ) : null}
             </div>
           </section>
           <section
@@ -490,7 +650,14 @@ function PlasmicHomepage__RenderFunc(props: {
                 className={classNames(
                   projectcss.all,
                   projectcss.__wab_text,
-                  sty.text__tTxiv
+                  sty.text__tTxiv,
+                  {
+                    [sty.textglobal_locale_es__tTxivTnYnw]: hasVariant(
+                      globalVariants,
+                      "locale",
+                      "es"
+                    )
+                  }
                 )}
               >
                 <React.Fragment>
@@ -499,6 +666,29 @@ function PlasmicHomepage__RenderFunc(props: {
                     style={{ fontWeight: 700 }}
                   >
                     {"Events"}
+                  </span>
+                </React.Fragment>
+              </div>
+              <div
+                className={classNames(
+                  projectcss.all,
+                  projectcss.__wab_text,
+                  sty.text__ikTZ,
+                  {
+                    [sty.textglobal_locale_es__ikTZTnYnw]: hasVariant(
+                      globalVariants,
+                      "locale",
+                      "es"
+                    )
+                  }
+                )}
+              >
+                <React.Fragment>
+                  <span
+                    className={"plasmic_default__all plasmic_default__span"}
+                    style={{ fontWeight: 700 }}
+                  >
+                    {"Eventos"}
                   </span>
                 </React.Fragment>
               </div>
@@ -779,28 +969,6 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-override={overrides.footerEspanol}
             className={classNames("__wab_instance", sty.footerEspanol)}
           />
-
-          <div
-            className={classNames(
-              projectcss.all,
-              projectcss.__wab_text,
-              sty.text__ywjop,
-              {
-                [sty.textglobal_locale_en__ywjopg2TuR]: hasVariant(
-                  globalVariants,
-                  "locale",
-                  "en"
-                ),
-                [sty.textglobal_locale_es__ywjopTnYnw]: hasVariant(
-                  globalVariants,
-                  "locale",
-                  "es"
-                )
-              }
-            )}
-          >
-            {"Enter some text"}
-          </div>
         </div>
       </div>
     </React.Fragment>
@@ -815,6 +983,7 @@ const PlasmicDescendants = {
     "header",
     "searchEventEs",
     "searchEvent3",
+    "searchEvent4",
     "section",
     "img",
     "footer2",
@@ -822,9 +991,10 @@ const PlasmicDescendants = {
   ],
   navbar2: ["navbar2"],
   navbarEs: ["navbarEs"],
-  header: ["header", "searchEventEs", "searchEvent3"],
+  header: ["header", "searchEventEs", "searchEvent3", "searchEvent4"],
   searchEventEs: ["searchEventEs"],
   searchEvent3: ["searchEvent3"],
+  searchEvent4: ["searchEvent4"],
   section: ["section", "img"],
   img: ["img"],
   footer2: ["footer2"],
@@ -840,6 +1010,7 @@ type NodeDefaultElementType = {
   header: "section";
   searchEventEs: typeof TextInput;
   searchEvent3: typeof TextInput;
+  searchEvent4: typeof TextInput;
   section: "section";
   img: typeof PlasmicImg__;
   footer2: typeof Footer2;
@@ -911,6 +1082,7 @@ export const PlasmicHomepage = Object.assign(
     header: makeNodeComponent("header"),
     searchEventEs: makeNodeComponent("searchEventEs"),
     searchEvent3: makeNodeComponent("searchEvent3"),
+    searchEvent4: makeNodeComponent("searchEvent4"),
     section: makeNodeComponent("section"),
     img: makeNodeComponent("img"),
     footer2: makeNodeComponent("footer2"),
