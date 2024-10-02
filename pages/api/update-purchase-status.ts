@@ -18,7 +18,7 @@ export default async function handler(
 
   try {
     // Get the data from the request body
-    const { purchaseId, totalAmount, donation, roundup } = req.body;
+    const { purchaseId, totalAmount, donation, roundup, totalFee } = req.body;
 
     if (!purchaseId) {
       return res.status(400).json({ message: 'PurchaseId not found in request body' });
@@ -34,8 +34,9 @@ export default async function handler(
       body: JSON.stringify({
         Status: 'purchase_complete',
         TotalPurchase: totalAmount,  // Updating total amount
-        Donation: donation,        // Updating donation amount
-        RoundUp: roundup           // Updating roundup
+        Donation: donation,          // Updating donation amount
+        RoundUp: roundup,            // Updating roundup
+        TotalFees: totalFee           // Updating total fee
       }),
     });
 

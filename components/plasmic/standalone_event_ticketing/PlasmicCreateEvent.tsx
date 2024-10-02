@@ -1096,6 +1096,12 @@ function PlasmicCreateEvent__RenderFunc(props: {
                             : "name"
                         }
                         preserve={false}
+                        rules={[
+                          {
+                            ruleType: "required",
+                            message: "Please enter an event name"
+                          }
+                        ]}
                       >
                         <TextInput
                           data-plasmic-name={"textInput"}
@@ -1149,6 +1155,14 @@ function PlasmicCreateEvent__RenderFunc(props: {
                             : "description"
                         }
                         preserve={false}
+                        rules={[
+                          {
+                            ruleType: "required",
+                            message: "Please enter an event description"
+                          },
+
+                          { ruleType: "required" }
+                        ]}
                       >
                         {(() => {
                           const child$Props = {
@@ -1217,6 +1231,12 @@ function PlasmicCreateEvent__RenderFunc(props: {
                             : "category"
                         }
                         preserve={false}
+                        rules={[
+                          {
+                            ruleType: "required",
+                            message: "Please select an event category"
+                          }
+                        ]}
                       >
                         <Select
                           data-plasmic-name={"select"}

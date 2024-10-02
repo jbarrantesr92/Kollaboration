@@ -389,6 +389,68 @@ function PlasmicEvent__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "totalFees",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                const subtotal = $state.subTotal;
+                const transaction_fee =
+                  0.3 +
+                  subtotal * 0.029 +
+                  $queries.getCart.data.response.data.reduce(
+                    (acc, ticket) =>
+                      acc +
+                      ticket.TicketQuantity *
+                        ticket.TicketPrice *
+                        (ticket.TicketFee / 100),
+                    0
+                  );
+                const transaction_fee_rounded =
+                  Math.ceil(transaction_fee * 100) / 100;
+                return transaction_fee_rounded;
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return 0;
+              }
+              throw e;
+            }
+          })()
+      },
+      {
+        path: "subTotal",
+        type: "private",
+        variableType: "number",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                const transaction_fee =
+                  $queries.getCart.data.response.data.reduce(
+                    (acc, ticket) =>
+                      acc + ticket.TicketQuantity * ticket.TicketPrice,
+                    0
+                  );
+                return transaction_fee;
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return 0;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -1155,7 +1217,9 @@ function PlasmicEvent__RenderFunc(props: {
                                                           currentIndex
                                                         ].value,
                                                       TicketPrice:
-                                                        currentItem.TicketPrice
+                                                        currentItem.TicketPrice,
+                                                      TicketFee:
+                                                        currentItem.TicketFee
                                                     }
                                                   ]
                                                 : [])
@@ -1966,6 +2030,86 @@ function PlasmicEvent__RenderFunc(props: {
                                     <div
                                       className={classNames(
                                         projectcss.all,
+                                        sty.freeBox__s0K6A
+                                      )}
+                                    >
+                                      <div
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.freeBox__nhblC
+                                        )}
+                                      >
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__gaC4
+                                          )}
+                                        >
+                                          {"Total Fees"}
+                                        </div>
+                                      </div>
+                                      <Stack__
+                                        as={"div"}
+                                        hasGap={true}
+                                        className={classNames(
+                                          projectcss.all,
+                                          sty.freeBox__ju3KF
+                                        )}
+                                      >
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__xaJl5
+                                          )}
+                                        >
+                                          <React.Fragment>
+                                            {(() => {
+                                              try {
+                                                return "$";
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return "";
+                                                }
+                                                throw e;
+                                              }
+                                            })()}
+                                          </React.Fragment>
+                                        </div>
+                                        <div
+                                          className={classNames(
+                                            projectcss.all,
+                                            projectcss.__wab_text,
+                                            sty.text__eXWa
+                                          )}
+                                        >
+                                          <React.Fragment>
+                                            {(() => {
+                                              try {
+                                                return $state.totalFees;
+                                              } catch (e) {
+                                                if (
+                                                  e instanceof TypeError ||
+                                                  e?.plasmicType ===
+                                                    "PlasmicUndefinedDataError"
+                                                ) {
+                                                  return "";
+                                                }
+                                                throw e;
+                                              }
+                                            })()}
+                                          </React.Fragment>
+                                        </div>
+                                      </Stack__>
+                                    </div>
+                                    <div
+                                      className={classNames(
+                                        projectcss.all,
                                         sty.freeBox__k2FSd
                                       )}
                                     >
@@ -2125,37 +2269,21 @@ function PlasmicEvent__RenderFunc(props: {
                                           <React.Fragment>
                                             {(() => {
                                               try {
-                                                return (
-                                                  "$" +
-                                                  ($state.roundUp.checked
-                                                    ? Math.ceil(
-                                                        $queries.getCart.data.response.data.reduce(
-                                                          (acc, ticket) =>
-                                                            acc +
-                                                            ticket.TicketQuantity *
-                                                              ticket.TicketPrice,
-                                                          0
-                                                        ) +
-                                                          Number(
-                                                            $state
-                                                              .donationValue2
-                                                              .value
-                                                          )
-                                                      )
-                                                    : (
-                                                        $queries.getCart.data.response.data.reduce(
-                                                          (acc, ticket) =>
-                                                            acc +
-                                                            ticket.TicketQuantity *
-                                                              ticket.TicketPrice,
-                                                          0
-                                                        ) +
-                                                        Number(
-                                                          $state.donationValue2
-                                                            .value
-                                                        )
-                                                      ).toFixed(2))
-                                                );
+                                                return $state.roundUp.checked
+                                                  ? Math.ceil(
+                                                      $state.subTotal +
+                                                        $state.totalFees
+                                                    ) +
+                                                      $state.donationValue2
+                                                        .value
+                                                  : Math.ceil(
+                                                      ($state.subTotal +
+                                                        $state.totalFees) *
+                                                        100
+                                                    ) /
+                                                      100 +
+                                                      $state.donationValue2
+                                                        .value;
                                               } catch (e) {
                                                 if (
                                                   e instanceof TypeError ||
@@ -3795,7 +3923,7 @@ function PlasmicEvent__RenderFunc(props: {
                                           },
                                           cacheKey: null,
                                           invalidatedKeys: [
-                                            "plasmic_refresh_all"
+                                            "0cc6a39e-f808-4bf3-9d06-951fa0e68d3a"
                                           ],
                                           roleId: null
                                         },
@@ -3895,7 +4023,8 @@ function PlasmicEvent__RenderFunc(props: {
                                             cacheKey: null,
                                             invalidatedKeys: [
                                               "b895aa89-cd9e-48f4-84d1-e42992d31c7f",
-                                              "ccdf9225-a742-4324-b663-f82fa33e998e"
+                                              "ccdf9225-a742-4324-b663-f82fa33e998e",
+                                              "0cc6a39e-f808-4bf3-9d06-951fa0e68d3a"
                                             ],
                                             roleId: null
                                           },

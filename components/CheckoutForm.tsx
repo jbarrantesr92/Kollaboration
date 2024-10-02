@@ -10,11 +10,12 @@ import { useRouter } from 'next/router';
 
 interface CheckoutFormProps {
   totalAmount: number;
-  donation:number,
-  roundup:boolean
+  totalFee: number;
+  donation: number;
+  roundup: boolean;
 }
 
-export default function CheckoutForm({ totalAmount, donation, roundup }: CheckoutFormProps) {
+export default function CheckoutForm({ totalAmount, totalFee, donation, roundup }: CheckoutFormProps) {
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
@@ -85,6 +86,7 @@ export default function CheckoutForm({ totalAmount, donation, roundup }: Checkou
               throw new Error('Failed to generate and upload QR code');
             }
 
+            // Send totalFee to update-purchase-status API along with other data
             const updateResponse = await fetch(`/api/update-purchase-status`, {
               method: 'POST',
               headers: {
@@ -95,7 +97,8 @@ export default function CheckoutForm({ totalAmount, donation, roundup }: Checkou
                 status: 'purchase_complete',
                 totalAmount: totalAmount,
                 donation: donation,
-                roundup:roundup
+                roundup: roundup,
+                totalFee: totalFee,  // Include the total fee in the API request
               }),
             });
 
