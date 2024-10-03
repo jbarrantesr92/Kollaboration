@@ -2030,158 +2030,172 @@ function PlasmicEvent__RenderFunc(props: {
                                     <div
                                       className={classNames(
                                         projectcss.all,
-                                        sty.freeBox__s0K6A
+                                        sty.freeBox__zo7Qa
                                       )}
                                     >
                                       <div
                                         className={classNames(
                                           projectcss.all,
-                                          sty.freeBox__nhblC
+                                          sty.freeBox__gZ4Vu
                                         )}
                                       >
                                         <div
                                           className={classNames(
                                             projectcss.all,
                                             projectcss.__wab_text,
-                                            sty.text__gaC4
+                                            sty.text__bJeK
                                           )}
                                         >
                                           {"Total Fees"}
                                         </div>
                                       </div>
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
-                                          sty.freeBox__ju3KF
+                                          sty.freeBox__q6P7V
                                         )}
                                       >
-                                        <div
+                                        <Stack__
+                                          as={"div"}
+                                          hasGap={true}
                                           className={classNames(
                                             projectcss.all,
-                                            projectcss.__wab_text,
-                                            sty.text__xaJl5
+                                            sty.freeBox__ju3KF
                                           )}
                                         >
-                                          <React.Fragment>
-                                            {(() => {
-                                              try {
-                                                return "$";
-                                              } catch (e) {
-                                                if (
-                                                  e instanceof TypeError ||
-                                                  e?.plasmicType ===
-                                                    "PlasmicUndefinedDataError"
-                                                ) {
-                                                  return "";
+                                          <div
+                                            className={classNames(
+                                              projectcss.all,
+                                              projectcss.__wab_text,
+                                              sty.text__xaJl5
+                                            )}
+                                          >
+                                            <React.Fragment>
+                                              {(() => {
+                                                try {
+                                                  return "$";
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return "";
+                                                  }
+                                                  throw e;
                                                 }
-                                                throw e;
-                                              }
-                                            })()}
-                                          </React.Fragment>
-                                        </div>
-                                        <div
-                                          className={classNames(
-                                            projectcss.all,
-                                            projectcss.__wab_text,
-                                            sty.text__eXWa
-                                          )}
-                                        >
-                                          <React.Fragment>
-                                            {(() => {
-                                              try {
-                                                return $state.totalFees;
-                                              } catch (e) {
-                                                if (
-                                                  e instanceof TypeError ||
-                                                  e?.plasmicType ===
-                                                    "PlasmicUndefinedDataError"
-                                                ) {
-                                                  return "";
+                                              })()}
+                                            </React.Fragment>
+                                          </div>
+                                          <div
+                                            className={classNames(
+                                              projectcss.all,
+                                              projectcss.__wab_text,
+                                              sty.text__eXWa
+                                            )}
+                                          >
+                                            <React.Fragment>
+                                              {(() => {
+                                                try {
+                                                  return $state.totalFees;
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return "";
+                                                  }
+                                                  throw e;
                                                 }
-                                                throw e;
-                                              }
-                                            })()}
-                                          </React.Fragment>
-                                        </div>
-                                      </Stack__>
+                                              })()}
+                                            </React.Fragment>
+                                          </div>
+                                        </Stack__>
+                                      </div>
                                     </div>
                                     <div
                                       className={classNames(
                                         projectcss.all,
-                                        sty.freeBox__k2FSd
+                                        sty.freeBox__ugXgy
                                       )}
                                     >
                                       <div
                                         className={classNames(
                                           projectcss.all,
-                                          sty.freeBox__zbLnr
+                                          sty.freeBox___8ZGi6
                                         )}
                                       >
                                         <div
                                           className={classNames(
                                             projectcss.all,
                                             projectcss.__wab_text,
-                                            sty.text__zvFWg
+                                            sty.text__lYxa
                                           )}
                                         >
                                           {"Donation"}
                                         </div>
                                       </div>
-                                      <Stack__
-                                        as={"div"}
-                                        hasGap={true}
+                                      <div
                                         className={classNames(
                                           projectcss.all,
-                                          sty.freeBox__uGlx0
+                                          sty.freeBox__jvuI0
                                         )}
                                       >
-                                        <div
+                                        <Stack__
+                                          as={"div"}
+                                          hasGap={true}
                                           className={classNames(
                                             projectcss.all,
-                                            projectcss.__wab_text,
-                                            sty.text__x4VW
+                                            sty.freeBox__uGlx0
                                           )}
                                         >
-                                          <React.Fragment>
-                                            {(() => {
-                                              try {
-                                                return "$";
-                                              } catch (e) {
-                                                if (
-                                                  e instanceof TypeError ||
-                                                  e?.plasmicType ===
-                                                    "PlasmicUndefinedDataError"
-                                                ) {
-                                                  return "";
+                                          <div
+                                            className={classNames(
+                                              projectcss.all,
+                                              projectcss.__wab_text,
+                                              sty.text__x4VW
+                                            )}
+                                          >
+                                            <React.Fragment>
+                                              {(() => {
+                                                try {
+                                                  return "$";
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return "";
+                                                  }
+                                                  throw e;
                                                 }
-                                                throw e;
-                                              }
-                                            })()}
-                                          </React.Fragment>
-                                        </div>
-                                        <AntdInputNumber
-                                          data-plasmic-name={"donationValue2"}
-                                          data-plasmic-override={
-                                            overrides.donationValue2
-                                          }
-                                          className={classNames(
-                                            "__wab_instance",
-                                            sty.donationValue2
-                                          )}
-                                          min={0}
-                                          onChange={generateStateOnChangeProp(
-                                            $state,
-                                            ["donationValue2", "value"]
-                                          )}
-                                          type={"number"}
-                                          value={generateStateValueProp(
-                                            $state,
-                                            ["donationValue2", "value"]
-                                          )}
-                                        />
-                                      </Stack__>
+                                              })()}
+                                            </React.Fragment>
+                                          </div>
+                                          <AntdInputNumber
+                                            data-plasmic-name={"donationValue2"}
+                                            data-plasmic-override={
+                                              overrides.donationValue2
+                                            }
+                                            className={classNames(
+                                              "__wab_instance",
+                                              sty.donationValue2
+                                            )}
+                                            min={0}
+                                            onChange={generateStateOnChangeProp(
+                                              $state,
+                                              ["donationValue2", "value"]
+                                            )}
+                                            type={"number"}
+                                            value={generateStateValueProp(
+                                              $state,
+                                              ["donationValue2", "value"]
+                                            )}
+                                          />
+                                        </Stack__>
+                                      </div>
                                     </div>
                                     <div
                                       className={classNames(
