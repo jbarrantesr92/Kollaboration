@@ -2,9 +2,9 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import {
-  PlasmicDragAndDropUploader,
-  DefaultDragAndDropUploaderProps
-} from "./plasmic/kollaboration_ghl/PlasmicDragAndDropUploader";
+  PlasmicDragAndDropFiles,
+  DefaultDragAndDropFilesProps
+} from "./plasmic/kollaboration_ghl/PlasmicDragAndDropFiles";
 import { HTMLElementRefOf } from "@plasmicapp/react-web";
 
 // Your component props start with props for variants and slots you defined
@@ -14,36 +14,35 @@ import { HTMLElementRefOf } from "@plasmicapp/react-web";
 // If you don't want to expose certain variants or slots as a prop, you can use
 // Omit to hide them:
 //
-// interface DragAndDropUploaderProps extends Omit<DefaultDragAndDropUploaderProps, "hideProps1"|"hideProp2"> {
+// interface DragAndDropFilesProps extends Omit<DefaultDragAndDropFilesProps, "hideProps1"|"hideProp2"> {
 //   // etc.
 // }
 //
-// You can also stop extending from DefaultDragAndDropUploaderProps altogether and have
+// You can also stop extending from DefaultDragAndDropFilesProps altogether and have
 // total control over the props for your component.
-export interface DragAndDropUploaderProps
-  extends DefaultDragAndDropUploaderProps {}
+export interface DragAndDropFilesProps extends DefaultDragAndDropFilesProps {}
 
-function DragAndDropUploader_(
-  props: DragAndDropUploaderProps,
+function DragAndDropFiles_(
+  props: DragAndDropFilesProps,
   ref: HTMLElementRefOf<"div">
 ) {
-  // Use PlasmicDragAndDropUploader to render this component as it was
+  // Use PlasmicDragAndDropFiles to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
   // can also install whatever React hooks you need here to manage state or
   // fetch data.
   //
-  // Props you can pass into PlasmicDragAndDropUploader are:
+  // Props you can pass into PlasmicDragAndDropFiles are:
   // 1. Variants you want to activate,
   // 2. Contents for slots you want to fill,
   // 3. Overrides for any named node in the component to attach behavior and data,
   // 4. Props to set on the root node.
   //
-  // By default, we are just piping all DragAndDropUploaderProps here, but feel free
+  // By default, we are just piping all DragAndDropFilesProps here, but feel free
   // to do whatever works for you.
 
-  return <PlasmicDragAndDropUploader root={{ ref }} {...props} />;
+  return <PlasmicDragAndDropFiles root={{ ref }} {...props} />;
 }
 
-const DragAndDropUploader = React.forwardRef(DragAndDropUploader_);
-export default DragAndDropUploader;
+const DragAndDropFiles = React.forwardRef(DragAndDropFiles_);
+export default DragAndDropFiles;

@@ -2,7 +2,7 @@ import * as React from "react";
 import {
   PlasmicButton,
   DefaultButtonProps
-} from "./plasmic/standalone_event_ticketing/PlasmicButton";
+} from "./plasmic/kollaboration_ghl/PlasmicButton";
 
 import {
   ButtonRef,
